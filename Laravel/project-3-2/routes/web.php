@@ -20,3 +20,10 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware('auth','verified');
+
+Route::post('/crear','App\Http\Controllers\UsersController@crear')->name('usuarios.crear');
+Route::post('/login','App\Http\Controllers\UsersController@login')->name('usuarios.login');
+Route::delete('personas/{id}','App\Http\Controllers\UsersController@eliminar')->name('usuarios.eliminar');
+Route::get('editar/{id}','App\Http\Controllers\UsersController@editar')->name('usuarios.editar');
+Route::put('editar/{id}','App\Http\Controllers\UsersController@actualizar')->name('usuarios.actualizar');
+Route::get('visualizar/{id}','App\Http\Controllers\UsersController@visualizar')->name('usuarios.visualizar');
