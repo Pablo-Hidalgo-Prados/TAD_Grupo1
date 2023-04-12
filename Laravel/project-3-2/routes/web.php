@@ -21,6 +21,8 @@ Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware('auth','verified');
 
+Route::get('/home','App\Http\Controllers\ProductosController@listar')->middleware('auth', 'verified');
+
 Route::post('/crear','App\Http\Controllers\UsersController@crear')->name('usuarios.crear');
 Route::match(['get', 'post'], '/listar', 'App\Http\Controllers\UsersController@listar')->name('usuarios.listar');
 Route::delete('usuarios/{id}','App\Http\Controllers\UsersController@eliminar')->name('usuarios.eliminar');
@@ -34,6 +36,8 @@ Route::delete('productos/{id}','App\Http\Controllers\ProductosController@elimina
 Route::get('editarp/{id}','App\Http\Controllers\ProductosController@editar')->name('productos.editar');
 Route::put('editarp/{id}','App\Http\Controllers\ProductosController@actualizar')->name('productos.actualizar');
 Route::get('visualizarp/{id}','App\Http\Controllers\ProductosController@visualizar')->name('productos.visualizar');
+
+Route::post('/agregaracarrito/{producto_id}/{user_id}','App\Http\Controllers\UsersController@agregaritem')->name('carritos.agregar');
 
 Route::post('/crearc','App\Http\Controllers\CategoriasController@crear')->name('categorias.crear');
 Route::match(['get', 'post'], '/listarc', 'App\Http\Controllers\CategoriasController@listar')->name('categorias.listar');

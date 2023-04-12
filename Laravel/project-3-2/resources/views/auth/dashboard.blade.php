@@ -25,6 +25,8 @@
     </div>
 
         @if(Auth::user()->rol=='admin')
+<!--ROL ADMIN-->
+
         <form action="{{ route('usuarios.listar') }}" method="post">
             @csrf
             <button class="btn btn-success m-1" type="submit">Listar Usuarios</button>
@@ -37,9 +39,7 @@
             @csrf
             <button class="btn btn-success m-1" type="submit">Listar Categorías</button>
         </form>
-        @else
-            <p>CLIENTE</p>
-        @endif
+<!--USUARIOS LISTA-->
         @if(isset($usuarios))
         <h1 class="text-center">Usuarios</h1>
             <table class="table text-black text-center w-75 mx-auto mt-5">
@@ -83,6 +83,7 @@
                 @endforeach
             </table>
         @endif
+<!--PRODUCTOS LISTA-->
         @if(isset($productos))
         <h1 class="text-center">Productos</h1>
             <table class="table text-black text-center w-75 mx-auto mt-5">
@@ -126,7 +127,7 @@
             
         @endif
 
-        <!--CATEGORÍAS LISTA-->
+<!--CATEGORÍAS LISTA-->
         @if(isset($categorias))
         <h1 class="text-center">Categorías</h1>
             <table class="table text-black text-center w-75 mx-auto mt-5">
@@ -166,7 +167,6 @@
             
         @endif
 
-        @if(Auth::user()->rol=='admin')
         <div class="row justify-content-center mt-2">
             <div class="col-md-8">
             <div class="card">
@@ -203,7 +203,35 @@
                 </div>
             </div>
         </div>
+        @else
+<!--ROL CLIENTE-->
+            @if(isset($productos))
+        <h1 class="text-center">Productos</h1>
+            <table class="table text-black text-center w-75 mx-auto mt-5">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Añadir a Carrito</th>
+                @foreach ($productos as $producto)
+                    <tr>
+                        <td>{{ $producto->id }}</td>
+                        <td>{{ $producto->nombre }}</td>
+                        <td>{{ $producto->descripcion }}</td>
+                        <td>{{ $producto->precio }}</td>
+                        <td>
+                            <form action="{{ route('carritos.agregar', [$producto->id, Auth::user()->id]) }}" method="POST">
+                                @csrf
+                                <button class="btn btn-danger" type="submit">Añadir</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+            
+            @endif
         @endif
+        
     </div>
 
 </div>

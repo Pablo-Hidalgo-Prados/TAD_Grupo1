@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Carrito;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -64,5 +65,14 @@ class UsersController extends Controller
         $user->telefono = $request->telefono;
         $user->save();
         return redirect()->route('usuarios.listar');
+    }
+
+    public function agregaritem($producto_id, $user_id){
+        $carrito = Carrito::where('user_id',$user_id)->get();
+        $producto = Producto::findOrFail($producto_id);
+        if($carrito->count()>0){
+            $carrito[0]->productos()->attach($producto_id);
+        }
+        return back() -> with('mensaje', 'Producto agregado');
     }
 }
