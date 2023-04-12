@@ -13,7 +13,7 @@
             @error('stock')
             <div class="alert alert-danger"> Debe rellenar el stock </div>
             @enderror
-            <h3 class="text-center">Editar a {{ $producto->name }}</h3>
+            <h3 class="text-center">Editar a {{ $producto->nombre }}</h3>
             <form action="{{ route('productos.actualizar',$producto->id) }}" method="POST">
                 @method('PUT')
                 @csrf

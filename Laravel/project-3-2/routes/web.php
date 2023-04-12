@@ -34,3 +34,10 @@ Route::delete('productos/{id}','App\Http\Controllers\ProductosController@elimina
 Route::get('editarp/{id}','App\Http\Controllers\ProductosController@editar')->name('productos.editar');
 Route::put('editarp/{id}','App\Http\Controllers\ProductosController@actualizar')->name('productos.actualizar');
 Route::get('visualizarp/{id}','App\Http\Controllers\ProductosController@visualizar')->name('productos.visualizar');
+
+Route::post('/crearc','App\Http\Controllers\CategoriasController@crear')->name('categorias.crear');
+Route::match(['get', 'post'], '/listarc', 'App\Http\Controllers\CategoriasController@listar')->name('categorias.listar');
+Route::delete('categorias/{id}','App\Http\Controllers\CategoriasController@eliminar')->name('categorias.eliminar');
+Route::get('editarc/{id}','App\Http\Controllers\CategoriasController@editar')->name('categorias.editar');
+Route::put('editarc/{id}','App\Http\Controllers\CategoriasController@actualizar')->name('categorias.actualizar');
+Route::get('visualizarc/{id}','App\Http\Controllers\CategoriasController@visualizar')->name('categorias.visualizar');

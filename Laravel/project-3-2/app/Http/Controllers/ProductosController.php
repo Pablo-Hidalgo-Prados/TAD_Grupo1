@@ -31,12 +31,12 @@ class ProductosController extends Controller
 
     public function visualizar($id){
         $producto=Producto::findOrFail($id);
-        return view('auth.visualizep',['producto'=>$producto]);
+        return view('auth.productos.visualizep',['producto'=>$producto]);
     }
 
     public function editar($id){
         $producto=Producto::findOrFail($id);
-        return view('auth.editarp',['producto'=>$producto]);
+        return view('auth.productos.editarp',['producto'=>$producto]);
     }
 
     public function actualizar(Request $request, $id){

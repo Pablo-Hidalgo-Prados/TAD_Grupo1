@@ -46,12 +46,12 @@ class UsersController extends Controller
 
     public function visualizar($id){
         $user=User::findOrFail($id);
-        return view('auth.visualize',['user'=>$user]);
+        return view('auth.users.visualize',['user'=>$user]);
     }
 
     public function editar($id){
         $user=User::findOrFail($id);
-        return view('auth.editar',['user'=>$user]);
+        return view('auth.users.editar',['user'=>$user]);
     }
 
     public function actualizar(Request $request, $id){

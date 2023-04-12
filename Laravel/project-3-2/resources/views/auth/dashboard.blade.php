@@ -1,6 +1,9 @@
 @extends('auth.template')
 
 @section('content')
+@error('nombrec')
+            <div class="alert alert-danger"> Debe rellenar el nombre </div>
+            @enderror
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -29,6 +32,10 @@
         <form action="{{ route('productos.listar') }}" method="post">
             @csrf
             <button class="btn btn-success m-1" type="submit">Listar Productos</button>
+        </form>
+        <form action="{{ route('categorias.listar') }}" method="post">
+            @csrf
+            <button class="btn btn-success m-1" type="submit">Listar Categorías</button>
         </form>
         @else
             <p>CLIENTE</p>
@@ -118,6 +125,47 @@
             </table>
             
         @endif
+
+        <!--CATEGORÍAS LISTA-->
+        @if(isset($categorias))
+        <h1 class="text-center">Categorías</h1>
+            <table class="table text-black text-center w-75 mx-auto mt-5">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Borrar</th>
+                <th>Editar</th>
+                <th>Visualizar</th>
+                @foreach ($categorias as $categoria)
+                    <tr>
+                        <td>{{ $categoria->id }}</td>
+                        <td>{{ $categoria->nombre }}</td>
+                        <td>{{ $categoria->descripcion }}</td>
+                        <td>
+                            <form action="{{ route('categorias.eliminar', $categoria->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ route('categorias.editar', $categoria->id) }}" method="get">
+                                @csrf
+                                <button class="btn btn-primary" type="submit">Editar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ route('categorias.visualizar', $categoria->id) }}" method="get">
+                                @csrf
+                                <button class="btn btn-success" type="submit">Visualizar</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+            
+        @endif
+
         @if(Auth::user()->rol=='admin')
         <div class="row justify-content-center mt-2">
             <div class="col-md-8">
@@ -134,6 +182,23 @@
                         <input id="precio" type="number" class="form-control @error('precio') is-invalid @enderror mt-1" name="precio" value="" placeholder="Precio" required autofocus>
                         <input id="stock" type="text" class="form-control @error('stock') is-invalid @enderror mt-1" name="stock" value="" placeholder="Stock" required autofocus>
                         <button class="btn btn-success mt-1" type="submit">Crear Producto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    Crear Categoría
+                </div>
+
+                <div class="card-body">
+                    <form action="{{ route('categorias.crear') }}" method="post">
+                        @csrf
+                        <input id="nombrec" type="text" class="form-control @error('nombrec') is-invalid @enderror mt-1" name="nombrec" value="" placeholder="Nombre" required autofocus>
+                        <input id="descripcionc" type="text" class="form-control @error('descripcionc') is-invalid @enderror mt-1" name="descripcionc" value="" placeholder="Descripcion" required autofocus>
+                        <button class="btn btn-success mt-1" type="submit">Crear Categoría</button>
                     </form>
                 </div>
             </div>
