@@ -205,8 +205,12 @@
         </div>
         @else
 <!--ROL CLIENTE-->
+            <form action="{{ route('carritos.visualizar', Auth::user()->id) }}" method="get">
+                @csrf
+                <button class="btn btn-primary" type="submit">Ver Carrito</button>
+            </form>
             @if(isset($productos))
-        <h1 class="text-center">Productos</h1>
+            <h1 class="text-center">Productos</h1>
             <table class="table text-black text-center w-75 mx-auto mt-5">
                 <th>ID</th>
                 <th>Nombre</th>

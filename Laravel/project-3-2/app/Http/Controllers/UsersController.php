@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Carrito;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -70,9 +71,24 @@ class UsersController extends Controller
     public function agregaritem($producto_id, $user_id){
         $carrito = Carrito::where('user_id',$user_id)->get();
         $producto = Producto::findOrFail($producto_id);
+        // Comprobar si el producto ya está en el carrito
         if($carrito->count()>0){
-            $carrito[0]->productos()->attach($producto_id);
+            $registroPivot = $producto->carritos()->where('carrito_id', $carrito[0]->id)->first();
+            if ($registroPivot) {
+                // Si el producto ya está en el carrito, incrementar la cantidad en 1
+                $carrito[0]->productos()->updateExistingPivot($producto->id, ['cantidad' => DB::raw('cantidad + 1')]);
+            } else {
+                // Si el producto no está en el carrito, agregarlo con cantidad 1
+                $producto->carritos()->attach($carrito[0]->id, ['cantidad' => 1]);
+            }
         }
         return back() -> with('mensaje', 'Producto agregado');
+    }
+
+    public function vercarrito($user_id){
+        $user = User::findOrFail($user_id);
+        $carrito = Carrito::where('user_id',$user_id)->get();
+        $productos_carrito = $carrito[0]->productos;
+        return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user]);
     }
 }
