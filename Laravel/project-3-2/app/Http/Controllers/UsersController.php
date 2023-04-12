@@ -91,4 +91,27 @@ class UsersController extends Controller
         $productos_carrito = $carrito[0]->productos;
         return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user]);
     }
+
+    public function reducir($producto_id, $user_id){
+        $user = User::find($user_id);
+        // Obtener el producto del carrito del usuario
+        $carrito = Carrito::where('user_id',$user_id)->get();
+        $producto = $carrito[0]->productos->find($producto_id);
+        if ($producto->pivot->cantidad > 1) {
+            $producto->pivot->decrement('cantidad');
+        } else {
+            // Si la cantidad es 1 o menor, eliminar el producto del carrito
+            $carrito[0]->productos()->detach($producto_id);
+        }
+        return redirect()->route('carritos.visualizar', ['user_id'=>$user_id])->with('mensaje', 'Cantidad del producto reducida');
+    }
+
+    public function incrementar($producto_id, $user_id){
+        $user = User::find($user_id);
+        // Obtener el producto del carrito del usuario
+        $carrito = Carrito::where('user_id',$user_id)->get();
+        $producto = $carrito[0]->productos()->find($producto_id);
+        $producto->pivot->increment('cantidad');
+        return redirect()->route('carritos.visualizar', ['user_id'=>$user_id])->with('mensaje', 'Cantidad del producto incrementada');
+    }
 }

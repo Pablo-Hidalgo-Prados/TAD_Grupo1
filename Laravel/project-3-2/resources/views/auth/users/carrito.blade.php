@@ -8,7 +8,7 @@
                     <th>Descripción</th>
                     <th>Precio</th>
                     <th>Cantidad</th>
-                    <th>Quitar</th>
+                    <th>Reducir/Incrementar</th>
                     @foreach ($productos_carrito as $producto)
                         <tr>
                             <td>{{ $producto->id }}</td>
@@ -17,9 +17,13 @@
                             <td>{{ $producto->precio }}</td>
                             <td>{{ $producto->pivot->cantidad }}</td>
                             <td>
-                                <form action="{{ route('carritos.agregar', [$producto->id, Auth::user()->id]) }}" method="POST">
+                                <form action="{{ route('carritos.reducir', [$producto->id, Auth::user()->id]) }}" method="get">
                                     @csrf
-                                    <button class="btn btn-danger" type="submit">Añadir</button>
+                                    <button class="btn btn-danger" type="submit">-</button>
+                                </form>
+                                <form action="{{ route('carritos.incrementar', [$producto->id, Auth::user()->id]) }}" method="get">
+                                    @csrf
+                                    <button class="btn btn-danger" type="submit">+</button>
                                 </form>
                             </td>
                         </tr>

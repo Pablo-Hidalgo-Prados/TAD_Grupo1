@@ -39,6 +39,8 @@ Route::get('visualizarp/{id}','App\Http\Controllers\ProductosController@visualiz
 
 Route::post('/agregaracarrito/{producto_id}/{user_id}','App\Http\Controllers\UsersController@agregaritem')->name('carritos.agregar');
 Route::get('vercarrito/{user_id}','App\Http\Controllers\UsersController@vercarrito')->name('carritos.visualizar');
+Route::get('reducir/{producto_id}/{user_id}','App\Http\Controllers\UsersController@reducir')->name('carritos.reducir');
+Route::get('incrementar/{producto_id}/{user_id}','App\Http\Controllers\UsersController@incrementar')->name('carritos.incrementar');
 
 Route::post('/crearc','App\Http\Controllers\CategoriasController@crear')->name('categorias.crear');
 Route::match(['get', 'post'], '/listarc', 'App\Http\Controllers\CategoriasController@listar')->name('categorias.listar');
