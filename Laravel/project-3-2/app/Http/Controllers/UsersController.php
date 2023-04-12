@@ -46,12 +46,12 @@ class UsersController extends Controller
 
     public function visualizar($id){
         $user=User::findOrFail($id);
-        return view('visualizar',['usuario'=>$user]);
+        return view('auth.visualize',['user'=>$user]);
     }
 
     public function editar($id){
         $user=User::findOrFail($id);
-        return view('editar',['usuario'=>$user]);
+        return view('auth.editar',['user'=>$user]);
     }
 
     public function actualizar(Request $request, $id){
@@ -63,6 +63,6 @@ class UsersController extends Controller
         $user->apellidos = $request->apellidos;
         $user->telefono = $request->telefono;
         $user->save();
-        return view('welcome');
+        return redirect()->route('usuarios.listar');
     }
 }

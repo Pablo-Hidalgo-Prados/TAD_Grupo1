@@ -26,7 +26,7 @@ Route::match(['get', 'post'], '/listar', 'App\Http\Controllers\UsersController@l
 Route::delete('usuarios/{id}','App\Http\Controllers\UsersController@eliminar')->name('usuarios.eliminar');
 Route::get('editar/{id}','App\Http\Controllers\UsersController@editar')->name('usuarios.editar');
 Route::put('editar/{id}','App\Http\Controllers\UsersController@actualizar')->name('usuarios.actualizar');
-Route::get('visualizaru/{id}','App\Http\Controllers\UsersController@visualizar')->name('usuarios.visualizar');
+Route::get('visualizar/{id}','App\Http\Controllers\UsersController@visualizar')->name('usuarios.visualizar');
 
 Route::post('/crearp','App\Http\Controllers\ProductosController@crear')->name('productos.crear');
 Route::match(['get', 'post'], '/listarp', 'App\Http\Controllers\ProductosController@listar')->name('productos.listar');

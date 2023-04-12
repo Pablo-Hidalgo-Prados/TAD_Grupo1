@@ -30,24 +30,26 @@ class ProductosController extends Controller
     }
 
     public function visualizar($id){
-        $user=User::findOrFail($id);
-        return view('visualizar',['usuario'=>$user]);
+        $producto=Producto::findOrFail($id);
+        return view('auth.visualizep',['producto'=>$producto]);
     }
 
     public function editar($id){
-        $user=User::findOrFail($id);
-        return view('editar',['usuario'=>$user]);
+        $producto=Producto::findOrFail($id);
+        return view('auth.editarp',['producto'=>$producto]);
     }
 
     public function actualizar(Request $request, $id){
-        $request->validate(['name' => ['required', 'string', 'max:255'],
-        'apellidos' => ['required', 'string', 'max:255'],
-        'telefono' => ['required', 'integer']]);
-        $user=User::findOrFail($id);
-        $user->name = $request->name;
-        $user->apellidos = $request->apellidos;
-        $user->telefono = $request->telefono;
-        $user->save();
-        return view('welcome');
+        $request->validate(['nombre' => ['required', 'string', 'max:255'],
+        'descripcion' => ['required', 'string', 'max:255'],
+        'precio' => ['required', 'numeric'],
+        'stock' => ['required', 'integer']]);
+        $producto=Producto::findOrFail($id);
+        $producto->nombre = $request->nombre;
+        $producto->descripcion = $request->descripcion;
+        $producto->precio = $request->precio;
+        $producto->stock = $request->stock;
+        $producto->save();
+        return redirect()->route('productos.listar');
     }
 }

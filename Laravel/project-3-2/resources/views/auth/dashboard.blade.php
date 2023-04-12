@@ -22,25 +22,6 @@
     </div>
 
         @if(Auth::user()->rol=='admin')
-        <div class="row justify-content-center mt-2">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    Crear Producto
-                </div>
-
-                <div class="card-body">
-                    <form action="{{ route('productos.crear') }}" method="post">
-                        @csrf
-                        <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror mt-1" name="nombre" value="" placeholder="Nombre" required autofocus>
-                        <input id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror mt-1" name="descripcion" value="" placeholder="Descripcion" required autofocus>
-                        <input id="precio" type="number" class="form-control @error('precio') is-invalid @enderror mt-1" name="precio" value="" placeholder="Precio" required autofocus>
-                        <input id="stock" type="text" class="form-control @error('stock') is-invalid @enderror mt-1" name="stock" value="" placeholder="Stock" required autofocus>
-                        <button class="btn btn-success mt-1" type="submit">Crear Producto</button>
-                    </form>
-                </div>
-            </div>
-        </div>
         <form action="{{ route('usuarios.listar') }}" method="post">
             @csrf
             <button class="btn btn-success m-1" type="submit">Listar Usuarios</button>
@@ -67,7 +48,7 @@
                 @foreach ($usuarios as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->nombre }}</td>
+                        <td>{{ $user->name }}</td>
                         <td>{{ $user->apellidos }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->rol }}</td>
@@ -135,6 +116,28 @@
                     </tr>
                 @endforeach
             </table>
+            
+        @endif
+        @if(Auth::user()->rol=='admin')
+        <div class="row justify-content-center mt-2">
+            <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    Crear Producto
+                </div>
+
+                <div class="card-body">
+                    <form action="{{ route('productos.crear') }}" method="post">
+                        @csrf
+                        <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror mt-1" name="nombre" value="" placeholder="Nombre" required autofocus>
+                        <input id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror mt-1" name="descripcion" value="" placeholder="Descripcion" required autofocus>
+                        <input id="precio" type="number" class="form-control @error('precio') is-invalid @enderror mt-1" name="precio" value="" placeholder="Precio" required autofocus>
+                        <input id="stock" type="text" class="form-control @error('stock') is-invalid @enderror mt-1" name="stock" value="" placeholder="Stock" required autofocus>
+                        <button class="btn btn-success mt-1" type="submit">Crear Producto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         @endif
     </div>
 
