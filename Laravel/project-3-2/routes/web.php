@@ -22,7 +22,15 @@ Route::get('/home', function () {
 })->middleware('auth','verified');
 
 Route::post('/crear','App\Http\Controllers\UsersController@crear')->name('usuarios.crear');
-Route::delete('personas/{id}','App\Http\Controllers\UsersController@eliminar')->name('usuarios.eliminar');
+Route::match(['get', 'post'], '/listar', 'App\Http\Controllers\UsersController@listar')->name('usuarios.listar');
+Route::delete('usuarios/{id}','App\Http\Controllers\UsersController@eliminar')->name('usuarios.eliminar');
 Route::get('editar/{id}','App\Http\Controllers\UsersController@editar')->name('usuarios.editar');
 Route::put('editar/{id}','App\Http\Controllers\UsersController@actualizar')->name('usuarios.actualizar');
-Route::get('visualizar/{id}','App\Http\Controllers\UsersController@visualizar')->name('usuarios.visualizar');
+Route::get('visualizaru/{id}','App\Http\Controllers\UsersController@visualizar')->name('usuarios.visualizar');
+
+Route::post('/crearp','App\Http\Controllers\ProductosController@crear')->name('productos.crear');
+Route::match(['get', 'post'], '/listarp', 'App\Http\Controllers\ProductosController@listar')->name('productos.listar');
+Route::delete('productos/{id}','App\Http\Controllers\ProductosController@eliminar')->name('productos.eliminar');
+Route::get('editarp/{id}','App\Http\Controllers\ProductosController@editar')->name('productos.editar');
+Route::put('editarp/{id}','App\Http\Controllers\ProductosController@actualizar')->name('productos.actualizar');
+Route::get('visualizarp/{id}','App\Http\Controllers\ProductosController@visualizar')->name('productos.visualizar');

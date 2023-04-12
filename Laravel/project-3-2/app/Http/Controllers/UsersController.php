@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Carrito;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -30,14 +32,16 @@ class UsersController extends Controller
     public function eliminar($id){
         $userEliminar = User::findOrFail($id);
         $carritoEliminar = Carrito::where('user_id',$userEliminar->id)->get();
-        $carritoEliminar[0]->delete();
+        if($carritoEliminar->count()>0){
+            $carritoEliminar[0]->delete();
+        }
         $userEliminar->delete();
         return back() -> with('mensaje', 'Persona Eliminada');
     }
 
     public function listar(){
         $usuarios = User::all();
-        return view('index', ['usuarios'=>$usuarios]);
+        return view('auth.dashboard', ['usuarios'=>$usuarios]);
     }
 
     public function visualizar($id){
