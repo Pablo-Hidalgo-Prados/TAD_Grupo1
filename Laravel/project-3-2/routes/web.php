@@ -41,6 +41,7 @@ Route::post('/agregaracarrito/{producto_id}/{user_id}','App\Http\Controllers\Use
 Route::get('vercarrito/{user_id}','App\Http\Controllers\UsersController@vercarrito')->name('carritos.visualizar');
 Route::get('reducir/{producto_id}/{user_id}','App\Http\Controllers\UsersController@reducir')->name('carritos.reducir');
 Route::get('incrementar/{producto_id}/{user_id}','App\Http\Controllers\UsersController@incrementar')->name('carritos.incrementar');
+Route::post('/vaciarc/{user_id}','App\Http\Controllers\UsersController@vaciarcarrito')->name('carritos.vaciar');
 
 Route::post('/comprascrear','App\Http\Controllers\ComprasController@crear')->name('compras.crear');
 

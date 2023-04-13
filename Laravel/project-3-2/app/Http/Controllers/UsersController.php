@@ -130,4 +130,20 @@ class UsersController extends Controller
         }
         return redirect()->route('carritos.visualizar', ['user_id'=>$user_id])->with('mensaje', 'Cantidad del producto incrementada');
     }
+    
+    public function vaciarcarrito($user_id){
+        $user = User::find($user_id);
+        $carrito = $user->carrito;
+        $productos = $carrito->productos;
+        // Incrementar el stock de los productos en la tabla productos y eliminar los productos del carrito
+        foreach ($productos as $producto) {
+            $cantidad = $producto->pivot->cantidad;
+            $producto->stock += $cantidad;
+            $producto->save();
+        }
+
+        $carrito->productos()->detach();
+        
+        return redirect()->route('carritos.visualizar', ['user_id' => $user_id])->with('mensaje', 'Carrito vaciado');
+    }
 }

@@ -34,6 +34,10 @@
                     @csrf
                     <button class="btn btn-success" type="submit">Volver</button>
                 </form>
+                <form action="{{ route('carritos.vaciar',[$user->id]) }}" method="POST">
+                    @csrf
+                    <button class="btn btn-success" type="submit">Vaciar carrito</button>
+                </form>
                 <form action="{{ route('compras.crear') }}" method="POST">
                     @csrf
                     <!-- Agrega los campos del formulario que contienen los datos necesarios -->
