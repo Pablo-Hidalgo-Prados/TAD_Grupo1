@@ -89,7 +89,11 @@ class UsersController extends Controller
         $user = User::findOrFail($user_id);
         $carrito = Carrito::where('user_id',$user_id)->get();
         $productos_carrito = $carrito[0]->productos;
-        return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user]);
+        $precio_total = 0;
+        foreach ($productos_carrito as $producto) {
+            $precio_total += $producto->precio * $producto->pivot->cantidad;
+        }
+        return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$precio_total]);
     }
 
     public function reducir($producto_id, $user_id){

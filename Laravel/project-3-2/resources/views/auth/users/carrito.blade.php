@@ -29,6 +29,7 @@
                         </tr>
                     @endforeach
                 </table>
+                <h3 class="text-center">Precio total {{ $precio_total }}</h3>
             </div>
     </body>
 </html>
