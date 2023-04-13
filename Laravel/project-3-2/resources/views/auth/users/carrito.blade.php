@@ -30,6 +30,10 @@
                     @endforeach
                 </table>
                 <h3 class="text-center">Precio total {{ $precio_total }}</h3>
+                <form action="{{ route('productos.listar') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-success" type="submit">Volver</button>
+                </form>
             </div>
     </body>
 </html>
