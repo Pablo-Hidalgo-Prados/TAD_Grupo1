@@ -34,6 +34,14 @@
                     @csrf
                     <button class="btn btn-success" type="submit">Volver</button>
                 </form>
+                <form action="{{ route('compras.crear') }}" method="POST">
+                    @csrf
+                    <!-- Agrega los campos del formulario que contienen los datos necesarios -->
+                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <input type="hidden" name="productos_carrito" value="{{ json_encode($productos_carrito) }}">
+                    <input type="hidden" name="precio_total" value="{{ $precio_total }}">
+                    <button class="btn btn-success" type="submit">Comprar</button>
+                </form>
             </div>
     </body>
 </html>
