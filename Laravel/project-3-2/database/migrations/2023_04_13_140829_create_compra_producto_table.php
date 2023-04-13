@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('compras', function (Blueprint $table) {
+        Schema::create('compra_producto', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
-            $table->float('subtotal');
-            $table->foreignId('descuento_id')->constrained('descuentos')->nullable();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('direccion_id')->constrained('direccion_envios');
+            $table->foreignId('compra_id')->constrained('compras');
+            $table->foreignId('producto_id')->constrained('productos');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compras');
+        Schema::dropIfExists('compra_producto');
     }
 };

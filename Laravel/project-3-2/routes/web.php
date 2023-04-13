@@ -42,6 +42,8 @@ Route::get('vercarrito/{user_id}','App\Http\Controllers\UsersController@vercarri
 Route::get('reducir/{producto_id}/{user_id}','App\Http\Controllers\UsersController@reducir')->name('carritos.reducir');
 Route::get('incrementar/{producto_id}/{user_id}','App\Http\Controllers\UsersController@incrementar')->name('carritos.incrementar');
 
+Route::post('/comprascrear','App\Http\Controllers\ComprasController@crear')->name('compras.crear');
+
 Route::post('/crearc','App\Http\Controllers\CategoriasController@crear')->name('categorias.crear');
 Route::match(['get', 'post'], '/listarc', 'App\Http\Controllers\CategoriasController@listar')->name('categorias.listar');
 Route::delete('categorias/{id}','App\Http\Controllers\CategoriasController@eliminar')->name('categorias.eliminar');
