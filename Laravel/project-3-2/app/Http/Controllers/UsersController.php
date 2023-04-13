@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Carrito;
 use App\Models\Producto;
+use App\Models\DireccionEnvio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -73,13 +74,17 @@ class UsersController extends Controller
         $producto = Producto::findOrFail($producto_id);
         // Comprobar si el producto ya está en el carrito
         if($carrito->count()>0){
-            $registroPivot = $producto->carritos()->where('carrito_id', $carrito[0]->id)->first();
-            if ($registroPivot) {
-                // Si el producto ya está en el carrito, incrementar la cantidad en 1
-                $carrito[0]->productos()->updateExistingPivot($producto->id, ['cantidad' => DB::raw('cantidad + 1')]);
-            } else {
-                // Si el producto no está en el carrito, agregarlo con cantidad 1
-                $producto->carritos()->attach($carrito[0]->id, ['cantidad' => 1]);
+            if($producto->stock>0){
+                $registroPivot = $producto->carritos()->where('carrito_id', $carrito[0]->id)->first();
+                if ($registroPivot) {
+                    // Si el producto ya está en el carrito, incrementar la cantidad en 1
+                    $carrito[0]->productos()->updateExistingPivot($producto->id, ['cantidad' => DB::raw('cantidad + 1')]);
+                } else {
+                    // Si el producto no está en el carrito, agregarlo con cantidad 1
+                    $producto->carritos()->attach($carrito[0]->id, ['cantidad' => 1]);
+                }
+                $producto->stock-=1;
+                $producto->save();
             }
         }
         return back() -> with('mensaje', 'Producto agregado');
@@ -93,7 +98,8 @@ class UsersController extends Controller
         foreach ($productos_carrito as $producto) {
             $precio_total += $producto->precio * $producto->pivot->cantidad;
         }
-        return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$precio_total]);
+        $direcciones = $user->direcciones;
+        return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$precio_total,'direcciones'=>$direcciones]);
     }
 
     public function reducir($producto_id, $user_id){
@@ -107,6 +113,8 @@ class UsersController extends Controller
             // Si la cantidad es 1 o menor, eliminar el producto del carrito
             $carrito[0]->productos()->detach($producto_id);
         }
+        $producto->stock+=1;
+        $producto->save();
         return redirect()->route('carritos.visualizar', ['user_id'=>$user_id])->with('mensaje', 'Cantidad del producto reducida');
     }
 
@@ -115,7 +123,11 @@ class UsersController extends Controller
         // Obtener el producto del carrito del usuario
         $carrito = Carrito::where('user_id',$user_id)->get();
         $producto = $carrito[0]->productos()->find($producto_id);
-        $producto->pivot->increment('cantidad');
+        if($producto->stock>0){
+            $producto->pivot->increment('cantidad');
+            $producto->stock-=1;
+            $producto->save();
+        }
         return redirect()->route('carritos.visualizar', ['user_id'=>$user_id])->with('mensaje', 'Cantidad del producto incrementada');
     }
 }

@@ -40,6 +40,12 @@
                     <input type="hidden" name="user_id" value="{{ $user->id }}">
                     <input type="hidden" name="productos_carrito" value="{{ json_encode($productos_carrito) }}">
                     <input type="hidden" name="precio_total" value="{{ $precio_total }}">
+                    <label for="direcciones_list">Escoge una dirección</label>
+                    <select id="direcciones_list" name="direcciones_list">
+                        @foreach ($direcciones as $direccion)
+                            <option value="{{ $direccion->id }}">{{ $direccion->calle }}</option>
+                        @endforeach
+                    </select>
                     <button class="btn btn-success" type="submit">Comprar</button>
                 </form>
             </div>
