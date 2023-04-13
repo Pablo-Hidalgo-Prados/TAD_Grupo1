@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layoutcopy')
 
 @section('content')
 @error('nombrec')
