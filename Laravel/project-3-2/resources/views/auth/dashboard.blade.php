@@ -220,6 +220,7 @@
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Precio</th>
+                <th>Stock</th>
                 <th>Añadir a Carrito</th>
                 @foreach ($productos as $producto)
                 <tr>
@@ -227,12 +228,23 @@
                     <td>{{ $producto->nombre }}</td>
                     <td>{{ $producto->descripcion }}</td>
                     <td>{{ $producto->precio }}</td>
+                    @if($producto->stock==0)
+                    <td>Sin stock</td>
+                    <td>
+                        <form action="{{ route('carritos.agregar', [$producto->id, Auth::user()->id]) }}" method="POST">
+                            @csrf
+                            <button class="btn btn-danger" disabled type="submit">Añadir</button>
+                        </form>
+                    </td>
+                    @else
+                    <td>{{ $producto->stock }}</td>
                     <td>
                         <form action="{{ route('carritos.agregar', [$producto->id, Auth::user()->id]) }}" method="POST">
                             @csrf
                             <button class="btn btn-danger" type="submit">Añadir</button>
                         </form>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </table>

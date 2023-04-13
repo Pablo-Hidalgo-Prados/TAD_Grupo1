@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->float('subtotal');
+            $table->string('direccion');
             $table->foreignId('descuento_id')->constrained('descuentos')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('direccion_id')->constrained('direccion_envios');
