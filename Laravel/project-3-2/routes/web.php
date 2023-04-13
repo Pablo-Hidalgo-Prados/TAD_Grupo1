@@ -21,7 +21,7 @@ Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware('auth','verified');
 
-Route::get('/home','App\Http\Controllers\ProductosController@listar')->middleware('auth', 'verified');
+Route::get('/perfil','App\Http\Controllers\ProductosController@listar')->middleware('auth', 'verified');
 
 Route::post('/crear','App\Http\Controllers\UsersController@crear')->name('usuarios.crear');
 Route::match(['get', 'post'], '/listar', 'App\Http\Controllers\UsersController@listar')->name('usuarios.listar');

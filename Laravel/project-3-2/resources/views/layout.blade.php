@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-md bgnavbar sticky-top rounded-5 mt-3 mx-3" id="navbar">
         <div class="container-fluid">
             <div>
-                <a class="navbar-brand text-light" href="/index.html">
+                <a class="navbar-brand text-light" href="/">
                     <img src="/images/webicon.png" alt="Icono de -nombre de web-" width="90" height="90"
                         class="align-text-center">Nature Page
                 </a>
@@ -24,45 +24,53 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon navbar-dark"></span>
             </button>
-            <div class="collapse navbar-collapse ml-2" id="navbarSupportedContent">
-                <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold text-light" href="/index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold text-light" href="/rift.html">Rutas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold text-light" href="/champs.html">Productos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold text-light" href="/pro.html">Contacto</a>
-                    </li>
-                </ul>
-                @if (Route::has('login'))
-                    <div class="hidden fixed top-0 me-xl-4 py-1 d-flex align-items-right xs:block float-end">
-                        @auth
-                            <div class="bglogin rounded-4 d-flex p-2 me-2">
-                                <a class="text-sm text-light text-decoration-none" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                            </div>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        @else
-                            <div class="bglogin rounded-4 d-flex p-2 me-2">
-                                <a href="{{ route('login') }}" class="text-sm text-light text-decoration-none">Login</a>
-                            </div>
-                            @if (Route::has('register'))
-                                <div class="bglogin rounded-4 d-flex p-2 ml-2">
-                                    <a href="{{ route('register') }}"
-                                        class="text-sm text-light text-decoration-none">Registrarse</a>
-                                </div>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="d-flex flex-grow-1">
+                    <ul class="nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-light" href="/">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-light" href="/rift.html">Rutas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-light" href="/champs.html">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-light" href="/pro.html">Contacto</a>
+                        </li>
+                    </ul>
+                        @if (Route::has('login'))
+                            <div class="hidden top-0 me-xl-4 d-flex align-items-right xs:block float-end justify-content-end">
+                                
+                                @auth
+                                    <div class="bglogin rounded-4 d-flex p-2 me-2 ml-4">
+                                        <a class="text-sm text-light text-decoration-none" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    <div class="bglogin rounded-4 d-flex p-2 ml-2">
+                                        <a href="/perfil"
+                                            class="text-sm text-light text-decoration-none">Perfil</a>
+                                    </div>
+                                @else
+                                    <div class="bglogin rounded-4 d-flex p-2 me-2">
+                                        <a href="{{ route('login') }}"
+                                            class="text-sm text-light text-decoration-none">Login</a>
+                                    </div>
+                                    @if (Route::has('register'))
+                                        <div class="bglogin rounded-4 d-flex p-2 ml-2">
+                                            <a href="{{ route('register') }}"
+                                                class="text-sm text-light text-decoration-none">Registrarse</a>
+                                        </div>
+                                    @endif
+                                @endauth
+                </div>
             </div>
+            @endif
+        </div>
 
         </div>
     </nav>

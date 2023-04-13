@@ -18,9 +18,9 @@
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
 </head>
 
-<body>
+<body class="bggeneral">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md bgnavbar navbar-light rounded-5 mt-3 mx-3 shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Fortify') }}
