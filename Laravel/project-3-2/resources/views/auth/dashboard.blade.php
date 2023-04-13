@@ -209,6 +209,10 @@
                 @csrf
                 <button class="btn btn-primary" type="submit">Ver Carrito</button>
             </form>
+            <form action="{{ route('usuarios.editar', Auth::user()->id) }}" method="get">
+                @csrf
+                <button class="btn btn-primary" type="submit">Editar Perfil</button>
+            </form>
             @if(isset($productos))
             <h1 class="text-center">Productos</h1>
             <table class="table text-black text-center w-75 mx-auto mt-5">
