@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return view('auth.dashboard');
+    return view('welcome');
 })->middleware('auth','verified');
 
 Route::get('/perfil','App\Http\Controllers\ProductosController@listar')->middleware('auth', 'verified');

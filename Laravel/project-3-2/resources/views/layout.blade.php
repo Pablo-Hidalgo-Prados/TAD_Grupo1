@@ -41,27 +41,27 @@
                         </li>
                     </ul>
                         @if (Route::has('login'))
-                            <div class="hidden top-0 me-xl-4 d-flex align-items-right xs:block float-end justify-content-end">
+                            <div class="hidden top-0 me-xl-4 d-sm-flex d-md-flex d-lg-flex  d-xxl-flex align-items-right xs:block float-end justify-content-end">
                                 
                                 @auth
-                                    <div class="bglogin rounded-4 d-flex p-2 me-2 ml-4">
+                                    <div class="bglogin rounded-4 d-flex p-2 me-2 ml-4 mb-1 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0 align-items-center">
                                         <a class="text-sm text-light text-decoration-none" href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                     </div>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                    <div class="bglogin rounded-4 d-flex p-2 ml-2">
+                                    <div class="bglogin rounded-4 d-flex p-2 ml-2 align-items-center">
                                         <a href="/perfil"
                                             class="text-sm text-light text-decoration-none">Perfil</a>
                                     </div>
                                 @else
-                                    <div class="bglogin rounded-4 d-flex p-2 me-2">
+                                    <div class="bglogin rounded-4 d-flex p-2 me-2 mb-1 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0 ">
                                         <a href="{{ route('login') }}"
                                             class="text-sm text-light text-decoration-none">Login</a>
                                     </div>
                                     @if (Route::has('register'))
-                                        <div class="bglogin rounded-4 d-flex p-2 ml-2">
+                                        <div class="bglogin rounded-4 d-flex p-2 ml-2 align-items-center">
                                             <a href="{{ route('register') }}"
                                                 class="text-sm text-light text-decoration-none">Registrarse</a>
                                         </div>
