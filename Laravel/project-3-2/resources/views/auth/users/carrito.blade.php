@@ -65,6 +65,7 @@
         </div>
         <div class="d-flex justify-content-center mt-4 mb-4 ml-4 flex-grow-1">
         @if($direcciones->count()==0)
+        <p>Buenas Rutero/a recuerda que para finalizar la compra necesitamos que nos proporcione la dirección</p>
         <form action="{{ route('usuarios.agregardireccion') }}" method="POST">
             @csrf
             <input type="hidden" name="user_id" value="{{ $user->id }}">
