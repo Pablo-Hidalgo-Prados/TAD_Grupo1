@@ -28,7 +28,7 @@
         </form>
         <form action="{{ route('usuarios.editar', Auth::user()->id) }}" method="get">
             @csrf
-            <button class="btn btn-primary ml-1" type="submit">Editar Perfil</button>
+            <button class="btn btn-primary ml-1 me-1" type="submit">Editar Perfil</button>
         </form>
         <form action="{{ route('compras.listaruser', Auth::user()->id) }}" method="get">
             @csrf
