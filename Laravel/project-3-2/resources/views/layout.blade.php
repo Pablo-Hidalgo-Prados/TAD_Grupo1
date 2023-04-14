@@ -30,15 +30,25 @@
                         <li class="nav-item">
                             <a class="nav-link fw-bold text-light" href="{{ route('rutas') }}">Rutas</a>
                         </li>
-                        @if(Auth::user()->rol=='admin')
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold text-light" href="/panel">Panel Admin</a>
-                        </li>
+
+                        @if(isset(Auth::user()->id))
+                            @if(Auth::user()->rol=='admin')
+                            <li class="nav-item">
+                                <a class="nav-link fw-bold text-light" href="/panel">Panel Admin</a>
+                            </li>
+                            @else
+                            <li class="nav-item">
+                                <a class="nav-link fw-bold text-light" href="{{ route('productos.vista') }}">Productos</a>
+                            </li>
+                            @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link fw-bold text-light" href="{{ route('productos.vista') }}">Productos</a>
-                        </li>
+                                <a class="nav-link fw-bold text-light" href="{{ route('productos.vista') }}">Productos</a>
+                            </li>
                         @endif
+
+                            
+
                         <li class="nav-item">
                             <a class="nav-link fw-bold text-light" href="/">Contacto</a>
                         </li>
