@@ -13,7 +13,17 @@ Nuestra implementación debe abarcar todos los principales aspectos de un comerc
 ![UML](./Design/UML.png)
 
 # Mockup
---
+![INICIO](./Mockups/inicio.png)
+
+
+![PANEL ADMIN](./Mockups/panel_admin.png)
+
+
+![PRODUCTOS](./Mockups/vista_productos.png)
+
+
+![VISTA MÓVIL](./Mockups/vista_movil.png)
+
 
 # Decisiones de diseño
 Apoyados en la plataforma Coolors, se ha buscado utilizar una paleta de colores que pudiera acompañar de manera elegante al color principal de nuestro proyecto: el verde.
