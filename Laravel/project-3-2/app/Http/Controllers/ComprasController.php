@@ -40,7 +40,7 @@ class ComprasController extends Controller
             }
             $carrito[0]->productos()->detach(); // Eliminar todos los productos del carrito
         }
-        return redirect()->route('productos.listar');
+        return redirect()->route('usuarios.volver');
     }
 
     public function listar(){
