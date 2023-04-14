@@ -21,6 +21,10 @@ Route::get('/home', function () {
     return view('welcome');
 })->middleware('auth','verified');
 
+Route::get('/rutas', function () {
+    return view('auth.rutas.rutas');
+})->name('rutas');
+
 Route::get('/perfil','App\Http\Controllers\ProductosController@listar')->middleware('auth', 'verified');
 
 Route::post('/crear','App\Http\Controllers\UsersController@crear')->name('usuarios.crear');
@@ -29,6 +33,7 @@ Route::delete('usuarios/{id}','App\Http\Controllers\UsersController@eliminar')->
 Route::get('editar/{id}','App\Http\Controllers\UsersController@editar')->name('usuarios.editar');
 Route::put('editar/{id}','App\Http\Controllers\UsersController@actualizar')->name('usuarios.actualizar');
 Route::get('visualizar/{id}','App\Http\Controllers\UsersController@visualizar')->name('usuarios.visualizar');
+Route::post('/volver','App\Http\Controllers\UsersController@volver')->name('usuarios.volver');
 
 Route::post('/crearp','App\Http\Controllers\ProductosController@crear')->name('productos.crear');
 Route::match(['get', 'post'], '/listarp', 'App\Http\Controllers\ProductosController@listar')->name('productos.listar');

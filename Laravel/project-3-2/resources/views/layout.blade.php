@@ -15,13 +15,10 @@
         <div class="container-fluid">
             <div>
                 <a class="navbar-brand text-light" href="/">
-                    <img src="/images/webicon.png" alt="Icono de -nombre de web-" width="90" height="90"
-                        class="align-text-center">Nature Page
+                    <img src="/images/webicon.png" alt="Icono de -nombre de web-" width="90" height="90" class="align-text-center">Nature Page
                 </a>
             </div>
-            <button class="navbar-toggler navbutton" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler navbutton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon navbar-dark"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -31,46 +28,42 @@
                             <a class="nav-link fw-bold text-light" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-bold text-light" href="/rift.html">Rutas</a>
+                            <a class="nav-link fw-bold text-light" href="{{ route('rutas') }}">Rutas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-bold text-light" href="/champs.html">Productos</a>
+                            <a class="nav-link fw-bold text-light" href="/">Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-bold text-light" href="/pro.html">Contacto</a>
+                            <a class="nav-link fw-bold text-light" href="/">Contacto</a>
                         </li>
                     </ul>
-                        @if (Route::has('login'))
-                            <div class="hidden top-0 me-xl-4 d-sm-flex d-md-flex d-lg-flex  d-xxl-flex align-items-right xs:block float-end justify-content-end">
-                                
-                                @auth
-                                    <div class="bglogin rounded-4 d-flex p-2 me-2 ml-4 mb-1 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0 align-items-center">
-                                        <a class="text-sm text-light text-decoration-none" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                    </div>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                    <div class="bglogin rounded-4 d-flex p-2 ml-2 align-items-center">
-                                        <a href="/perfil"
-                                            class="text-sm text-light text-decoration-none">Perfil</a>
-                                    </div>
-                                @else
-                                    <div class="bglogin rounded-4 d-flex p-2 me-2 mb-1 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0 ">
-                                        <a href="{{ route('login') }}"
-                                            class="text-sm text-light text-decoration-none">Login</a>
-                                    </div>
-                                    @if (Route::has('register'))
-                                        <div class="bglogin rounded-4 d-flex p-2 ml-2 align-items-center">
-                                            <a href="{{ route('register') }}"
-                                                class="text-sm text-light text-decoration-none">Registrarse</a>
-                                        </div>
-                                    @endif
-                                @endauth
+                    @if (Route::has('login'))
+                    <div class="hidden top-0 me-xl-4 d-sm-flex d-md-flex d-lg-flex  d-xxl-flex align-items-right xs:block float-end justify-content-end">
+
+                        @auth
+                        <div class="bglogin rounded-4 d-flex p-2 me-2 ml-4 mb-1 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0 align-items-center">
+                            <a class="text-sm text-light text-decoration-none" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        </div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                        <div class="bglogin rounded-4 d-flex p-2 ml-2 align-items-center">
+                            <a href="{{ route('usuarios.visualizar', Auth::user()->id) }}" class="text-sm text-light text-decoration-none">Perfil</a>
+                        </div>
+                        @else
+                        <div class="bglogin rounded-4 d-flex p-2 me-2 mb-1 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0 ">
+                            <a href="{{ route('login') }}" class="text-sm text-light text-decoration-none">Login</a>
+                        </div>
+                        @if (Route::has('register'))
+                        <div class="bglogin rounded-4 d-flex p-2 ml-2 align-items-center">
+                            <a href="{{ route('register') }}" class="text-sm text-light text-decoration-none">Registrarse</a>
+                        </div>
+                        @endif
+                        @endauth
+                    </div>
                 </div>
+                @endif
             </div>
-            @endif
-        </div>
 
         </div>
     </nav>

@@ -9,7 +9,7 @@
             <th class="d-none d-lg-block">Descripción</th>
             <th>Precio</th>
             <th>Cantidad</th>
-            <th>Reducir/Incrementar</th>
+            <th>Acciones</th>
             @foreach ($productos_carrito as $producto)
                 <tr>
                     <td>{{ $producto->id }}</td>

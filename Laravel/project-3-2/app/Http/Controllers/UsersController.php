@@ -146,4 +146,8 @@ class UsersController extends Controller
         
         return redirect()->route('carritos.visualizar', ['user_id' => $user_id])->with('mensaje', 'Carrito vaciado');
     }
+
+    public function volver(){
+        return view('welcome');
+    }
 }

@@ -204,31 +204,6 @@
                         <button class="btn btn-primary ml-1" type="submit">Editar Perfil</button>
                     </form>
                 </div>
-                @if (isset($productos))
-                    <h1 class="text-center">Productos</h1>
-                    <table class="table text-black text-center w-75 mx-auto mt-5">
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Añadir a Carrito</th>
-                        @foreach ($productos as $producto)
-                            <tr>
-                                <td>{{ $producto->id }}</td>
-                                <td>{{ $producto->nombre }}</td>
-                                <td>{{ $producto->descripcion }}</td>
-                                <td>{{ $producto->precio }}</td>
-                                <td>
-                                    <form action="{{ route('carritos.agregar', [$producto->id, Auth::user()->id]) }}"
-                                        method="POST">
-                                        @csrf
-                                        <button class="btn btn-danger" type="submit">Añadir</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                @endif
     @endif
 
     </div>
