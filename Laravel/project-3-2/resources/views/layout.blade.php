@@ -80,7 +80,7 @@
 
     @yield('content')
 
-    <footer class="text-center text-lg-start bgfooter rounded-5 text-muted mt-3 mx-3">
+    <footer class="text-center text-lg-start bgfooter rounded-5 text-muted mt-3 mx-3 mb-3">
         <section class="">
             <div class="container text-center text-md-start mt-5 text-light pt-1">
                 <div class="row mt-3">
