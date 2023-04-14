@@ -52,12 +52,37 @@
                     <label for="direcciones_list">Escoge una dirección</label>
                     <select id="direcciones_list" name="direcciones_list">
                         @foreach ($direcciones as $direccion)
-                            <option value="{{ $direccion->id }}">{{ $direccion->calle }}</option>
+                            <option value="{{ $direccion->id }}">{{ $direccion->calle.', '.$direccion->numero }}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-success" type="submit">Comprar</button>
+                    @if($direcciones->count()==0)
+                        <button class="btn btn-success" disabled type="submit">Comprar</button>
+                    @else
+                        <button class="btn btn-success" type="submit">Comprar</button>
+                    @endif
                 </form>
             </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4 mb-4 ml-4 flex-grow-1">
+        @if($direcciones->count()==0)
+        <form action="{{ route('usuarios.agregardireccion') }}" method="POST">
+            @csrf
+            <input type="hidden" name="user_id" value="{{ $user->id }}">
+            <label>Calle:</label>
+            <input class="form-control mb-3" type="text" name="calle">
+            <label>Ciudad:</label>
+            <input class="form-control mb-3" type="text" name="ciudad">
+            <label>Código Postal:</label>
+            <input class="form-control mb-3" type="text" name="codigo_postal">
+            <label>Numero:</label>
+            <input class="form-control mb-3" type="number" name="numero">
+            <label>Planta:</label>
+            <input class="form-control mb-3" type="number" name="planta">
+            <label>Puerta:</label>
+            <input class="form-control mb-3" type="text" name="puerta">
+            <button class="btn btn-success" type="submit">Agregar</button>
+        </form>
+        @endif
         </div>
     </div>
 @endsection

@@ -150,4 +150,21 @@ class UsersController extends Controller
     public function volver(){
         return view('welcome');
     }
+
+    public function agregardireccion(Request $request){
+        $direccionNueva = new DireccionEnvio; 
+        $direccionNueva->calle = $request->calle;
+        $direccionNueva->ciudad = $request->ciudad;
+        $direccionNueva->codigo_postal = $request->codigo_postal;
+        $direccionNueva->numero = $request->numero;
+        if(isset($direccionNueva->planta)){
+            $direccionNueva->planta = $request->planta;
+        }
+        if(isset($direccionNueva->puerta)){
+            $direccionNueva->puerta = $request->puerta;
+        }
+        $direccionNueva->user_id = $request->user_id;
+        $direccionNueva->save();
+        return view('welcome');
+    }
 }
