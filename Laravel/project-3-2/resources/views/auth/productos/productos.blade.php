@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<div class="my-4">
 @if(isset(Auth::user()->id))
     <div class="d-flex justify-content-center mt-4 mb-4">
 
@@ -43,4 +44,5 @@
     @endforeach
 </table>
 @endif
+</div>
 @endsection
