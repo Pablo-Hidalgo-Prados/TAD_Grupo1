@@ -10,7 +10,7 @@ Repositorio para el proyecto de EPD del Grupo 1 de la asignatura TAD de la UPO.
 Nuestra implementación debe abarcar todos los principales aspectos de un comercio electrónicos, destacando especialmente las compras y gestión de usuarios dentro del mismo. Asimismo, debemos aplicar los conocimientos adquiridos en la asignatura para crear un portal web apoyado en Laravel, Bootstrap y Vite.
 
 # Modelo UML de la Base de Datos
---
+![UML](./Design/UML.png)
 
 # Mockup
 --
