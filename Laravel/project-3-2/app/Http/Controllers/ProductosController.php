@@ -29,6 +29,11 @@ class ProductosController extends Controller
         return view('auth.dashboard', ['productos'=>$productos]);
     }
 
+    public function vistaproductos(){
+        $productos = Producto::all();
+        return view('auth.productos.productos', ['productos'=>$productos]);
+    }
+
     public function visualizar($id){
         $producto=Producto::findOrFail($id);
         return view('auth.productos.visualizep',['producto'=>$producto]);

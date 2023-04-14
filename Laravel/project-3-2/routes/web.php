@@ -37,6 +37,7 @@ Route::post('/volver','App\Http\Controllers\UsersController@volver')->name('usua
 
 Route::post('/crearp','App\Http\Controllers\ProductosController@crear')->name('productos.crear');
 Route::match(['get', 'post'], '/listarp', 'App\Http\Controllers\ProductosController@listar')->name('productos.listar');
+Route::get('/ver','App\Http\Controllers\ProductosController@vistaproductos')->name('productos.vista');
 Route::delete('productos/{id}','App\Http\Controllers\ProductosController@eliminar')->name('productos.eliminar');
 Route::get('editarp/{id}','App\Http\Controllers\ProductosController@editar')->name('productos.editar');
 Route::put('editarp/{id}','App\Http\Controllers\ProductosController@actualizar')->name('productos.actualizar');

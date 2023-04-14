@@ -31,7 +31,11 @@
                             <a class="nav-link fw-bold text-light" href="{{ route('rutas') }}">Rutas</a>
                         </li>
                         <li class="nav-item">
+<<<<<<< Updated upstream
                             <a class="nav-link fw-bold text-light" href="/">Productos</a>
+=======
+                            <a class="nav-link fw-bold text-light" href="{{ route('productos.vista') }}">Productos</a>
+>>>>>>> Stashed changes
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fw-bold text-light" href="/">Contacto</a>
