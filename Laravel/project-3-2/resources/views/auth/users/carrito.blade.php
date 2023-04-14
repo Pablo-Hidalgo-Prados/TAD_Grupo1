@@ -33,7 +33,7 @@
         <h3 class="text-center">Precio total {{ $precio_total }}</h3>
         <div class="d-flex flex-grow-1 mx-4">
             <div class="d-flex justify-content-left mt-4 mb-4 me-4">
-                <form action="{{ route('productos.listar') }}" method="POST">
+                <form action="{{ route('usuarios.volver') }}" method="POST">
                     @csrf
                     <button class="btn btn-success me-2" type="submit">Volver</button>
                 </form>

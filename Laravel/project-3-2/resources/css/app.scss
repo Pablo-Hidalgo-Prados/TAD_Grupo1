@@ -23,6 +23,16 @@
     background-color: rgb(56, 102, 65);
 }
 
+.btnbg {
+    background-color: rgb(56, 102, 65);
+    color: white;
+}
+
+.btnbg:hover {
+    background-color: rgb(16, 76, 28);
+    color: white;
+}
+
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
 .sticky {
     position: fixed;
