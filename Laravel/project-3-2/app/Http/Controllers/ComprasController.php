@@ -31,8 +31,12 @@ class ComprasController extends Controller
         }
         $compraNueva->direccion = $strDireccion;
         $compraNueva->direccion_id = 1;
-        $compraNueva->save();
         $productos = $carrito[0]->productos;
+        if($productos->count()>0){
+            $compraNueva->save();
+        }else{
+            return back() -> with('mensaje', 'Compra no realizada');
+        }
         if($productos->count()>0){
             foreach ($productos as $producto) {
                 for($i=0;$i<$producto->pivot->cantidad;$i++){
