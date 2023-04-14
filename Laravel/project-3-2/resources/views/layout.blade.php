@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nature Page</title>
+    <title>Nature Hub</title>
     <link rel="icon" type="image/x-icon" href="/images/webicon.ico">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div>
                 <a class="navbar-brand text-light" href="/">
-                    <img src="/images/webicon.png" alt="Icono de -nombre de web-" width="90" height="90" class="align-text-center">Nature Page
+                    <img src="/images/webicon.png" alt="Icono de -nombre de web-" width="90" height="90" class="align-text-center">Nature Hub
                 </a>
             </div>
             <button class="navbar-toggler navbutton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,9 +30,15 @@
                         <li class="nav-item">
                             <a class="nav-link fw-bold text-light" href="{{ route('rutas') }}">Rutas</a>
                         </li>
+                        @if(Auth::user()->rol=='admin')
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-light" href="/panel">Panel Admin</a>
+                        </li>
+                        @else
                         <li class="nav-item">
                             <a class="nav-link fw-bold text-light" href="{{ route('productos.vista') }}">Productos</a>
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link fw-bold text-light" href="/">Contacto</a>
                         </li>

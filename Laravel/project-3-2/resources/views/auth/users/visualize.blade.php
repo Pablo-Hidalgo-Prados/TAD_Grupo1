@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="w-50 border rounded p-3 mx-auto">
-    <h3 class="text-center">Visualizando a {{ $user->name }}</h3>
+    <h3 class="text-center">Perfil de {{ $user->name }}</h3>
     <form action="{{ route('usuarios.volver') }}" method="post">
         @csrf
         <label>Nombre:</label>
@@ -11,8 +11,10 @@
         <input class="form-control mb-3" type="text" disabled value="{{ $user->apellidos }}" name="apellidos">
         <label>Email:</label>
         <input class="form-control mb-3" type="email" disabled value="{{ $user->email }}" name="email">
+        @if($user->rol=='admin')
         <label>Rol:</label>
         <input class="form-control mb-3" type="text" disabled value="{{ $user->rol }}" name="rol">
+        @endif
         <label>Teléfono:</label>
         <input class="form-control mb-3" type="number" disabled value="{{ $user->telefono }}" name="telefono">
         <button class="btn btn-success" type="submit">Volver</button>
