@@ -46,12 +46,6 @@
                                 <a class="nav-link fw-bold text-light" href="{{ route('productos.vista') }}">Productos</a>
                             </li>
                         @endif
-
-                            
-
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold text-light" href="/">Contacto</a>
-                        </li>
                     </ul>
                     @if (Route::has('login'))
                     <div class="hidden top-0 me-xl-4 d-sm-flex d-md-flex d-lg-flex  d-xxl-flex align-items-right xs:block float-end justify-content-end">
@@ -98,8 +92,9 @@
                     </div>
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 py-2">
                         <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
-                        <p>phidpra@alu.upo.es</p>
-                        <p>@omega9937</p>
+                        <p>Pablo Hidalgo Prados</p>
+                        <p>Antonio José Guerrero Aguilar</p>
+                        <p>Miguel Dzienisik</p>
                     </div>
                 </div>
             </div>
