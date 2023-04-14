@@ -37,7 +37,7 @@ Route::delete('usuarios/{id}','App\Http\Controllers\UsersController@eliminar')->
 Route::get('editar/{id}','App\Http\Controllers\UsersController@editar')->name('usuarios.editar');
 Route::put('editar/{id}','App\Http\Controllers\UsersController@actualizar')->name('usuarios.actualizar');
 Route::get('visualizar/{id}','App\Http\Controllers\UsersController@visualizar')->name('usuarios.visualizar');
-Route::post('/volver','App\Http\Controllers\UsersController@volver')->name('usuarios.volver');
+Route::match(['get', 'post'],'/volver','App\Http\Controllers\UsersController@volver')->name('usuarios.volver');
 
 Route::post('/crearp','App\Http\Controllers\ProductosController@crear')->name('productos.crear');
 Route::match(['get', 'post'], '/listarp', 'App\Http\Controllers\ProductosController@listar')->name('productos.listar');
@@ -54,6 +54,7 @@ Route::get('incrementar/{producto_id}/{user_id}','App\Http\Controllers\UsersCont
 Route::post('/vaciarc/{user_id}','App\Http\Controllers\UsersController@vaciarcarrito')->name('carritos.vaciar');
 
 Route::post('/comprascrear','App\Http\Controllers\ComprasController@crear')->name('compras.crear');
+Route::get('/listarcompras/{user_id}', 'App\Http\Controllers\ComprasController@listarcomprasusuario')->name('compras.listaruser');
 
 Route::post('/crearc','App\Http\Controllers\CategoriasController@crear')->name('categorias.crear');
 Route::match(['get', 'post'], '/listarc', 'App\Http\Controllers\CategoriasController@listar')->name('categorias.listar');

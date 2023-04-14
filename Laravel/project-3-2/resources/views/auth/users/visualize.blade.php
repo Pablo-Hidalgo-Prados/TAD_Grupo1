@@ -30,6 +30,28 @@
             @csrf
             <button class="btn btn-primary ml-1" type="submit">Editar Perfil</button>
         </form>
+        <form action="{{ route('compras.listaruser', Auth::user()->id) }}" method="get">
+            @csrf
+            <button class="btn btn-primary ml-1" type="submit">Compras</button>
+        </form>
     </div>
+
+    @if(isset($compras))
+    <table class="table text-black text-center w-75 mx-auto mt-5">
+            <th>Fecha</th>
+            <th>Subtotal</th>
+            <th>Dirección</th>
+            <th>Estado</th>
+            @foreach ($compras as $compra)
+                <tr>
+                    <td>{{ $compra->fecha }}</td>
+                    <td>{{ $compra->subtotal }}</td>
+                    <td>{{ $compra->direccion }}</td>
+                    <td>{{ $compra->estado }}</td>
+                </tr>
+            @endforeach
+        </table>
+    @endif
+
 </div>
 @endsection

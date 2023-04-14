@@ -19,6 +19,7 @@ class ComprasController extends Controller
         $compraNueva = new Compra;
         $compraNueva->fecha = Carbon::now();
         $compraNueva->subtotal = (float) $request->precio_total;
+        $compraNueva->estado = 'En preparación';
         $compraNueva->user_id = $request->user_id;
         $compraNueva->descuento_id = 1;
         $strDireccion = 'Ciudad: ' . $direccion->ciudad . ', Código postal: ' . $direccion->codigo_postal . ', Calle: ' . $direccion->numero . ', Número: ' . $direccion->numero;
@@ -60,5 +61,11 @@ class ComprasController extends Controller
 
     public function actualizar(Request $request, $id){
         //
+    }
+
+    public function listarcomprasusuario($user_id){
+        $user=User::findOrFail($user_id);
+        $compras = Compra::where('user_id',$user_id)->get();
+        return view('auth.users.visualize', ['compras'=>$compras,'user'=>$user]);
     }
 }
