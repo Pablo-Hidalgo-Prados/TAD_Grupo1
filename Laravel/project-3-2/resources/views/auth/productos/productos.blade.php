@@ -7,10 +7,6 @@
         @csrf
         <button class="btn btn-primary me-1" type="submit">Ver Carrito</button>
     </form>
-    <form action="{{ route('usuarios.editar', Auth::user()->id) }}" method="get">
-        @csrf
-        <button class="btn btn-primary ml-1" type="submit">Editar Perfil</button>
-    </form>
     </div>
 @endif
 @if (isset($productos))
