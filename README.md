@@ -13,15 +13,16 @@ Nuestra implementación debe abarcar todos los principales aspectos de un comerc
 ![UML](./Design/UML.png)
 
 # Mockup
+### Inicio
 ![INICIO](./Mockups/inicio.png)
 
-
+### Panel de administración
 ![PANEL ADMIN](./Mockups/panel_admin.png)
 
-
+### Productos
 ![PRODUCTOS](./Mockups/vista_productos.png)
 
-
+### Vista desde móvil
 ![VISTA MÓVIL](./Mockups/vista_movil.png)
 
 
