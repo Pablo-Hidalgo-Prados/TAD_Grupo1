@@ -48,7 +48,7 @@
                         @endif
                     </ul>
                     @if (Route::has('login'))
-                    <div class="hidden top-0 me-xl-4 d-sm-flex d-md-flex d-lg-flex  d-xxl-flex align-items-right xs:block float-end justify-content-end">
+                    <div class="hidden top-0 me-xl-4 d-sm-flex d-md-flex d-lg-flex d-xxl-flex align-items-right xs:block float-end justify-content-end">
 
                         @auth
                         <div class="bglogin rounded-4 d-flex p-2 me-2 ml-4 mb-1 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0 align-items-center">

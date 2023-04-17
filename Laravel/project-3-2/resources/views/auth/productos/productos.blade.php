@@ -20,7 +20,7 @@
 <table class="table text-black text-center w-75 mx-auto mt-5">
     <th>ID</th>
     <th>Nombre</th>
-    <th>Descripción</th>
+    <th class="d-none d-lg-block">Descripción</th>
     <th>Precio</th>
     @if(isset(Auth::user()->id))
         <th>Añadir a Carrito</th>
@@ -29,7 +29,7 @@
         <tr>
             <td>{{ $producto->id }}</td>
             <td>{{ $producto->nombre }}</td>
-            <td>{{ $producto->descripcion }}</td>
+            <td class="d-none d-lg-block">{{ $producto->descripcion }}</td>
             <td>{{ $producto->precio }}</td>
             <td>
             @if(isset(Auth::user()->id))
