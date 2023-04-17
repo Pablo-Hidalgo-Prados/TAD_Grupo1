@@ -17,9 +17,9 @@
                         <div class="carousel-inner center rounded-5">
                             <div class="carousel-item active">
                                 <img src="/images/welcome.jpg" class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-md-block bg-success bg-opacity-75 rounded-4">
+                                <div class="carousel-caption bg-success bg-opacity-75 rounded-4">
                                     <h5 class="text-black">Bienvenido a nuestra tienda</h5>
-                                    <p>¡Aprovecha todo lo que le ofrecemos!</p>
+                                    <p>¡Aproveche todo lo que le ofrecemos!</p>
                                 </div>
                             </div>
                             <div class="carousel-item">
