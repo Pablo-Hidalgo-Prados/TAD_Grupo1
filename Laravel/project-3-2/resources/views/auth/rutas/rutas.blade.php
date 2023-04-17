@@ -4,8 +4,8 @@
 
 <section>
     <div class="text-center my-3">
-        <h1 class="strong">Atencion !!!</h1>
-        <p1>Las rutas están actualmente en desarrollo. Las fotos muestran rutas de muestra que pronto estarán disponibles como GPX.</p1>
+        <h1 class="strong">Disclaimer</h1>
+        <p1>Las rutas están actualmente en desarrollo. Las fotos muestran rutas de ejemplo que pronto estarán disponibles como GPX.</p1>
     </div>
     <div class="container text-center my-3">
         <div class="row row-cols-2">
