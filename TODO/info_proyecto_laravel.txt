@@ -1,5 +1,5 @@
 -Favicon más grande.
--Fillables definir apellidos y teléfono.
+-Fillables definir apellidos y teléfono. - Hecho
 -Mensaje de que se creen cosas o fallen cosas.
 -Ver carrito típico icono.
 -Distinguir líneas de las tablas
