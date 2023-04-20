@@ -148,7 +148,7 @@ class UsersController extends Controller
     }
 
     public function volver(){
-        return view('welcome');
+        return redirect()->back();
     }
 
     public function agregardireccion(Request $request){
@@ -165,6 +165,6 @@ class UsersController extends Controller
         }
         $direccionNueva->user_id = $request->user_id;
         $direccionNueva->save();
-        return view('welcome');
+        return redirect()->back();
     }
 }
