@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="https://images.hola.com/imagenes/cocina/noticiaslibros/20190416140654/productos-ecologicos-biologicos-organicos-saludables/0-669-329/productos-bio-eco-organicos-saludables-t.jpg"
+                                <img src="/images/welcome2.png"
                                     class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-md-block bg-success bg-opacity-75 rounded-4">
                                     <h5 class="text-black">Productos</h5>
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="https://www.kolaboo.com/blog/wp-content/uploads/2020/04/mejores-rutas-senderismo-sevilla-1288x724.jpg"
+                                <img src="/images/welcome3.png"
                                     class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-md-block bg-success bg-opacity-75 rounded-4">
                                     <h5 class="text-black">Rutas</h5>
