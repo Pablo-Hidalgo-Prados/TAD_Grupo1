@@ -1,5 +1,9 @@
 -Favicon más grande.
+<<<<<<< Updated upstream
 -Fillables definir apellidos y teléfono. - Hecho
+=======
+-Fillables definir apellidos y teléfono.
+>>>>>>> Stashed changes
 -Mensaje de que se creen cosas o fallen cosas.
 -Ver carrito típico icono.
 -Distinguir líneas de las tablas
