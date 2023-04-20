@@ -1,4 +1,4 @@
--Favicon más grande.
+-Favicon más grande. - Hecho
 -Fillables definir apellidos y teléfono.
 -Mensaje de que se creen cosas o fallen cosas.
 -Ver carrito típico icono.
