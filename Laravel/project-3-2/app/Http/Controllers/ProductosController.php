@@ -30,7 +30,7 @@ class ProductosController extends Controller
     }
 
     public function vistaproductos(){
-        $productos = Producto::all();
+        $productos = Producto::paginate(9);
         return view('auth.productos.productos', ['productos'=>$productos]);
     }
 

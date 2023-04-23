@@ -70,7 +70,7 @@
             <table class="table text-black text-center w-75 mx-auto mt-5">
                 <th>ID</th>
                 <th>Nombre</th>
-                <th class="d-none d-lg-block">Descripción</th>
+                <th class="d-none d-lg-grid">Descripción</th>
                 <th>Precio</th>
                 <th>Stock</th>
                 <th>Acciones</th>
@@ -78,7 +78,7 @@
                     <tr>
                         <td class="align-middle">{{ $producto->id }}</td>
                         <td class="align-middle">{{ $producto->nombre }}</td>
-                        <td class="d-none d-lg-block align-middle">{{ $producto->descripcion }}</td>
+                        <td class="d-none d-lg-table-cell align-middle">{{ $producto->descripcion }}</td>
                         <td class="align-middle">{{ $producto->precio }}</td>
                         <td class="align-middle">{{ $producto->stock }}</td>
                         <td class="">
