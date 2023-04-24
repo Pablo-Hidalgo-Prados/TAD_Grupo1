@@ -168,7 +168,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('productos.crear') }}" method="post">
+                        <form action="{{ route('productos.crear') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input id="nombre" type="text"
                                 class="form-control @error('nombre') is-invalid @enderror mt-1" name="nombre"
@@ -182,6 +182,7 @@
                             <input id="stock" type="text"
                                 class="form-control @error('stock') is-invalid @enderror mt-1" name="stock"
                                 value="" placeholder="Stock" required autofocus>
+                                <input class="form-control @error('imagen') is-invalid @enderror mt-1" type="file" id="imagen" name="imagen"><br>
                             <button class="btn btn-success mt-1" type="submit">Crear Producto</button>
                         </form>
                     </div>

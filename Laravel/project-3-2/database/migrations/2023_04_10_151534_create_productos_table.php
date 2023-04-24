@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->float('precio');
             $table->integer('stock');
+            $table->string('imagen');
             $table->timestamps();
         });
     }

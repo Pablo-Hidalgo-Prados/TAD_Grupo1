@@ -27,7 +27,7 @@
             @foreach ($productos as $producto)
             <div class="col-md-6 col-lg-4">
                 <div class="product-card">
-                    <img class="rounded-3" src="https://via.placeholder.com/400x300" alt="">
+                    <img class="rounded-3" src="{{ '/images/'.$producto->imagen }}" alt="{{ $producto->nombre }}">
                     <h5>{{ $producto->nombre }}</h5>
                     <p>${{ $producto->precio }}</p>
 

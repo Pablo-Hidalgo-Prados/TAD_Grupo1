@@ -4,16 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 class ProductosController extends Controller
 {
     public function crear(Request $request){
-        $request->validate(['nombre'=>'required','descripcion'=>'required','precio'=>'required','stock'=>'required']);
+        $request->validate(['nombre'=>'required','descripcion'=>'required','precio'=>'required','stock'=>'required','imagen'=>'required']);
         $productoNuevo = new Producto;
         $productoNuevo->nombre = $request->nombre;
         $productoNuevo->descripcion = $request->descripcion;
         $productoNuevo->precio = $request->precio;
         $productoNuevo->stock = $request->stock;
+
+        $imagen = $request->file('imagen');
+        $extension = $imagen->getClientOriginalExtension();
+        $nombreImagen = $request->nombre.'_'.time().'.'.$extension;
+        $rutaImagen = $imagen->storeAs('images',$nombreImagen,'images');
+
+        $productoNuevo->imagen = $rutaImagen;
         $productoNuevo->save();
         return back() -> with('mensaje', 'El producto se ha creado correctamente'); 
     }
