@@ -9,7 +9,7 @@
 -Acceder al carrito a través de la autenticación, no del id -> userAuth e id del usuario en el controlador, también perfiles compras, etc.
 -Notificar al usuario cuando no quede más stock o agregas algo al carrito.
 -Redirecciones al mismo sitio en el que estaba. - Hecho
--Poner imagen productos. - En progreso
+-Poner imagen productos. - Hecho
 -Validar precios en el panel de administración.
 -Poner un paginate en caso de que haya muchos. - Hecho
 -En caso de eliminar un producto ya comprado peta porque tiene relación, poner un estas seguro si quieres eliminar.
