@@ -45,7 +45,7 @@ class ComprasController extends Controller
             }
             $carrito[0]->productos()->detach(); // Eliminar todos los productos del carrito
         }
-        return redirect()->route('compras.listar');
+        return redirect()->route('compras.listaruser',['user_id' => $request->user_id]);
     }
 
     public function listar(){
