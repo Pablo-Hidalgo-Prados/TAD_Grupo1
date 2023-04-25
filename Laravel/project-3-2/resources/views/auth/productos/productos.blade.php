@@ -4,7 +4,7 @@
     @if(isset(Auth::user()->id))
     <div class="d-flex justify-content-center mt-4 mb-4">
 
-        <form action="{{ route('carritos.visualizar', Auth::user()->id) }}" method="get">
+        <form action="{{ route('carritos.visualizar') }}" method="post">
             @csrf
             <button type="submit" class="btn btnbg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">

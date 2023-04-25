@@ -34,7 +34,7 @@ Route::get('/perfil','App\Http\Controllers\ProductosController@listar')->middlew
 Route::post('/crear','App\Http\Controllers\UsersController@crear')->name('usuarios.crear');
 Route::match(['get', 'post'], '/listar', 'App\Http\Controllers\UsersController@listar')->name('usuarios.listar');
 Route::delete('usuarios/{id}','App\Http\Controllers\UsersController@eliminar')->name('usuarios.eliminar');
-Route::get('editar/{id}','App\Http\Controllers\UsersController@editar')->name('usuarios.editar');
+Route::post('editar/','App\Http\Controllers\UsersController@editar')->name('usuarios.editar');
 Route::put('editar/{id}','App\Http\Controllers\UsersController@actualizar')->name('usuarios.actualizar');
 Route::get('visualizar/{id}','App\Http\Controllers\UsersController@visualizar')->name('usuarios.visualizar');
 Route::match(['get', 'post'],'/volver','App\Http\Controllers\UsersController@volver')->name('usuarios.volver');
@@ -49,13 +49,13 @@ Route::put('editarp/{id}','App\Http\Controllers\ProductosController@actualizar')
 Route::get('visualizarp/{id}','App\Http\Controllers\ProductosController@visualizar')->name('productos.visualizar');
 
 Route::post('/agregaracarrito/{producto_id}/{user_id}','App\Http\Controllers\UsersController@agregaritem')->name('carritos.agregar');
-Route::get('vercarrito/{user_id}','App\Http\Controllers\UsersController@vercarrito')->name('carritos.visualizar');
-Route::get('reducir/{producto_id}/{user_id}','App\Http\Controllers\UsersController@reducir')->name('carritos.reducir');
-Route::get('incrementar/{producto_id}/{user_id}','App\Http\Controllers\UsersController@incrementar')->name('carritos.incrementar');
-Route::post('/vaciarc/{user_id}','App\Http\Controllers\UsersController@vaciarcarrito')->name('carritos.vaciar');
+Route::post('vercarrito/','App\Http\Controllers\UsersController@vercarrito')->name('carritos.visualizar');
+Route::post('reducir/','App\Http\Controllers\UsersController@reducir')->name('carritos.reducir');
+Route::post('incrementar/','App\Http\Controllers\UsersController@incrementar')->name('carritos.incrementar');
+Route::post('/vaciarc/','App\Http\Controllers\UsersController@vaciarcarrito')->name('carritos.vaciar');
 
 Route::post('/comprascrear','App\Http\Controllers\ComprasController@crear')->name('compras.crear');
-Route::get('/listarcompras/{user_id}', 'App\Http\Controllers\ComprasController@listarcomprasusuario')->name('compras.listaruser');
+Route::post('/listarcompras', 'App\Http\Controllers\ComprasController@listarcomprasusuario')->name('compras.listaruser');
 
 Route::post('/crearc','App\Http\Controllers\CategoriasController@crear')->name('categorias.crear');
 Route::match(['get', 'post'], '/listarc', 'App\Http\Controllers\CategoriasController@listar')->name('categorias.listar');

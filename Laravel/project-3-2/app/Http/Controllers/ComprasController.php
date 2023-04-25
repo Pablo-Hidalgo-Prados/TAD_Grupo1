@@ -8,6 +8,7 @@ use App\Models\Carrito;
 use App\Models\DireccionEnvio;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ComprasController extends Controller
 {
@@ -35,7 +36,8 @@ class ComprasController extends Controller
         if($productos->count()>0){
             $compraNueva->save();
         }else{
-            return back() -> with('mensaje', 'Compra no realizada');
+            $direcciones = $usuario->direcciones;
+            return view('auth.users.carrito', ['productos_carrito' => $productos_carrito, 'user' => $usuario, 'precio_total' => $request->precio_total, 'direcciones' => $direcciones])->with('mensaje', 'Compra no realizada');
         }
         if($productos->count()>0){
             foreach ($productos as $producto) {
@@ -44,8 +46,13 @@ class ComprasController extends Controller
                 }
             }
             $carrito[0]->productos()->detach(); // Eliminar todos los productos del carrito
+            $carrito[0]->total=0;
+            $carrito[0]->save();
         }
-        return redirect()->route('compras.listaruser',['user_id' => $request->user_id]);
+        
+        $user=User::findOrFail(Auth::user()->id);
+        $compras = Compra::where('user_id',Auth::user()->id)->get();
+        return view('auth.users.visualize', ['compras'=>$compras,'user'=>$user,'user_id' => Auth::user()->id]);
     }
 
     public function listar(){
@@ -67,9 +74,9 @@ class ComprasController extends Controller
         //
     }
 
-    public function listarcomprasusuario($user_id){
-        $user=User::findOrFail($user_id);
-        $compras = Compra::where('user_id',$user_id)->get();
+    public function listarcomprasusuario(){
+        $user=User::findOrFail(Auth::user()->id);
+        $compras = Compra::where('user_id',Auth::user()->id)->get();
         return view('auth.users.visualize', ['compras'=>$compras,'user'=>$user]);
     }
 }

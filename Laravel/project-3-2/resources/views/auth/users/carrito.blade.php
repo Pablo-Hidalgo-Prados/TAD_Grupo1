@@ -18,12 +18,14 @@
             <td>{{ $producto->precio }}</td>
             <td>{{ $producto->pivot->cantidad }}</td>
             <td class="d-flex xs:block justify-content-center">
-                <form action="{{ route('carritos.reducir', [$producto->id, Auth::user()->id]) }}" method="get">
+                <form action="{{ route('carritos.reducir') }}" method="post">
                     @csrf
+                    <input type="hidden" name="producto_id" value="{{ $producto->id }}">
                     <button class="btn btn-danger me-2 rounded-3" type="submit">-</button>
                 </form>
-                <form action="{{ route('carritos.incrementar', [$producto->id, Auth::user()->id]) }}" method="get">
+                <form action="{{ route('carritos.incrementar') }}" method="post">
                     @csrf
+                    <input type="hidden" name="producto_id" value="{{ $producto->id }}">
                     <button class="btn btn-success ml-2 rounded-3" type="submit">+</button>
                 </form>
             </td>
@@ -37,7 +39,7 @@
                 @csrf
                 <button class="btn btn-success me-2" type="submit">Volver</button>
             </form>
-            <form action="{{ route('carritos.vaciar', [$user->id]) }}" method="POST">
+            <form action="{{ route('carritos.vaciar') }}" method="POST">
                 @csrf
                 <button class="btn btn-success ml-2" type="submit">Vaciar carrito</button>
             </form>

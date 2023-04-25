@@ -8,6 +8,7 @@ use App\Models\Producto;
 use App\Models\DireccionEnvio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -52,8 +53,8 @@ class UsersController extends Controller
         return view('auth.users.visualize',['user'=>$user]);
     }
 
-    public function editar($id){
-        $user=User::findOrFail($id);
+    public function editar(){
+        $user=User::findOrFail(Auth::user()->id);
         return view('auth.users.editar',['user'=>$user]);
     }
 
@@ -83,6 +84,8 @@ class UsersController extends Controller
                     // Si el producto no está en el carrito, agregarlo con cantidad 1
                     $producto->carritos()->attach($carrito[0]->id, ['cantidad' => 1]);
                 }
+                $carrito[0]->total+=$producto->precio;
+                $carrito[0]->save();
                 $producto->stock-=1;
                 $producto->save();
             }
@@ -90,49 +93,55 @@ class UsersController extends Controller
         return back() -> with('mensaje', 'Producto agregado');
     }
 
-    public function vercarrito($user_id){
-        $user = User::findOrFail($user_id);
-        $carrito = Carrito::where('user_id',$user_id)->get();
+    public function vercarrito(){
+        $user = User::findOrFail(Auth::user()->id);
+        $carrito = Carrito::where('user_id',Auth::user()->id)->get();
         $productos_carrito = $carrito[0]->productos;
-        $precio_total = 0;
-        foreach ($productos_carrito as $producto) {
-            $precio_total += $producto->precio * $producto->pivot->cantidad;
-        }
         $direcciones = $user->direcciones;
-        return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$precio_total,'direcciones'=>$direcciones]);
+        return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$carrito[0]->total,'direcciones'=>$direcciones]);
     }
 
-    public function reducir($producto_id, $user_id){
-        $user = User::find($user_id);
+    public function reducir(Request $request){
+        $user = User::find(Auth::user()->id);
         // Obtener el producto del carrito del usuario
-        $carrito = Carrito::where('user_id',$user_id)->get();
-        $producto = $carrito[0]->productos->find($producto_id);
+        $carrito = Carrito::where('user_id',Auth::user()->id)->get();
+        $producto = $carrito[0]->productos->find($request->producto_id);
         if ($producto->pivot->cantidad > 1) {
             $producto->pivot->decrement('cantidad');
         } else {
             // Si la cantidad es 1 o menor, eliminar el producto del carrito
-            $carrito[0]->productos()->detach($producto_id);
+            $carrito[0]->productos()->detach($request->producto_id);
         }
+        $carrito[0]->total-=$producto->precio;
+        $carrito[0]->save();
         $producto->stock+=1;
         $producto->save();
-        return redirect()->route('carritos.visualizar', ['user_id'=>$user_id])->with('mensaje', 'Cantidad del producto reducida');
+
+        $carrito = Carrito::where('user_id',Auth::user()->id)->first();
+        $productos_carrito = $carrito->productos;
+        return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$carrito->total,'direcciones'=>$user->direcciones,'mensaje'=>'Cantidad decrementada']);
     }
 
-    public function incrementar($producto_id, $user_id){
-        $user = User::find($user_id);
+    public function incrementar(Request $request){
+        $user = User::find(Auth::user()->id);
         // Obtener el producto del carrito del usuario
-        $carrito = Carrito::where('user_id',$user_id)->get();
-        $producto = $carrito[0]->productos()->find($producto_id);
+        $carrito = Carrito::where('user_id',Auth::user()->id)->get();
+        $producto = $carrito[0]->productos()->find($request->producto_id);
         if($producto->stock>0){
             $producto->pivot->increment('cantidad');
             $producto->stock-=1;
             $producto->save();
+            $carrito[0]->total+=$producto->precio;
+            $carrito[0]->save();
         }
-        return redirect()->route('carritos.visualizar', ['user_id'=>$user_id])->with('mensaje', 'Cantidad del producto incrementada');
+
+        $carrito = Carrito::where('user_id',Auth::user()->id)->first();
+        $productos_carrito = $carrito->productos;
+        return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$carrito->total,'direcciones'=>$user->direcciones,'mensaje'=>'Cantidad incrementada']);
     }
     
-    public function vaciarcarrito($user_id){
-        $user = User::find($user_id);
+    public function vaciarcarrito(){
+        $user = User::find(Auth::user()->id);
         $carrito = $user->carrito;
         $productos = $carrito->productos;
         // Incrementar el stock de los productos en la tabla productos y eliminar los productos del carrito
@@ -143,12 +152,13 @@ class UsersController extends Controller
         }
 
         $carrito->productos()->detach();
-        
-        return redirect()->route('carritos.visualizar', ['user_id' => $user_id])->with('mensaje', 'Carrito vaciado');
+        $carrito = Carrito::where('user_id',Auth::user()->id)->first();
+        $productos_carrito = $carrito->productos;
+        return view('auth.users.carrito', ['user_id' => Auth::user()->id, 'user' => Auth::user(), 'productos_carrito' => $productos_carrito, 'precio_total' => $carrito->total, 'direcciones' => $user->direcciones])->with('mensaje', 'Carrito vaciado');
     }
 
     public function volver(){
-        return redirect()->back();
+        return redirect()->route('productos.vista');
     }
 
     public function agregardireccion(Request $request){
