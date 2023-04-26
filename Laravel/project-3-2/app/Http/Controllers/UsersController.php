@@ -78,15 +78,20 @@ class UsersController extends Controller
             if($producto->stock>0){
                 $registroPivot = $producto->carritos()->where('carrito_id', $carrito[0]->id)->first();
                 if ($registroPivot) {
-                    // Si el producto ya está en el carrito, incrementar la cantidad en 1
-                    $carrito[0]->productos()->updateExistingPivot($producto->id, ['cantidad' => DB::raw('cantidad + 1')]);
+                    // Si hay stock
+                    $producto = $carrito[0]->productos()->find($producto_id);
+                    if($producto->stock>$producto->pivot->cantidad){
+                        // Si el producto ya está en el carrito, incrementar la cantidad en 1
+                        $carrito[0]->productos()->updateExistingPivot($producto->id, ['cantidad' => DB::raw('cantidad + 1')]);
+                    }else{
+                        return back() -> with('mensaje', 'No hay más stock');
+                    }
                 } else {
                     // Si el producto no está en el carrito, agregarlo con cantidad 1
                     $producto->carritos()->attach($carrito[0]->id, ['cantidad' => 1]);
                 }
                 $carrito[0]->total+=$producto->precio;
                 $carrito[0]->save();
-                $producto->stock-=1;
                 $producto->save();
             }
         }
@@ -114,7 +119,6 @@ class UsersController extends Controller
         }
         $carrito[0]->total-=$producto->precio;
         $carrito[0]->save();
-        $producto->stock+=1;
         $producto->save();
 
         $carrito = Carrito::where('user_id',Auth::user()->id)->first();
@@ -125,18 +129,18 @@ class UsersController extends Controller
     public function incrementar(Request $request){
         $user = User::find(Auth::user()->id);
         // Obtener el producto del carrito del usuario
-        $carrito = Carrito::where('user_id',Auth::user()->id)->get();
-        $producto = $carrito[0]->productos()->find($request->producto_id);
-        if($producto->stock>0){
-            $producto->pivot->increment('cantidad');
-            $producto->stock-=1;
-            $producto->save();
-            $carrito[0]->total+=$producto->precio;
-            $carrito[0]->save();
-        }
-
         $carrito = Carrito::where('user_id',Auth::user()->id)->first();
         $productos_carrito = $carrito->productos;
+        $producto = $carrito->productos->find($request->producto_id);
+        if($producto->stock>$producto->pivot->cantidad){
+            $producto->pivot->increment('cantidad');
+            $producto->save();
+            $carrito->total+=$producto->precio;
+            $carrito->save();
+        }else{
+            return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$carrito->total,'direcciones'=>$user->direcciones,'mensaje'=>'No hay más stock']);
+        }
+
         return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$carrito->total,'direcciones'=>$user->direcciones,'mensaje'=>'Cantidad incrementada']);
     }
     
@@ -144,16 +148,12 @@ class UsersController extends Controller
         $user = User::find(Auth::user()->id);
         $carrito = $user->carrito;
         $productos = $carrito->productos;
-        // Incrementar el stock de los productos en la tabla productos y eliminar los productos del carrito
-        foreach ($productos as $producto) {
-            $cantidad = $producto->pivot->cantidad;
-            $producto->stock += $cantidad;
-            $producto->save();
-        }
-
+        // Eliminar los productos del carrito
         $carrito->productos()->detach();
         $carrito = Carrito::where('user_id',Auth::user()->id)->first();
         $productos_carrito = $carrito->productos;
+        $carrito->total = 0;
+        $carrito->save();
         return view('auth.users.carrito', ['user_id' => Auth::user()->id, 'user' => Auth::user(), 'productos_carrito' => $productos_carrito, 'precio_total' => $carrito->total, 'direcciones' => $user->direcciones])->with('mensaje', 'Carrito vaciado');
     }
 

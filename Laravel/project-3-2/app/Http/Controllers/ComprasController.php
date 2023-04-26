@@ -42,6 +42,8 @@ class ComprasController extends Controller
         if($productos->count()>0){
             foreach ($productos as $producto) {
                 for($i=0;$i<$producto->pivot->cantidad;$i++){
+                    $producto->stock -= 1;
+                    $producto->save();
                     $compraNueva->productos()->attach($producto->id);
                 }
             }
