@@ -7,6 +7,7 @@
     <title>Nature Hub</title>
     <link rel="icon" type="image/x-icon" href="/images/webicon_old_big.ico">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
 </head>
 
@@ -103,6 +104,7 @@
             © 2023 Copyright:
             <a class="text-reset text-light fw-bold" href="https://upo.es/">UPO</a>
         </div>
+        
     </footer>
 
     <!-- <script>

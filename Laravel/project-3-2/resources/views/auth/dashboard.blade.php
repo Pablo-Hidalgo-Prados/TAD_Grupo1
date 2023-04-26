@@ -2,8 +2,101 @@
 
 @section('content')
 
+@error('nombre')
+    <p>Error en el nombre</p>
+@enderror
+@error('descripcion')
+    <p>Error en la descripción</p>
+@enderror
+@error('precio')
+    <p>Error en el precio</p>
+@enderror
+@error('stock')
+    <p>Error en el stock</p>
+@enderror
+@error('imagen')
+    <p>Error en la imagen</p>
+@enderror
+
+@error('nombrec')
+    <p>Error en el nombre</p>
+@enderror
+@error('descripcionc')
+    <p>Error en la descripción</p>
+@enderror
+
     @if (Auth::user()->rol == 'admin')
         <!--ROL ADMIN-->
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary m-3" data-toggle="modal" data-target="#exampleModal">
+                Crear producto
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Crear producto</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('productos.crear') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input id="nombre" type="text"
+                                        class="form-control @error('nombre') is-invalid @enderror mt-1" name="nombre"
+                                        value="" placeholder="Nombre" required autofocus>
+                                    <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror mt-1" name="descripcion" placeholder="Descripcion" required autofocus></textarea>
+                                    <input id="precio" type="text"
+                                        class="form-control @error('precio') is-invalid @enderror mt-1" name="precio"
+                                        value="" placeholder="Precio" required autofocus>
+                                    <input id="stock" type="text"
+                                        class="form-control @error('stock') is-invalid @enderror mt-1" name="stock"
+                                        value="" placeholder="Stock" required autofocus>
+                                    <input class="form-control @error('imagen') is-invalid @enderror mt-1" type="file" id="imagen" name="imagen"><br>
+                                    <button class="btn btn-success mt-1" type="submit">Crear Producto</button>
+                                    <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                Crear categoría
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Crear producto</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('categorias.crear') }}" method="post">
+                                @csrf
+                                <input id="nombrec" type="text"
+                                    class="form-control @error('nombrec') is-invalid @enderror mt-1" name="nombrec"
+                                    value="" placeholder="Nombre" required autofocus>
+                                <input id="descripcionc" type="text"
+                                    class="form-control @error('descripcionc') is-invalid @enderror mt-1" name="descripcionc"
+                                    value="" placeholder="Descripcion" required autofocus>
+                                <button class="btn btn-success mt-1" type="submit">Crear Categoría</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
         <div class="d-flex justify-content-center mt-4 mb-4">
             <form action="{{ route('usuarios.listar') }}" method="post">
                 @csrf
@@ -161,55 +254,6 @@
             </table>
         @endif
 
-        <div class="row justify-content-center mt-2 mx-3">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        Crear Producto
-                    </div>
-
-                    <div class="card-body">
-                        <form action="{{ route('productos.crear') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <input id="nombre" type="text"
-                                class="form-control @error('nombre') is-invalid @enderror mt-1" name="nombre"
-                                value="" placeholder="Nombre" required autofocus>
-                                <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror mt-1" name="descripcion" placeholder="Descripcion" required autofocus></textarea>
-                            <input id="precio" type="text"
-                                class="form-control @error('precio') is-invalid @enderror mt-1" name="precio"
-                                value="" placeholder="Precio" required autofocus>
-                            <input id="stock" type="text"
-                                class="form-control @error('stock') is-invalid @enderror mt-1" name="stock"
-                                value="" placeholder="Stock" required autofocus>
-                                <input class="form-control @error('imagen') is-invalid @enderror mt-1" type="file" id="imagen" name="imagen"><br>
-                            <button class="btn btn-success mt-1" type="submit">Crear Producto</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center mt-2 mx-3">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        Crear Categoría
-                    </div>
-
-                    <div class="card-body">
-                        <form action="{{ route('categorias.crear') }}" method="post">
-                            @csrf
-                            <input id="nombrec" type="text"
-                                class="form-control @error('nombrec') is-invalid @enderror mt-1" name="nombrec"
-                                value="" placeholder="Nombre" required autofocus>
-                            <input id="descripcionc" type="text"
-                                class="form-control @error('descripcionc') is-invalid @enderror mt-1" name="descripcionc"
-                                value="" placeholder="Descripcion" required autofocus>
-                            <button class="btn btn-success mt-1" type="submit">Crear Categoría</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     @else
         <!--ROL CLIENTE-->
         <div class="d-flex justify-content-center mt-4 mb-4">
