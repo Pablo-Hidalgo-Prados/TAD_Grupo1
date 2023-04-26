@@ -19,7 +19,7 @@
 -En caso de eliminar un producto ya comprado peta porque tiene relación, poner un estas seguro si quieres eliminar.
 -Bajar stock al comprar. - Hecho
 -No mostrar descripción el listado y si se puede que se puedan poner espacios. - Hecho
--Poder crear cosas desde fuera del listado (Botón de crear donde los listados se puede hacer en un modal).
+-Poder crear cosas desde fuera del listado (Botón de crear donde los listados se puede hacer en un modal). - Hecho
 -Descripción que sea un text área y tratarla en bd como string. - Hecho
 -Visualizar mostrar como texto normal en vez de con el disabled.
 -En visualizar ver carrito no debería verlo el admin. - Hecho
