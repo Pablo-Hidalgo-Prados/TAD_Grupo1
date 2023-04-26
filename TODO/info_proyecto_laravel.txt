@@ -14,7 +14,7 @@
 -Notificar al usuario cuando no quede más stock o agregas algo al carrito.
 -Redirecciones al mismo sitio en el que estaba. - Hecho
 -Poner imagen productos. - Hecho
--Validar precios en el panel de administración.
+-Validar precios en el panel de administración. - Hecho
 -Poner un paginate en caso de que haya muchos. - Hecho
 -En caso de eliminar un producto ya comprado peta porque tiene relación, poner un estas seguro si quieres eliminar.
 -Bajar stock al comprar. - Hecho
