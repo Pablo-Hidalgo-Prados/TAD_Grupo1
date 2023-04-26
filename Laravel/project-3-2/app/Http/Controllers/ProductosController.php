@@ -9,7 +9,7 @@ use Illuminate\Http\UploadedFile;
 class ProductosController extends Controller
 {
     public function crear(Request $request){
-        $request->validate(['nombre'=>'required','descripcion'=>'required','precio'=>'required|numeric|gt:0','stock'=>'required','imagen'=>'required|mimes:png,jpg']);
+        $request->validate(['nombre'=>'required','descripcion'=>'required','precio'=>['required', 'numeric', 'gt:0', 'regex:/^\d+(\.\d{1,2})?$/'],'stock'=>'required','imagen'=>'required|mimes:png,jpg']);
         $productoNuevo = new Producto;
         $productoNuevo->nombre = $request->nombre;
         $productoNuevo->descripcion = $request->descripcion;

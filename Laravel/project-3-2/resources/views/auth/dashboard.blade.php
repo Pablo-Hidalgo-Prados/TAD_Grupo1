@@ -175,7 +175,7 @@
                                 class="form-control @error('nombre') is-invalid @enderror mt-1" name="nombre"
                                 value="" placeholder="Nombre" required autofocus>
                                 <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror mt-1" name="descripcion" placeholder="Descripcion" required autofocus></textarea>
-                            <input id="precio" type="number"
+                            <input id="precio" type="text"
                                 class="form-control @error('precio') is-invalid @enderror mt-1" name="precio"
                                 value="" placeholder="Precio" required autofocus>
                             <input id="stock" type="text"
