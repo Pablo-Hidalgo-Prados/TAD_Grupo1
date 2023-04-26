@@ -22,5 +22,5 @@
 -Poder crear cosas desde fuera del listado (Botón de crear donde los listados se puede hacer en un modal).
 -Descripción que sea un text área y tratarla en bd como string.
 -Visualizar mostrar como texto normal en vez de con el disabled.
--En visualizar ver carrito no debería verlo el admin.
+-En visualizar ver carrito no debería verlo el admin. - Hecho
 -La documentación darle más caña.
