@@ -35,6 +35,7 @@ Route::post('/crear','App\Http\Controllers\UsersController@crear')->name('usuari
 Route::match(['get', 'post'], '/listar', 'App\Http\Controllers\UsersController@listar')->name('usuarios.listar');
 Route::delete('usuarios/{id}','App\Http\Controllers\UsersController@eliminar')->name('usuarios.eliminar');
 Route::post('editar/','App\Http\Controllers\UsersController@editar')->name('usuarios.editar');
+Route::post('editarAdm/','App\Http\Controllers\UsersController@editarAdm')->name('usuarios.editarAdm');
 Route::put('editar/{id}','App\Http\Controllers\UsersController@actualizar')->name('usuarios.actualizar');
 Route::get('visualizar/{id}','App\Http\Controllers\UsersController@visualizar')->name('usuarios.visualizar');
 Route::match(['get', 'post'],'/volver','App\Http\Controllers\UsersController@volver')->name('usuarios.volver');

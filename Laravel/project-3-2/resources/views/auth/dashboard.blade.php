@@ -48,8 +48,9 @@
                                 </form>
                             </td>
                             <td>
-                                <form action="{{ route('usuarios.editar', $user->id) }}" method="get">
+                                <form action="{{ route('usuarios.editarAdm') }}" method="POST">
                                     @csrf
+                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
                                     <button class="btn btn-primary" type="submit">Editar</button>
                                 </form>
                             </td>

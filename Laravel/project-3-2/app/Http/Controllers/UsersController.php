@@ -58,6 +58,11 @@ class UsersController extends Controller
         return view('auth.users.editar',['user'=>$user]);
     }
 
+    public function editarAdm(Request $request){
+        $user=User::findOrFail($request->user_id);
+        return view('auth.users.editar',['user'=>$user]);
+    }
+
     public function actualizar(Request $request, $id){
         $request->validate(['name' => ['required', 'string', 'max:255'],
         'apellidos' => ['required', 'string', 'max:255'],
