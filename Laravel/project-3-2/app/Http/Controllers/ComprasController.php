@@ -31,7 +31,7 @@ class ComprasController extends Controller
             $strDireccion .= ', Puerta: ' . $direccion->puerta;
         }
         $compraNueva->direccion = $strDireccion;
-        $compraNueva->direccion_id = 1;
+        $compraNueva->direccion_id = $direccion->id;
         $productos = $carrito[0]->productos;
         if($productos->count()>0){
             $compraNueva->save();

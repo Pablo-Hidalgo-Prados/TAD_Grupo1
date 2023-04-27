@@ -8,6 +8,13 @@
     <link rel="icon" type="image/x-icon" href="/images/webicon_old_big.ico">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("#alerta").delay(2000).fadeOut();
+            });
+        </script>
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
 </head>
 
@@ -78,6 +85,18 @@
 
         </div>
     </nav>
+
+    @if(isset($mensaje))
+        <div id="alerta" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p>{{ $mensaje }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif(session('mensaje'))
+        <div id="alerta" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p>{{ session('mensaje') }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     @yield('content')
 

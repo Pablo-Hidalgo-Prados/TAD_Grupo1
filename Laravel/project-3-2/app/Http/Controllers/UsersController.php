@@ -72,7 +72,7 @@ class UsersController extends Controller
         $user->apellidos = $request->apellidos;
         $user->telefono = $request->telefono;
         $user->save();
-        return redirect()->route('usuarios.listar');
+        return view('auth.users.visualize',['user'=>$user,'mensaje'=>'Usuario actualizado']);
     }
 
     public function agregaritem($producto_id, $user_id){
@@ -185,16 +185,21 @@ class UsersController extends Controller
         $productos_carrito = $carrito->productos;
         $user = User::find(Auth::user()->id);
         $direcciones = $user->direcciones;
-        return view('auth.users.carrito', ['user_id' => Auth::user()->id, 'user' => Auth::user(), 'productos_carrito' => $productos_carrito, 'precio_total' => $carrito->total, 'direcciones' => $user->direcciones])->with('mensaje', 'Dirección creada');
+        if($request->agregar==='carrito'){
+            return view('auth.users.carrito', ['user_id' => Auth::user()->id, 'user' => Auth::user(), 'productos_carrito' => $productos_carrito, 'precio_total' => $carrito->total, 'direcciones' => $user->direcciones])->with('mensaje', 'Dirección creada');
+        }else{
+            return view('auth.users.visualize',['user'=>$user,'mensaje'=>'Usuario actualizado']);
+        }
     }
 
     public function borrardireccion(Request $request){
         $direccion = DireccionEnvio::where('id',$request->direcciones_list)->get();
+        $user = User::findOrFail($request->user_id);
         if(count($direccion)>0){
             $direccion[0]->delete();
-            return redirect()->route('usuarios.visualizar',['id'=>$request->user_id,'mensaje'=>'Dirección eliminada']);
+            return view('auth.users.visualize',['user'=>$user,'mensaje'=>'Usuario actualizado']);
         }else{
-            return redirect()->route('usuarios.visualizar',['id'=>$request->user_id,'mensaje'=>'No se encontró ninguna dirección']);
+            return view('auth.users.visualize',['user'=>$user,'mensaje'=>'No se encontró ninguna dirección']);
         }
     }
 }

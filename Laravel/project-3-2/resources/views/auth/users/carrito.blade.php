@@ -76,6 +76,7 @@
         <form action="{{ route('usuarios.agregardireccion') }}" method="POST">
             @csrf
             <input type="hidden" name="user_id" value="{{ $user->id }}">
+            <input type="hidden" name="agregar" value="carrito">
             <label>Calle:</label>
             <input class="form-control mb-3" type="text" name="calle">
             <label>Ciudad:</label>
