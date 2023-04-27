@@ -17,14 +17,9 @@
     </form>
 
     <div class="d-flex justify-content-center mt-4 mb-4">
-
-        <form action="{{ route('carritos.visualizar') }}" method="post">
+        <form action="{{ route('productos.editar',$producto->id) }}" method="get">
             @csrf
-            <button class="btn btn-primary me-1" type="submit">Ver Carrito</button>
-        </form>
-        <form action="{{ route('usuarios.editar') }}" method="post">
-            @csrf
-            <button class="btn btn-primary ml-1" type="submit">Editar Perfil</button>
+            <button class="btn btn-primary ml-1" type="submit">Editar Producto</button>
         </form>
     </div>
 </div>
