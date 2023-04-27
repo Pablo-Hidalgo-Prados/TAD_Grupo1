@@ -5,7 +5,7 @@
 -Distinguir líneas de las tablas
 -Validar dirección etc.
 -Formulario poner más pequeños los inputs de formularios (hay formateadores, Bootstrap form builder EL 5).
--Dirección que te salga en el perfil.
+-Dirección que te salga en el perfil. - Hecho
 
 (HECHO->REVISAR)
 -Acceder al carrito a través de la autenticación, no del id -> userAuth e id del usuario en el controlador, también perfiles compras, etc. 

@@ -45,6 +45,20 @@
         <input class="form-control mb-3" type="text" name="puerta">
         <button class="btn btn-success" type="submit">Agregar</button>
     </form>
+    <br>
+    <h3 class="text-center">Borrar dirección</h3>
+    <form action="{{ route('usuarios.borrardireccion') }}" method="POST">
+        @csrf
+        <input type="hidden" name="user_id" value="{{ $user->id }}">
+        <select class="form-select mb-3" id="direcciones_list" name="direcciones_list">
+            @foreach ($user->direcciones as $direccion)
+            <option value="{{ $direccion->id }}">{{ $direccion->calle.', '.$direccion->numero }}</option>
+            @endforeach
+        </select>
+        <button class="btn btn-success" type="submit">Borrar</button>
+    </form>
+
+    
 
 
 </div>

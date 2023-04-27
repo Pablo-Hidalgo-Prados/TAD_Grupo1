@@ -3,22 +3,30 @@
 @section('content')
     <div class="w-50 border rounded p-3 mx-auto">
         <h3 class="text-center">Perfil de {{ $user->name }}</h3>
-        <form action="{{ route('usuarios.volver') }}" method="post">
-            @csrf
-            <label>Nombre:</label>
-            <input class="form-control mb-3" type="text" disabled value="{{ $user->name }}" name="name">
-            <label>Apellidos:</label>
-            <input class="form-control mb-3" type="text" disabled value="{{ $user->apellidos }}" name="apellidos">
-            <label>Email:</label>
-            <input class="form-control mb-3" type="email" disabled value="{{ $user->email }}" name="email">
+        
+        <div>
+            <p><strong>Nombre:</strong> {{ $user->name }}</p>
+            <p><strong>Apellidos:</strong> {{ $user->apellidos }}</p>
+            <p><strong>Email:</strong> {{ $user->email }}</p>
             @if ($user->rol == 'admin')
-                <label>Rol:</label>
-                <input class="form-control mb-3" type="text" disabled value="{{ $user->rol }}" name="rol">
+                <p><strong>Rol:</strong> {{ $user->rol }}</p>
             @endif
-            <label>Teléfono:</label>
-            <input class="form-control mb-3" type="number" disabled value="{{ $user->telefono }}" name="telefono">
-            <button class="btn btn-success" type="submit">Volver</button>
-        </form>
+            <p><strong>Teléfono:</strong> {{ $user->telefono }}</p>
+            <p><strong>Direcciones:</strong></p>
+                @if(count($user->direcciones)<=0)
+                    No se encontró ninguna dirección
+                @else
+                    @foreach ($user->direcciones as $direccion)
+                        <p>
+                        {{ '-'.$direccion->calle.', '.$direccion->numero }}
+                        </p>
+                    @endforeach
+                @endif
+            <form action="{{ route('usuarios.volver') }}" method="post">
+                @csrf
+                <button class="btn btn-success" type="submit">Volver</button>
+            </form>
+        </div>
 
         <div class="d-flex justify-content-center mt-4 mb-4">
 

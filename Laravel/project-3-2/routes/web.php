@@ -40,6 +40,7 @@ Route::put('editar/{id}','App\Http\Controllers\UsersController@actualizar')->nam
 Route::get('visualizar/{id}','App\Http\Controllers\UsersController@visualizar')->name('usuarios.visualizar');
 Route::match(['get', 'post'],'/volver','App\Http\Controllers\UsersController@volver')->name('usuarios.volver');
 Route::post('/agregardireccion','App\Http\Controllers\UsersController@agregardireccion')->name('usuarios.agregardireccion');
+Route::post('borrardireccionssd/','App\Http\Controllers\UsersController@borrardireccion')->name('usuarios.borrardireccion');
 
 Route::post('/crearp','App\Http\Controllers\ProductosController@crear')->name('productos.crear');
 Route::match(['get', 'post'], '/listarp', 'App\Http\Controllers\ProductosController@listar')->name('productos.listar');

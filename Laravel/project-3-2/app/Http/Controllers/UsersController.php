@@ -180,6 +180,21 @@ class UsersController extends Controller
         }
         $direccionNueva->user_id = $request->user_id;
         $direccionNueva->save();
-        return redirect()->back();
+
+        $carrito = Carrito::where('user_id',Auth::user()->id)->first();
+        $productos_carrito = $carrito->productos;
+        $user = User::find(Auth::user()->id);
+        $direcciones = $user->direcciones;
+        return view('auth.users.carrito', ['user_id' => Auth::user()->id, 'user' => Auth::user(), 'productos_carrito' => $productos_carrito, 'precio_total' => $carrito->total, 'direcciones' => $user->direcciones])->with('mensaje', 'Dirección creada');
+    }
+
+    public function borrardireccion(Request $request){
+        $direccion = DireccionEnvio::where('id',$request->direcciones_list)->get();
+        if(count($direccion)>0){
+            $direccion[0]->delete();
+            return redirect()->route('usuarios.visualizar',['id'=>$request->user_id,'mensaje'=>'Dirección eliminada']);
+        }else{
+            return redirect()->route('usuarios.visualizar',['id'=>$request->user_id,'mensaje'=>'No se encontró ninguna dirección']);
+        }
     }
 }
