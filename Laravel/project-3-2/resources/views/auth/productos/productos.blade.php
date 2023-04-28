@@ -36,6 +36,10 @@
                         @csrf
                         <button class="btn btn-primary" type="submit">Añadir al carrito</button>
                     </form>
+                    <form action="{{ route('productos.visualizar',$producto->id) }}" method="get">
+                        @csrf
+                        <button class="btn btn-primary ml-1 mt-3" type="submit">Ver Producto</button>
+                    </form>
                     @endif
                 </div>
             </div>
