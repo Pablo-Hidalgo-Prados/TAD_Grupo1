@@ -7,21 +7,25 @@
         <div>
             <p><strong>Nombre:</strong> {{ $user->name }}</p>
             <p><strong>Apellidos:</strong> {{ $user->apellidos }}</p>
-            <p><strong>Email:</strong> {{ $user->email }}</p>
-            @if ($user->rol == 'admin')
-                <p><strong>Rol:</strong> {{ $user->rol }}</p>
-            @endif
-            <p><strong>Teléfono:</strong> {{ $user->telefono }}</p>
-            <p><strong>Direcciones:</strong></p>
-                @if(count($user->direcciones)<=0)
-                    No se encontró ninguna dirección
-                @else
-                    @foreach ($user->direcciones as $direccion)
-                        <p>
-                        {{ '-'.$direccion->calle.', '.$direccion->numero }}
-                        </p>
-                    @endforeach
+            @if(isset(Auth::user()->rol))
+                @if(Auth::user()->rol=='admin' || Auth::user()->id==$user->id)
+                    <p><strong>Email:</strong> {{ $user->email }}</p>
+                    @if ($user->rol == 'admin')
+                        <p><strong>Rol:</strong> {{ $user->rol }}</p>
+                    @endif
+                    <p><strong>Teléfono:</strong> {{ $user->telefono }}</p>
+                    <p><strong>Direcciones:</strong></p>
+                        @if(count($user->direcciones)<=0)
+                            No se encontró ninguna dirección
+                        @else
+                            @foreach ($user->direcciones as $direccion)
+                                <p>
+                                {{ '-'.$direccion->calle.', '.$direccion->numero }}
+                                </p>
+                            @endforeach
+                        @endif
                 @endif
+            @endif
             <form action="{{ route('usuarios.volver') }}" method="post">
                 @csrf
                 <button class="btn btn-success" type="submit">Volver</button>
