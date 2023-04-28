@@ -9,6 +9,7 @@ use App\Models\DireccionEnvio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -64,9 +65,19 @@ class UsersController extends Controller
     }
 
     public function actualizar(Request $request, $id){
-        $request->validate(['name' => ['required', 'string', 'max:255'],
+        $validator = Validator::make($request->all(), [
+        'name' => ['required', 'string', 'max:255'],
         'apellidos' => ['required', 'string', 'max:255'],
-        'telefono' => ['required', 'integer']]);
+        'telefono' => ['required', 'integer'],
+        ]);
+    
+        // Si la validación falla, mostrar los errores en la vista
+        if ($validator->fails() && Auth::user()->rol==='admin') {
+            return redirect()->to(route('usuarios.editarAdm', ['user_id' => $request->user_id_2]))->withErrors($validator)->withInput();
+        }else if($validator->fails() && Auth::user()->rol==='cliente'){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $user=User::findOrFail($id);
         $user->name = $request->name;
         $user->apellidos = $request->apellidos;
@@ -167,6 +178,21 @@ class UsersController extends Controller
     }
 
     public function agregardireccion(Request $request){
+        $validator = Validator::make($request->all(), [
+            'ciudad' => ['required', 'string'],
+            'calle' => ['required', 'string'],
+            'numero' => ['required', 'integer'],
+            'codigo_postal' => ['required', 'digits:5'],
+        ]);
+    
+        // Si la validación falla, mostrar los errores en la vista
+        if ($validator->fails() && Auth::user()->rol==='admin') {
+            // to -> Para pasar el parámetro como POST y recibirlo en editarAdm
+            return redirect()->to(route('usuarios.editarAdm', ['user_id' => $request->user_id]))->withErrors($validator)->withInput();
+        }else if($validator->fails() && Auth::user()->rol==='cliente'){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $direccionNueva = new DireccionEnvio; 
         $direccionNueva->calle = $request->calle;
         $direccionNueva->ciudad = $request->ciudad;
@@ -181,11 +207,12 @@ class UsersController extends Controller
         $direccionNueva->user_id = $request->user_id;
         $direccionNueva->save();
 
-        $carrito = Carrito::where('user_id',Auth::user()->id)->first();
-        $productos_carrito = $carrito->productos;
-        $user = User::find(Auth::user()->id);
-        $direcciones = $user->direcciones;
+        $user = User::find($request->user_id);
+        
         if($request->agregar==='carrito'){
+            $carrito = Carrito::where('user_id',Auth::user()->id)->first();
+            $productos_carrito = $carrito->productos;
+            $direcciones = $user->direcciones;
             return view('auth.users.carrito', ['user_id' => Auth::user()->id, 'user' => Auth::user(), 'productos_carrito' => $productos_carrito, 'precio_total' => $carrito->total, 'direcciones' => $user->direcciones])->with('mensaje', 'Dirección creada');
         }else{
             return view('auth.users.visualize',['user'=>$user,'mensaje'=>'Usuario actualizado']);

@@ -1,26 +1,20 @@
 @extends('layout')
 
 @section('content')
+@if(isset(Auth::user()->id))
+@if(Auth::user()->id==$user->id || Auth::user()->rol==='admin')
 <div class="w-50 border rounded p-3 mx-auto">
-    @error('nombre')
-    <div class="alert alert-danger"> Debe rellenar el nombre </div>
-    @enderror
-    @error('apellidos')
-    <div class="alert alert-danger"> Debe rellenar los apellidos </div>
-    @enderror
-    @error('telefono')
-    <div class="alert alert-danger"> Debe rellenar el teléfono </div>
-    @enderror
     <h3 class="text-center">Editar a {{ $user->name }}</h3>
     <form action="{{ route('usuarios.actualizar', $user->id) }}" method="POST">
         @method('PUT')
         @csrf
+        <input type="hidden" name="user_id_2" value="{{ $user->id }}">
         <label>Nombre:</label>
-        <input class="form-control mb-3" type="text" value="{{ $user->name }}" name="name">
+        <input class="form-control mb-3 @error('name') is-invalid @enderror" type="text" value="{{ $user->name }}" name="name">
         <label>Apellidos:</label>
-        <input class="form-control mb-3" type="text" value="{{ $user->apellidos }}" name="apellidos">
+        <input class="form-control mb-3 @error('apellidos') is-invalid @enderror" type="text" value="{{ $user->apellidos }}" name="apellidos">
         <label>Teléfono:</label>
-        <input class="form-control mb-3" type="number" value="{{ $user->telefono }}" name="telefono">
+        <input class="form-control mb-3 @error('telefono') is-invalid @enderror" type="number" value="{{ $user->telefono }}" name="telefono">
         <button class="btn btn-success" type="submit">Actualizar</button>
     </form>
 
@@ -33,13 +27,13 @@
         <input type="hidden" name="user_id" value="{{ $user->id }}">
         <input type="hidden" name="agregar" value="profile">
         <label>Calle:</label>
-        <input class="form-control mb-3" type="text" name="calle">
+        <input class="form-control mb-3 @error('calle') is-invalid @enderror" type="text" name="calle">
         <label>Ciudad:</label>
-        <input class="form-control mb-3" type="text" name="ciudad">
+        <input class="form-control mb-3 @error('ciudad') is-invalid @enderror" type="text" name="ciudad">
         <label>Código Postal:</label>
-        <input class="form-control mb-3" type="text" name="codigo_postal">
+        <input class="form-control mb-3 @error('codigo_postal') is-invalid @enderror" type="text" name="codigo_postal">
         <label>Numero:</label>
-        <input class="form-control mb-3" type="number" name="numero">
+        <input class="form-control mb-3 @error('numero') is-invalid @enderror" type="number" name="numero">
         <label>Planta:</label>
         <input class="form-control mb-3" type="number" name="planta">
         <label>Puerta:</label>
@@ -63,4 +57,6 @@
 
 
 </div>
+@endif
+@endif
 @endsection

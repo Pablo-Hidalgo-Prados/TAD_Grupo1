@@ -3,7 +3,7 @@
 -Mensaje de que se creen cosas o fallen cosas.
 -Ver carrito típico icono.
 -Distinguir líneas de las tablas
--Validar dirección etc.
+-Validar dirección etc. - Hecho
 -Formulario poner más pequeños los inputs de formularios (hay formateadores, Bootstrap form builder EL 5).
 -Dirección que te salga en el perfil. - Hecho
 

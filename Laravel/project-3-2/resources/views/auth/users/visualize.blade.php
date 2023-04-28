@@ -43,6 +43,7 @@
                         </form>
                         <form action="{{ route('usuarios.editar') }}" method="post">
                             @csrf
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
                             <button class="btn btn-primary ml-1 me-1" type="submit">Editar Perfil</button>
                         </form>
                     @else
