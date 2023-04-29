@@ -1,5 +1,6 @@
-<html>
-    <body>
+@extends('layout')
+
+@section('content')
         <div class="w-50 border rounded p-3 mx-auto">
             @error('nombre')
             <div class="alert alert-danger"> Debe rellenar el nombre </div>
@@ -18,5 +19,4 @@
                 <button class="btn btn-success" type="submit">Actualizar</button>
             </form>
         </div>
-    </body>
-</html>
+@endsection

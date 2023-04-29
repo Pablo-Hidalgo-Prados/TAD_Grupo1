@@ -8,8 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Diario del Programador') }}</title>
-    <link rel="icon" type="image/x-icon" href="/images/webicon.ico">
+    <title>Nature Hub</title>
+    <link rel="icon" type="image/x-icon" href="/images/webicon_old_big.ico">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

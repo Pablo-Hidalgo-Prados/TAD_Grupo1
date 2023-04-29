@@ -26,7 +26,7 @@
         <div class="row">
             @foreach ($productos as $producto)
             <div class="col-md-6 col-lg-4">
-                <div class="product-card">
+                <div class="product-card border-success border-opacity-50">
                     <img class="rounded-3" src="{{ '/images/'.$producto->imagen }}" alt="{{ $producto->nombre }}">
                     <h5>{{ $producto->nombre }}</h5>
                     <p>${{ $producto->precio }}</p>
