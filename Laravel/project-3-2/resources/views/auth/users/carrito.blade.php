@@ -57,6 +57,8 @@
                     <option value="{{ $direccion->id }}">{{ $direccion->calle.', '.$direccion->numero }}</option>
                     @endforeach
                 </select>
+                <label>¿Tiene algún código?</label>
+                <input type="text" name="codigo_descuento" class="form-control mb-3">
                 @if($direcciones->count()==0)
                 <button class="btn btn-success mt-2" disabled type="submit">Comprar</button>
                 @else

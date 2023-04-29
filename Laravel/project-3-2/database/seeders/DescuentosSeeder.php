@@ -16,11 +16,6 @@ class DescuentosSeeder extends Seeder
     public function run()
     {
         Descuento::create([
-            'codigo' => '',
-            'porcentaje' => '0'
-        ]);
-
-        Descuento::create([
             'codigo' => 'PRIMAVERA_2023',
             'porcentaje' => '15'
         ]);

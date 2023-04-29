@@ -6,6 +6,7 @@ use App\Models\Compra;
 use App\Models\User;
 use App\Models\Carrito;
 use App\Models\DireccionEnvio;
+use App\Models\Descuento;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,28 @@ class ComprasController extends Controller
         $compraNueva->subtotal = (float) $request->precio_total;
         $compraNueva->estado = 'En preparación';
         $compraNueva->user_id = $request->user_id;
-        $compraNueva->descuento_id = 1;
+        if(isset($request->codigo_descuento)){
+            $descuento = Descuento::where('codigo', $request->codigo_descuento)->first();
+            if(!$descuento){
+                $user = User::findOrFail(Auth::user()->id);
+                $carrito = Carrito::where('user_id',Auth::user()->id)->get();
+                $productos_carrito = $carrito[0]->productos;
+                $direcciones = $user->direcciones;
+                return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$carrito[0]->total,'direcciones'=>$direcciones,'mensaje'=>'No se encontró ese descuento']);                
+            }else{
+                $compraUsada = Compra::where('descuento_id', $descuento->id)->first();
+                if($compraUsada){
+                    $user = User::findOrFail(Auth::user()->id);
+                    $carrito = Carrito::where('user_id',Auth::user()->id)->get();
+                    $productos_carrito = $carrito[0]->productos;
+                    $direcciones = $user->direcciones;
+                    return view('auth.users.carrito',['productos_carrito'=>$productos_carrito,'user'=>$user,'precio_total'=>$carrito[0]->total,'direcciones'=>$direcciones,'mensaje'=>'El código ya se usó']);                
+                }else{
+                    $compraNueva->descuento_id = $descuento->id;
+                    $compraNueva->subtotal -= (float) $request->precio_total * ($descuento->porcentaje / 100);
+                }
+            }
+        }
         $strDireccion = 'Ciudad: ' . $direccion->ciudad . ', Código postal: ' . $direccion->codigo_postal . ', Calle: ' . $direccion->numero . ', Número: ' . $direccion->numero;
         if (!empty($direccion->planta)) {
             $strDireccion .= ', Planta: ' . $direccion->planta;

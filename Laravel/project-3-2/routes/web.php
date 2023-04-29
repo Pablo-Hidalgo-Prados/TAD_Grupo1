@@ -65,3 +65,10 @@ Route::delete('categorias/{id}','App\Http\Controllers\CategoriasController@elimi
 Route::get('editarc/{id}','App\Http\Controllers\CategoriasController@editar')->name('categorias.editar');
 Route::put('editarc/{id}','App\Http\Controllers\CategoriasController@actualizar')->name('categorias.actualizar');
 Route::get('visualizarc/{id}','App\Http\Controllers\CategoriasController@visualizar')->name('categorias.visualizar');
+
+Route::post('/creard','App\Http\Controllers\DescuentosController@crear')->name('descuentos.crear');
+Route::match(['get', 'post'], '/listard', 'App\Http\Controllers\DescuentosController@listar')->name('descuentos.listar');
+Route::delete('descuentos/{id}','App\Http\Controllers\DescuentosController@eliminar')->name('descuentos.eliminar');
+Route::get('editard/{id}','App\Http\Controllers\DescuentosController@editar')->name('descuentos.editar');
+Route::put('editard/{id}','App\Http\Controllers\DescuentosController@actualizar')->name('descuentos.actualizar');
+Route::get('visualizard/{id}','App\Http\Controllers\DescuentosController@visualizar')->name('descuentos.visualizar');
