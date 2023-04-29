@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Categoria;
+use App\Models\Producto;
 
 class CategoriasSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class CategoriasSeeder extends Seeder
      *
      * @return void
      */
+
+    protected $depends = [Producto::class];
+    
     public function run()
     {
         Categoria::create([
@@ -21,8 +25,8 @@ class CategoriasSeeder extends Seeder
         ]);
 
         Categoria::create([
-            'nombre' => 'ropa',
-            'descripcion' => 'ropa de senderismo'
+            'nombre' => 'herramientas',
+            'descripcion' => 'herramientas de senderismo'
         ]);
     }
 }

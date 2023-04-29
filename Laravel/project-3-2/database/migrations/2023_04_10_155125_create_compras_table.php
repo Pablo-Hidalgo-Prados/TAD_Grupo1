@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('direccion');
             $table->string('estado');
             $table->foreignId('descuento_id')->constrained('descuentos')->nullable();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('direccion_id')->constrained('direccion_envios');
             $table->timestamps();
         });
@@ -33,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compras');
+        //Schema::dropIfExists('compras');
+        Schema::table('compras', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained('users');
+        });
     }
 };

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('compra_producto', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('compra_id')->constrained('compras');
-            $table->foreignId('producto_id')->constrained('productos');
+            $table->foreignId('compra_id')->constrained('compras')->onDelete('cascade');
+            $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
             $table->timestamps();
         });
     }
