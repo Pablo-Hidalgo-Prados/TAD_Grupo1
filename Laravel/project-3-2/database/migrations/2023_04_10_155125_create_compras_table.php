@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('subtotal');
             $table->string('direccion');
             $table->string('estado');
-            $table->foreignId('descuento_id')->nullable()->constrained('descuentos');
+            $table->foreignId('descuento_id')->nullable()->constrained('descuentos')->onDelete('set null');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('direccion_id')->constrained('direccion_envios');
             $table->timestamps();
