@@ -6,10 +6,10 @@
 -Validar dirección etc. - Hecho
 -Formulario poner más pequeños los inputs de formularios (hay formateadores, Bootstrap form builder EL 5).
 -Dirección que te salga en el perfil. - Hecho
+-Acceder al carrito a través de la autenticación, no del id -> userAuth e id del usuario en el controlador, también perfiles compras, etc. - Hecho 
 
-(HECHO->REVISAR)
--Acceder al carrito a través de la autenticación, no del id -> userAuth e id del usuario en el controlador, también perfiles compras, etc. 
-
+HACER:
+-Edición de imágenes de productos.
 
 -Notificar al usuario cuando no quede más stock o agregas algo al carrito. - Hecho
 -Redirecciones al mismo sitio en el que estaba. - Hecho

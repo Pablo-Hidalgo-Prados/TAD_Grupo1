@@ -5,6 +5,7 @@
     <div class="product-card border-success border-opacity-50 mt-5">
 
         <h2 class="text-center mb-5">Perfil de {{ $user->name }}</h2>
+        <img class="rounded-3" src="{{ '/images/'.$user->imagen }}" alt="{{ $user->nombre }}">
         <p class="mb-4"><strong>Nombre:</strong> {{ $user->name }}</p>
         <p class="mb-4"><strong>Apellidos:</strong> {{ $user->apellidos }}</p>
         @if(isset(Auth::user()->rol))
