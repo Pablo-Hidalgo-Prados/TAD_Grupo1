@@ -33,6 +33,11 @@
     color: white;
 }
 
+.btncarrito {
+    background-color: rgb(9, 46, 16);
+    color: white;
+}
+
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
 .sticky {
     position: fixed;
@@ -65,4 +70,8 @@
 
 .product-card p {
     margin-bottom: 10px;
+}
+
+.opacity {
+    opacity: 0.95;
 }

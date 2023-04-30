@@ -63,7 +63,7 @@
 
     <!-- Button trigger modal -->
 
-    <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal2">
+    <button type="button" class="btn btn-primary ml-2 me-2" data-toggle="modal" data-target="#exampleModal2">
         Crear categoría
     </button>
 

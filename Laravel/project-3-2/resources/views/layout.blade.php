@@ -10,16 +10,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
-        <script>
-            $(document).ready(function() {
-                $("#alerta").delay(2000).fadeOut();
-            });
-        </script>
+    <script>
+        $(document).ready(function() {
+            $("#alerta").delay(2000).fadeOut();
+        });
+    </script>
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
 </head>
 
 <body class="bggeneral">
-    <nav class="navbar navbar-expand-md bgnavbar sticky-top rounded-5 mt-3 mx-3" id="navbar">
+    <nav class="navbar navbar-expand-md bgnavbar sticky-top rounded-5 mt-3 mx-3 opacity" id="navbar">
         <div class="container-fluid">
             <div>
                 <a class="navbar-brand text-light" href="/">
@@ -57,8 +57,18 @@
                     </ul>
                     @if (Route::has('login'))
                     <div class="hidden top-0 me-xl-4 d-sm-flex d-md-flex d-lg-flex d-xxl-flex align-items-right xs:block float-end justify-content-end">
-
                         @auth
+                        @if(Auth::user()->rol=='cliente')
+                        <form action="{{ route('carritos.visualizar') }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btncarrito text-white rounded-4 d-flex p-2 me-3 ml-2 mb-1 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0 align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-1 bi bi-cart4" viewBox="0 0 16 16">
+                                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                                </svg>
+                                Ver Carrito
+                            </button>
+                        </form>
+                        @endif
                         <div class="bglogin rounded-4 d-flex p-2 me-2 ml-4 mb-1 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0 align-items-center">
                             <a class="text-sm text-light text-decoration-none" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                         </div>
@@ -87,15 +97,15 @@
     </nav>
 
     @if(isset($mensaje))
-        <div id="alerta" class="alert alert-warning alert-dismissible fade show" role="alert">
-            <p>{{ $mensaje }}</p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    <div id="alerta" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <p>{{ $mensaje }}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @elseif(session('mensaje'))
-        <div id="alerta" class="alert alert-warning alert-dismissible fade show" role="alert">
-            <p>{{ session('mensaje') }}</p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    <div id="alerta" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <p>{{ session('mensaje') }}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @endif
 
     @yield('content')
@@ -123,7 +133,7 @@
             © 2023 Copyright:
             <a class="text-reset text-light fw-bold" href="https://upo.es/">UPO</a>
         </div>
-        
+
     </footer>
 
     <!-- <script>
