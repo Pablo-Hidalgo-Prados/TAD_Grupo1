@@ -21,6 +21,18 @@
     <br>
     <br>
 
+    <form action="{{ route('usuarios.imagen') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="user_id" value="{{ $user->id }}">
+        <input type="hidden" name="nombre" value="{{ $user->nombre }}">
+        <label>Imagen:</label>
+        <input class="form-control mb-3 @error('imagen_perfil') is-invalid @enderror" type="file" id="imagen_perfil" value="{{ $user->telefono }}" name="imagen_perfil">
+        <button class="btn btn-success" type="submit">Actualizar imagen</button>
+    </form>
+
+    <br>
+    <br>
+
     <h3 class="text-center">Agregar dirección</h3>
     <form action="{{ route('usuarios.agregardireccion') }}" method="POST">
         @csrf
@@ -53,7 +65,7 @@
         <button class="btn btn-success" type="submit">Borrar</button>
     </form>
 
-    
+
 
 
 </div>

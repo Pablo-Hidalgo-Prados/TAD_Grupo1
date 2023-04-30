@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('rol')->default('cliente');
             $table->string('telefono')->nullable();
+            $table->string('imagen')->default('user_profile/no_image.png');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -41,6 +41,7 @@ Route::get('visualizar/{id}','App\Http\Controllers\UsersController@visualizar')-
 Route::match(['get', 'post'],'/volver','App\Http\Controllers\UsersController@volver')->name('usuarios.volver');
 Route::post('/agregardireccion','App\Http\Controllers\UsersController@agregardireccion')->name('usuarios.agregardireccion');
 Route::post('borrardireccionssd/','App\Http\Controllers\UsersController@borrardireccion')->name('usuarios.borrardireccion');
+Route::post('imagen/','App\Http\Controllers\UsersController@imagen')->name('usuarios.imagen');
 
 Route::post('/crearp','App\Http\Controllers\ProductosController@crear')->name('productos.crear');
 Route::match(['get', 'post'], '/listarp', 'App\Http\Controllers\ProductosController@listar')->name('productos.listar');

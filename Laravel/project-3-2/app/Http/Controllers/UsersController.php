@@ -10,11 +10,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 class UsersController extends Controller
 {
     public function crear(Request $request){
-        $request->validate(['name'=>'required','apellidos'=>'required','email'=>'required','password'=>'required','telefono'=>'required']);
+        $request->validate(['name'=>'required','apellidos'=>'required','email'=>'required','password'=>'required','telefono'=>'required','imagen_perfil'=>'mimes:png,jpg']);
         $yaRegistrado = User::where('email',$request->email)->get();
         if($yaRegistrado->count()>0){
             return back() -> with('mensaje', 'El usuario ya existe');
@@ -82,6 +83,22 @@ class UsersController extends Controller
         $user->name = $request->name;
         $user->apellidos = $request->apellidos;
         $user->telefono = $request->telefono;
+        $user->save();
+        return view('auth.users.visualize',['user'=>$user,'mensaje'=>'Usuario actualizado']);
+    }
+
+    public function imagen(Request $request){
+        $request->validate(['imagen_perfil'=>'required|mimes:png,jpg']);
+        $user = User::findOrFail($request->user_id);
+        // Borra la imagen antigua en el caso de tenerla
+        if($user->imagen!=='user_profile/no_image.png'){
+            File::delete(public_path('images/' . $user->imagen));
+        }
+        $img = $request->file('imagen_perfil');
+        $extension = $img->getClientOriginalExtension();
+        $nombreImagen = $request->nombre.'_'.time().'.'.$extension;
+        $rutaImagen = $img->storeAs('user_profile', $nombreImagen, 'profile');
+        $user->imagen = $rutaImagen;
         $user->save();
         return view('auth.users.visualize',['user'=>$user,'mensaje'=>'Usuario actualizado']);
     }

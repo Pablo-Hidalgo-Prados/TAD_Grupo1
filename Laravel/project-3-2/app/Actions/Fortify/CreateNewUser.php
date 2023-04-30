@@ -5,6 +5,7 @@ namespace App\Actions\Fortify;
 use App\Models\Carrito;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -32,6 +33,7 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
+            'imagen' => ['nullable', 'image', 'mimes:png,jpg', 'max:2048'],
         ])->validate();
 
         $user = User::create([
@@ -41,6 +43,15 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        if (isset($input['imagen_perfil'])) {
+            $img = $input['imagen_perfil'];
+            $extension = $img->getClientOriginalExtension();
+            $nombreImagen = $input['name'] . '_' . time() . '.' . $extension;
+            $rutaImagen = $img->storeAs('user_profile', $nombreImagen, 'profile');
+            $user->imagen = $rutaImagen;
+            $user->save();
+        }
 
         $carritoNuevo = new Carrito;
         $carritoNuevo->user_id = $user->id;

@@ -61,6 +61,13 @@ return [
             'root' => public_path('images'),
         ],
 
+        'profile' => [
+            'driver' => 'local',
+            'root' => public_path('images/'),
+            'url' => env('APP_URL').'/images/',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*
