@@ -1,6 +1,7 @@
 @import 'bootstrap/scss/bootstrap';
 
 /* Estilo para la barra de navegación */
+
 .bgnavbar {
     background-color: rgb(56, 102, 65);
     border-color: rgb(56, 102, 65);
@@ -13,7 +14,6 @@
 .bglogin {
     background-color: rgb(167, 201, 87);
 }
-
 
 .bggeneral {
     background-color: rgba(242, 232, 207);
@@ -34,23 +34,27 @@
 }
 
 .btncarrito {
-    background-color: rgb(9, 46, 16);
+    background-color: rgb(167, 201, 87);
     color: white;
 }
 
+
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
+
 .sticky {
     position: fixed;
     top: 0;
     width: 100%;
-  }
-  
-  /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
-  .sticky + .content {
-    padding-top: 60px;
-  }
+}
 
-  .product-card {
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+
+.sticky+.content {
+    padding-top: 60px;
+}
+
+.product-card {
     border-radius: 10px;
     border: 1px solid #d2d2d2;
     padding: 20px;
