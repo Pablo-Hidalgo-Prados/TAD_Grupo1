@@ -3,7 +3,7 @@
 @section('content')
 <div class="m-4">
     <h3 class="text-center">Carrito de {{ $user->name }}</h3>
-    <table class="table text-black text-center w-75 mx-auto mt-5">
+    <table class="table border-success text-black text-center w-75 mx-auto mt-5">
         <th>ID</th>
         <th>Nombre</th>
         <th class="d-none d-lg-block">Descripción</th>

@@ -53,7 +53,7 @@
     </div>
 
     @if (isset($compras))
-    <table class="table text-black text-center w-75 mx-auto mt-5">
+    <table class="table border-success text-black text-center w-75 mx-auto mt-5">
         <th>Fecha</th>
         <th>Subtotal</th>
         <th>Dirección</th>

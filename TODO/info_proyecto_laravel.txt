@@ -2,7 +2,7 @@
 -Fillables definir apellidos y teléfono. - Hecho
 -Mensaje de que se creen cosas o fallen cosas. - Hecho
 -Ver carrito típico icono. - Hecho
--Distinguir líneas de las tablas
+-Distinguir líneas de las tablas. -Hecho
 -Validar dirección etc. - Hecho
 -Formulario poner más pequeños los inputs de formularios (hay formateadores, Bootstrap form builder EL 5).
 -Dirección que te salga en el perfil. - Hecho

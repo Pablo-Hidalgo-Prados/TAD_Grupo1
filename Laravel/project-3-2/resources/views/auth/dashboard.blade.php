@@ -143,7 +143,7 @@
 @if (isset($usuarios))
 <h1 class="text-center">Usuarios</h1>
 <div class="m-2">
-    <table class="table text-black text-center w-75 mx-auto mt-5">
+    <table class="table border-success text-black text-center w-75 mx-auto mt-5">
         <th>ID</th>
         <th>Nombre</th>
         <th>Email</th>
@@ -191,7 +191,7 @@
 <!--PRODUCTOS LISTA-->
 @if (isset($productos))
 <h1 class="text-center">Productos</h1>
-<table class="table text-black text-center w-75 mx-auto mt-5">
+<table class="table border-success text-black text-center w-75 mx-auto mt-5">
     <th>ID</th>
     <th>Nombre</th>
     <th class="d-none d-lg-grid">Descripción</th>
@@ -240,7 +240,7 @@
 <!--CATEGORÍAS LISTA-->
 @if (isset($categorias))
 <h1 class="text-center">Categorías</h1>
-<table class="table text-black text-center w-75 mx-auto mt-5">
+<table class="table border-success text-black text-center w-75 mx-auto mt-5">
     <th>ID</th>
     <th>Nombre</th>
     <th>Descripción</th>
@@ -285,7 +285,7 @@
 <!--Descuentos LISTA-->
 @if (isset($descuentos))
 <h1 class="text-center">Descuentos</h1>
-<table class="table text-black text-center w-75 mx-auto mt-5">
+<table class="table border-success text-black text-center w-75 mx-auto mt-5">
     <th>ID</th>
     <th>Código</th>
     <th>Porcentaje</th>
