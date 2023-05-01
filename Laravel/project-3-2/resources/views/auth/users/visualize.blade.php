@@ -45,11 +45,13 @@
         </form>
         @endif
 
-        <form action="{{ route('compras.listaruser') }}" method="post">
-            @csrf
-            <input type="hidden" name="user_id" value="{{ $user->id }}">
-            <button class="btn btn-primary ml-1" type="submit">Compras</button>
-        </form>
+        @if($user->rol!='admin')
+            <form action="{{ route('compras.listaruser') }}" method="post">
+                @csrf
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <button class="btn btn-primary ml-1" type="submit">Compras</button>
+            </form>
+        @endif
         @endif
         @endif
     </div>
