@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
@@ -83,5 +84,44 @@ class ProductosController extends Controller
 
         $productos = Producto::all();
         return view('auth.dashboard', ['productos'=>$productos,'mensaje'=>'Producto actualizado']);
+    }
+
+    public function agregarcategoria(Request $request){
+        $request->validate(['nombre_cat'=>'required', 'string', 'max:255']);
+        $producto = Producto::findOrFail($request->producto_id);
+        $categoria = Categoria::where('nombre',$request->nombre_cat)->get();
+        if($categoria->count()>0){
+            $categoriasProducto = $producto->categorias;
+            $i=0;
+            $enc = false;
+            while($i<$categoriasProducto->count() && !$enc){
+                if($categoriasProducto[$i]->nombre===$categoria[0]->nombre){
+                    $enc=true;
+                }else{
+                    $i++;
+                }
+            }
+            if(!$enc){
+                $producto->categorias()->attach($categoria[0]->id);
+                $producto = Producto::findOrFail($request->producto_id);
+                return view('auth.productos.visualizep',['producto'=>$producto]);
+            }else{
+                return view('auth.productos.editarp',['producto'=>$producto,'mensaje'=>'La categoría ya esta asociada con el producto']);
+            }
+        }else{
+            return view('auth.productos.editarp',['producto'=>$producto,'mensaje'=>'No se encontró la categoría']);
+        }
+    }
+
+    public function quitarcategoria(Request $request){
+        $producto = Producto::findOrFail($request->producto_id);
+        $categoria = Categoria::findOrFail($request->input('categorias_list'));
+        $producto->categorias()->detach($categoria->id);
+        return view('auth.productos.visualizep',['producto'=>$producto]);
+    }
+
+    public function volver(Request $request){
+        $producto = Producto::findOrFail($request->producto_id);
+        return view('auth.productos.visualizep',['producto'=>$producto]);
     }
 }

@@ -40,5 +40,41 @@
                 <button class="btn btn-success" type="submit">Actualizar imagen</button>
             </form>
 
+            <h3 class="mt-4 text-center">Agregar categoría</h3>
+            <form action="{{ route('productos.agregarcategoria') }}" method="POST">
+                @csrf
+                <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
+                <label>Categoría:</label>
+                <input class="form-control mb-3 @error('nombre_cat') is-invalid @enderror" type="text" id="nombre_cat" name="nombre_cat">
+                <button class="btn btn-success" type="submit">Agregar</button>
+            </form>
+
+            <h3 class="mt-4 text-center">Quitar categoría</h3>
+            <form action="{{ route('productos.quitarcategoria') }}" method="POST">
+                @csrf
+                <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                <label for="categorias_list">Escoge una categoría:</label>
+                <select class="form-select" id="categorias_list" name="categorias_list">
+                    @foreach ($producto->categorias as $categoria)
+                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                    @endforeach
+                </select>
+                
+                @if($producto->categorias->count()==0)
+                <div class="d-flex">
+                    <button class="btn btn-success mt-2" disabled type="submit">Quitar</button>
+                </div>
+                @else
+                <div class="d-flex">
+                    <button class="btn btn-success mt-2" type="submit">Quitar</button>
+                </div>
+                @endif
+            </form>
+            <form action="{{ route('productos.volver') }}" method="post">
+                @csrf
+                <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                <button class="btn btn-success mt-2" type="submit">Volver</button>
+            </form>
         </div>
         @endsection

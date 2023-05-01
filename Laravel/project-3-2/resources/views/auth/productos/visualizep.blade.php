@@ -12,7 +12,12 @@
                     <p><strong>Descripción:</strong> {{ $producto->descripcion }}</p>
                     <p><strong>Precio:</strong> {{ $producto->precio }}</p>
                     <p><strong>Stock:</strong> {{ $producto->stock }}</p>
-
+                    <p><strong>Categorías:</strong></p>
+                    @foreach ($producto->categorias as $categoria)
+                        <div class="col-md-6 col-lg-4">
+                            <p>- {{ $categoria->nombre }}</p>
+                        </div>
+                    @endforeach
                     @if(Auth::user()->rol=='admin')
                     <div class="d-flex justify-content-center mt-4 mb-4">
                         <form action="{{ route('productos.editar',$producto->id) }}" method="get">
