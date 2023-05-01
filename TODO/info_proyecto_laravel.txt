@@ -4,13 +4,9 @@
 -Ver carrito típico icono. - Hecho
 -Distinguir líneas de las tablas. -Hecho
 -Validar dirección etc. - Hecho
--Formulario poner más pequeños los inputs de formularios (hay formateadores, Bootstrap form builder EL 5).
+-Formulario poner más pequeños los inputs de formularios (hay formateadores, Bootstrap form builder EL 5). - Hecho
 -Dirección que te salga en el perfil. - Hecho
--Acceder al carrito a través de la autenticación, no del id -> userAuth e id del usuario en el controlador, también perfiles compras, etc. - Hecho 
-
-HACER:
--Edición de imágenes de productos.
-
+-Acceder al carrito a través de la autenticación, no del id -> userAuth e id del usuario en el controlador, también perfiles compras, etc. - Hecho
 -Notificar al usuario cuando no quede más stock o agregas algo al carrito. - Hecho
 -Redirecciones al mismo sitio en el que estaba. - Hecho
 -Poner imagen productos. - Hecho
@@ -23,4 +19,11 @@ HACER:
 -Descripción que sea un text área y tratarla en bd como string. - Hecho
 -Visualizar mostrar como texto normal en vez de con el disabled. - Hecho
 -En visualizar ver carrito no debería verlo el admin. - Hecho
+
+HACER:
+-Edición de imágenes de productos.
+-Categorías: filtrar, asignar y quitar.
+-Traducciones.
+-Contraseña?
+-Favoritos????
 -La documentación darle más caña.
