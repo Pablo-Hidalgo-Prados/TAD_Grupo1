@@ -22,7 +22,7 @@
 
 HACER:
 -Edición de imágenes de productos. - Hecho
--Categorías: filtrar, asignar y quitar.
+-Categorías: filtrar, asignar y quitar. - Hecho
 -Botón Compras MODAL. - Hecho
 -Editar estado de las compras (admin). - Hecho
 -Traducciones.
