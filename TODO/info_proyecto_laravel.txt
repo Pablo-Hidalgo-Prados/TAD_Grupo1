@@ -28,4 +28,5 @@ HACER:
 -Traducciones.
 -Contraseña - Hecho
 -Favoritos????
+-Paginación aplicar
 -La documentación darle más caña.
