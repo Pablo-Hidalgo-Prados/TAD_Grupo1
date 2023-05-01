@@ -3,8 +3,6 @@
 @section('content')
 <div class="container">
     <div class="product-card border-success border-opacity-50 mt-3">
-
-
         <h2 class="text-center mb-4">Perfil de {{ $user->name }}</h2>
         <div class="d-flex justify-content-center mt-4 mb-4">
             <img class="rounded-3 img-thumbnail" src="{{ '/images/'.$user->imagen }}" alt="{{ $user->nombre }}" width="288" height="288">
