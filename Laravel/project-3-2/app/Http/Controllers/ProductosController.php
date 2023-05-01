@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 
 class ProductosController extends Controller
 {
@@ -64,6 +65,22 @@ class ProductosController extends Controller
         $producto->stock = $request->stock;
         $producto->save();
         
+        $productos = Producto::all();
+        return view('auth.dashboard', ['productos'=>$productos,'mensaje'=>'Producto actualizado']);
+    }
+
+    public function imagen(Request $request){
+        $request->validate(['imagen'=>'required|mimes:png,jpg']);
+        $producto = Producto::findOrFail($request->producto_id);
+        // Borra la imagen antigua
+        File::delete(public_path('images/' . $producto->imagen));
+        $img = $request->file('imagen');
+        $extension = $img->getClientOriginalExtension();
+        $nombreImagen = $request->nombre.'_'.time().'.'.$extension;
+        $rutaImagen = $img->storeAs('images', $nombreImagen, 'images');
+        $producto->imagen = $rutaImagen;
+        $producto->save();
+
         $productos = Producto::all();
         return view('auth.dashboard', ['productos'=>$productos,'mensaje'=>'Producto actualizado']);
     }

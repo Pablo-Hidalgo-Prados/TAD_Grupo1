@@ -27,7 +27,7 @@
             <input type="hidden" name="user_id" value="{{ $user->id }}">
             <input type="hidden" name="nombre" value="{{ $user->nombre }}">
             <label>Imagen:</label>
-            <input class="form-control mb-3 @error('imagen_perfil') is-invalid @enderror" type="file" id="imagen_perfil" value="{{ $user->telefono }}" name="imagen_perfil">
+            <input class="form-control mb-3 @error('imagen_perfil') is-invalid @enderror" type="file" id="imagen_perfil" name="imagen_perfil">
             <button class="btn btn-success" type="submit">Actualizar imagen</button>
         </form>
 

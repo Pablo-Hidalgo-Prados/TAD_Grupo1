@@ -50,6 +50,7 @@ Route::delete('productos/{id}','App\Http\Controllers\ProductosController@elimina
 Route::get('editarp/{id}','App\Http\Controllers\ProductosController@editar')->name('productos.editar');
 Route::put('editarp/{id}','App\Http\Controllers\ProductosController@actualizar')->name('productos.actualizar');
 Route::get('visualizarp/{id}','App\Http\Controllers\ProductosController@visualizar')->name('productos.visualizar');
+Route::post('imagenp/','App\Http\Controllers\ProductosController@imagen')->name('productos.imagen');
 
 Route::post('/agregaracarrito/{producto_id}/{user_id}','App\Http\Controllers\UsersController@agregaritem')->name('carritos.agregar');
 Route::post('vercarrito/','App\Http\Controllers\UsersController@vercarrito')->name('carritos.visualizar');

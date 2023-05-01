@@ -191,7 +191,11 @@ class UsersController extends Controller
     }
 
     public function volver(){
-        return redirect()->route('productos.vista');
+        if(Auth::user()->rol==='admin'){
+            return view('auth.dashboard');
+        }else{
+            return redirect()->route('productos.vista');
+        }
     }
 
     public function agregardireccion(Request $request){
