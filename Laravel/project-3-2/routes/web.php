@@ -45,6 +45,8 @@ Route::post('imagen/','App\Http\Controllers\UsersController@imagen')->name('usua
 Route::post('cambiarpassword/','App\Http\Controllers\UsersController@cambiarpassword')->name('usuarios.cambiarpassword');
 Route::post('agregarfavoritos/','App\Http\Controllers\UsersController@agregarfavoritos')->name('usuarios.agregarfavoritos');
 Route::post('quitarfavoritos/','App\Http\Controllers\UsersController@quitarfavoritos')->name('usuarios.quitarfavoritos');
+Route::post('favoritos/','App\Http\Controllers\UsersController@favoritos')->name('usuarios.favoritos');
+
 
 Route::post('/crearp','App\Http\Controllers\ProductosController@crear')->name('productos.crear');
 Route::match(['get', 'post'], '/listarp', 'App\Http\Controllers\ProductosController@listar')->name('productos.listar');

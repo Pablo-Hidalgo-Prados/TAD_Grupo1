@@ -30,30 +30,35 @@
     <div class="d-flex justify-content-center mt-4 mb-4">
 
         @if(isset(Auth::user()->rol))
-        @if(Auth::user()->rol=='admin' || Auth::user()->id==$user->id)
-        @if(Auth::user()->rol!='admin')
-        <form action="{{ route('usuarios.editar') }}" method="post">
-            @csrf
-            <input type="hidden" name="user_id" value="{{ $user->id }}">
-            <button class="btn btn-primary ml-1 me-1" type="submit">Editar Perfil</button>
-        </form>
-        @else
-        <form action="{{ route('usuarios.editarAdm') }}" method="post">
-            @csrf
-            <input type="hidden" name="user_id" value="{{ $user->id }}">
-            <button class="btn btn-primary ml-1 me-1" type="submit">Editar Perfil</button>
-        </form>
-        @endif
+            @if(Auth::user()->rol=='admin' || Auth::user()->id==$user->id)
+                @if(Auth::user()->rol!='admin')
+                <form action="{{ route('usuarios.editar') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <button class="btn btn-primary ml-1 me-1" type="submit">Editar Perfil</button>
+                </form>
+                @else
+                <form action="{{ route('usuarios.editarAdm') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <button class="btn btn-primary ml-1 me-1" type="submit">Editar Perfil</button>
+                </form>
+                @endif
 
-        @if($user->rol!='admin')
-            <form action="{{ route('compras.listaruser') }}" method="post">
-                @csrf
-                <input type="hidden" name="modal" value="abrir">
-                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                <button class="btn btn-primary ml-1" type="submit">Compras</button>
-            </form>
-        @endif
-        @endif
+                @if($user->rol!='admin')
+                    <form action="{{ route('compras.listaruser') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="modal" value="abrir">
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                        <button class="btn btn-primary ml-1 me-1" type="submit">Compras</button>
+                    </form>
+                    <form action="{{ route('usuarios.favoritos') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                        <button class="btn btn-primary" type="submit">Lista Favoritos</button>
+                    </form>
+                @endif
+            @endif
         @endif
     </div>
 

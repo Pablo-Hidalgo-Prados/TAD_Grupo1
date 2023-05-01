@@ -286,6 +286,17 @@ class UsersController extends Controller
         $producto = User::findOrFail($request->producto_id);
         $user->productos()->detach($producto->id);
         $producto = Producto::findOrFail($request->producto_id);
-        return back() -> with('mensaje', 'Producto quitado de favoritos');
+        if($request->ruta==='favoritos'){
+            $productos = $user->productos()->paginate(9);
+            return view('auth.users.favoritos', ['user' => $user, 'productos' => $productos]);
+        }else{
+            return back() -> with('mensaje', 'Producto quitado de favoritos');
+        }
+    }
+
+    public function favoritos(Request $request){
+        $user = User::findOrFail($request->user_id);
+        $productos = $user->productos()->paginate(9);
+        return view('auth.users.favoritos', ['user' => $user, 'productos' => $productos]);
     }
 }
