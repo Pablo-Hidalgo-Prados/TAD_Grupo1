@@ -74,3 +74,9 @@ Route::delete('descuentos/{id}','App\Http\Controllers\DescuentosController@elimi
 Route::get('editard/{id}','App\Http\Controllers\DescuentosController@editar')->name('descuentos.editar');
 Route::put('editard/{id}','App\Http\Controllers\DescuentosController@actualizar')->name('descuentos.actualizar');
 Route::get('visualizard/{id}','App\Http\Controllers\DescuentosController@visualizar')->name('descuentos.visualizar');
+
+Route::delete('comprasd/{id}','App\Http\Controllers\ComprasController@eliminar')->name('compras.eliminar');
+Route::get('editarco/{id}','App\Http\Controllers\ComprasController@editar')->name('compras.editar');
+Route::put('editarco/{id}','App\Http\Controllers\ComprasController@actualizar')->name('compras.actualizar');
+Route::get('visualizarco/{id}','App\Http\Controllers\ComprasController@visualizar')->name('compras.visualizar');
+Route::post('comprasvolver/','App\Http\Controllers\ComprasController@comprasvolver')->name('compras.volver');

@@ -79,6 +79,13 @@ class ComprasController extends Controller
         return view('auth.users.visualize', ['compras'=>$compras,'user'=>$user,'user_id' => Auth::user()->id]);
     }
 
+    public function eliminar(Request $request, $id){
+        $compraEliminar = Compra::findOrFail($id);
+        $compraEliminar->delete();
+        $user = User::findOrFail($request->user_id);
+        return view('auth.users.visualize',['user'=>$user,'mensaje'=>'Compra Eliminada']);
+    }
+
     public function listar(){
         $compras = Compra::all();
         return view('auth.dashboard', ['compras'=>$compras]);
@@ -86,16 +93,29 @@ class ComprasController extends Controller
 
     public function visualizar($id){
         $compra=Compra::findOrFail($id);
-        return view('auth.compra.visualizec',['compra'=>$compra]);
+        $productos = $compra->productos;
+        return view('auth.compras.visualizeco',['compra'=>$compra,'productos'=>$productos]);
     }
 
     public function editar($id){
         $compra=Compra::findOrFail($id);
-        return view('auth.compra.editarcompra',['compra'=>$compra]);
+        return view('auth.compras.editarco',['compra'=>$compra]);
     }
 
     public function actualizar(Request $request, $id){
-        //
+        $request->validate(['fecha' => ['required', 'date_format:Y-m-d'],
+        'subtotal' => ['required', 'numeric'],
+        'direccion' => ['required', 'string', 'max:255'],
+        'estado' => ['required', 'string', 'max:255']]);
+        $compra=Compra::findOrFail($id);
+        $compra->fecha = $request->fecha;
+        $compra->subtotal = $request->subtotal;
+        $compra->direccion = $request->direccion;
+        $compra->estado = $request->estado;
+        $compra->save();
+
+        $productos = $compra->productos;
+        return view('auth.compras.visualizeco',['compra'=>$compra,'productos'=>$productos]);
     }
 
     public function listarcomprasusuario(Request $request){
@@ -107,5 +127,10 @@ class ComprasController extends Controller
             $mostrar = 'no';
         }
         return view('auth.users.visualize', ['compras'=>$compras,'user'=>$user,'mostrar'=>$mostrar]);
+    }
+
+    public function comprasvolver(Request $request){
+        $user = User::findOrFail($request->user_id);
+        return view('auth.users.visualize',['user'=>$user]);
     }
 }
