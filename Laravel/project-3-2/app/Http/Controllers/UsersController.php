@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -248,6 +249,26 @@ class UsersController extends Controller
             return view('auth.users.visualize',['user'=>$user,'mensaje'=>'Usuario actualizado']);
         }else{
             return view('auth.users.visualize',['user'=>$user,'mensaje'=>'No se encontró ninguna dirección']);
+        }
+    }
+
+    public function cambiarpassword(Request $request){
+        $request->validate(['psw_actual' => ['required', 'string', 'max:255'],
+        'psw_nueva' => ['required', 'string', 'max:255'],
+        'psw_rep' => ['required', 'string', 'max:255']]);
+        $user = User::findOrFail($request->user_id);
+        if(Hash::check($request->psw_actual,$user->password)){
+            if($request->psw_nueva===$request->psw_rep){
+                $hash = Hash::make($request->psw_nueva);
+                $user->password = $hash;
+                $user->save();
+                $user = User::findOrFail($request->user_id);
+                return view('auth.users.visualize',['user'=>$user]);
+            }else{
+                return back() -> with('mensaje', 'La contraseñas introducidas no coinciden');
+            }
+        }else{
+            return back() -> with('mensaje', 'La contraseña actual no es correcta');
         }
     }
 }

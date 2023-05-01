@@ -26,6 +26,6 @@ HACER:
 -Botón Compras MODAL. - Hecho
 -Editar estado de las compras (admin). - Hecho
 -Traducciones.
--Contraseña?
+-Contraseña - Hecho
 -Favoritos????
 -La documentación darle más caña.

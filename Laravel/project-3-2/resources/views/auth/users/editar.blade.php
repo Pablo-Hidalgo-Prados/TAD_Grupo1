@@ -66,7 +66,18 @@
             <button class="btn btn-success" type="submit">Borrar</button>
         </form>
 
-
+        <h3 class="text-center">Cambiar contraseña</h3>
+        <form action="{{ route('usuarios.cambiarpassword') }}" method="POST">
+            @csrf
+            <input type="hidden" name="user_id" value="{{ $user->id }}">
+            <label>Contraseña actual:</label>
+            <input class="form-control mb-3 @error('psw_actual') is-invalid @enderror" type="password" name="psw_actual">
+            <label>Contraseña nueva:</label>
+            <input class="form-control mb-3 @error('psw_nueva') is-invalid @enderror" type="password" name="psw_nueva">
+            <label>Repite la nueva contraseña:</label>
+            <input class="form-control mb-3 @error('psw_rep') is-invalid @enderror" type="password" name="psw_rep">
+            <button class="btn btn-success" type="submit">Cambiar</button>
+        </form>
 
     </div>
 </div>
