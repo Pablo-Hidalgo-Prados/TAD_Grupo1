@@ -24,6 +24,7 @@ HACER:
 -Edición de imágenes de productos.
 -Categorías: filtrar, asignar y quitar.
 -Botón Compras MODAL.
+-Editar estado de las compras (admin).
 -Traducciones.
 -Contraseña?
 -Favoritos????
