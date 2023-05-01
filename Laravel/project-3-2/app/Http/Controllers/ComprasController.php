@@ -99,8 +99,13 @@ class ComprasController extends Controller
     }
 
     public function listarcomprasusuario(Request $request){
-        $user=User::findOrFail($request->user_id);
+        $user = User::findOrFail($request->user_id);
         $compras = Compra::where('user_id',$request->user_id)->get();
-        return view('auth.users.visualize', ['compras'=>$compras,'user'=>$user]);
+        if($request->modal==='abrir'){
+            $mostrar = 'si';
+        }else{
+            $mostrar = 'no';
+        }
+        return view('auth.users.visualize', ['compras'=>$compras,'user'=>$user,'mostrar'=>$mostrar]);
     }
 }

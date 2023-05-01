@@ -48,6 +48,7 @@
         @if($user->rol!='admin')
             <form action="{{ route('compras.listaruser') }}" method="post">
                 @csrf
+                <input type="hidden" name="modal" value="abrir">
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <button class="btn btn-primary ml-1" type="submit">Compras</button>
             </form>
@@ -57,20 +58,64 @@
     </div>
 
     @if (isset($compras))
-    <table class="table border-success text-black text-center w-75 mx-auto mt-5">
-        <th>Fecha</th>
-        <th>Subtotal</th>
-        <th>Dirección</th>
-        <th>Estado</th>
-        @foreach ($compras as $compra)
-        <tr>
-            <td>{{ $compra->fecha }}</td>
-            <td>{{ $compra->subtotal }}</td>
-            <td>{{ $compra->direccion }}</td>
-            <td>{{ $compra->estado }}</td>
-        </tr>
-        @endforeach
-    </table>
+
+    @if(isset($mostrar))
+        @if($mostrar=='si')
+        <script>
+        $(document).ready(function() {
+            $('#exampleModal').modal('show');
+        });
+        </script>
+        @else
+        <script>
+            $(document).ready(function() {
+                $('#exampleModal').modal('hide');
+            });
+        </script>
+        @endif
+    @endif
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Compras</h5>
+                    <form action="{{ route('compras.listaruser') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                        <input type="hidden" name="modal" value="cerrar">
+                        <button type="submit" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-body">
+                <table class="table border-success text-black text-center w-75 mx-auto mt-5">
+                    <th>Fecha</th>
+                    <th>Subtotal</th>
+                    <th>Dirección</th>
+                    <th>Estado</th>
+                    @foreach ($compras as $compra)
+                    <tr>
+                        <td>{{ $compra->fecha }}</td>
+                        <td>{{ $compra->subtotal }}</td>
+                        <td>{{ $compra->direccion }}</td>
+                        <td>{{ $compra->estado }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+                    <form action="{{ route('compras.listaruser') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                        <input type="hidden" name="modal" value="cerrar">
+                        <button type="submit" class="btn btn-success cancel-btn" data-dismiss="modal" aria-label="Close">Volver</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     @endif
 </div>
 </div>
