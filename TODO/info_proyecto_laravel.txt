@@ -25,8 +25,9 @@ HACER:
 -Categorías: filtrar, asignar y quitar. - Hecho
 -Botón Compras MODAL. - Hecho
 -Editar estado de las compras (admin). - Hecho
--Traducciones.
+-Traducciones - Hecho
 -Contraseña - Hecho
--Favoritos????
--Paginación aplicar
--La documentación darle más caña.
+-Favoritos - Hecho
+
+-PAGINACIÓN APLICAR.
+-DOCUMENTACIÓN A TOPE.
