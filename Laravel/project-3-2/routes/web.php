@@ -43,6 +43,8 @@ Route::post('/agregardireccion','App\Http\Controllers\UsersController@agregardir
 Route::post('borrardireccionssd/','App\Http\Controllers\UsersController@borrardireccion')->name('usuarios.borrardireccion');
 Route::post('imagen/','App\Http\Controllers\UsersController@imagen')->name('usuarios.imagen');
 Route::post('cambiarpassword/','App\Http\Controllers\UsersController@cambiarpassword')->name('usuarios.cambiarpassword');
+Route::post('agregarfavoritos/','App\Http\Controllers\UsersController@agregarfavoritos')->name('usuarios.agregarfavoritos');
+Route::post('quitarfavoritos/','App\Http\Controllers\UsersController@quitarfavoritos')->name('usuarios.quitarfavoritos');
 
 Route::post('/crearp','App\Http\Controllers\ProductosController@crear')->name('productos.crear');
 Route::match(['get', 'post'], '/listarp', 'App\Http\Controllers\ProductosController@listar')->name('productos.listar');

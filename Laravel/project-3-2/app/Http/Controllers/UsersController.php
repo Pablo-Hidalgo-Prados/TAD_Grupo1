@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Carrito;
 use App\Models\Producto;
 use App\Models\DireccionEnvio;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -270,5 +271,21 @@ class UsersController extends Controller
         }else{
             return back() -> with('mensaje', 'La contraseña actual no es correcta');
         }
+    }
+
+    public function agregarfavoritos(Request $request){
+        $user = User::findOrFail($request->user_id);
+        $producto = User::findOrFail($request->producto_id);
+        $user->productos()->attach($producto->id);
+        $producto = Producto::findOrFail($request->producto_id);
+        return back() -> with('mensaje', 'Producto agregado a favoritos');
+    }
+
+    public function quitarfavoritos(Request $request){
+        $user = User::findOrFail($request->user_id);
+        $producto = User::findOrFail($request->producto_id);
+        $user->productos()->detach($producto->id);
+        $producto = Producto::findOrFail($request->producto_id);
+        return back() -> with('mensaje', 'Producto quitado de favoritos');
     }
 }

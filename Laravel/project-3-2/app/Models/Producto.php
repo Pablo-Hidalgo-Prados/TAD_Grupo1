@@ -20,4 +20,8 @@ class Producto extends Model
     public function compras(){
         return $this->belongsToMany(Compras::class);
     }
+
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
 }
