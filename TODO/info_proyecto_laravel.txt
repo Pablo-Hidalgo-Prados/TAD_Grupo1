@@ -21,7 +21,7 @@
 -En visualizar ver carrito no debería verlo el admin. - Hecho
 
 HACER:
--Edición de imágenes de productos.
+-Edición de imágenes de productos. - Hecho
 -Categorías: filtrar, asignar y quitar.
 -Botón Compras MODAL.
 -Editar estado de las compras (admin).
