@@ -285,6 +285,7 @@
 <!--Descuentos LISTA-->
 @if (isset($descuentos))
 <h1 class="text-center">Descuentos</h1>
+@if(count($descuentos)>0)
 <table class="table border-success text-black text-center w-75 mx-auto mt-5">
     <th>ID</th>
     <th>Código</th>
@@ -325,6 +326,9 @@
     </tr>
     @endforeach
 </table>
+@else
+    <p class="text-center">No se encontraron descuentos.</p>
+@endif
 @endif
 
 @else

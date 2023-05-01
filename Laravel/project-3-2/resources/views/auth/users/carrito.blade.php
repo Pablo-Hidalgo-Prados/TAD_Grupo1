@@ -3,13 +3,13 @@
 @section('content')
 <div class="m-4">
     <h3 class="text-center">Carrito de {{ $user->name }}</h3>
+    @if(count($productos_carrito)>0)
     <div class="d-flex justify-content-center mt-4 mb-4">
         <form action="{{ route('carritos.vaciar') }}" method="POST">
             @csrf
             <button class="btn btn-success ml-2" type="submit">Vaciar carrito</button>
         </form>
     </div>
-
     <table class="table border-success text-black text-center w-75 mx-auto mt-5">
         <th></th>
         <th>Nombre</th>
@@ -126,6 +126,8 @@
         </div>
     </div>
     @endif
-
+    @else
+        <p>El carrito está vacío.</p>
+    @endif
 </div>
 @endsection

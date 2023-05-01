@@ -135,7 +135,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @elseif(session('mensaje'))
-    <div id="alerta" class="bglogin rounded-4 alert alert-warning alert-dismissible fade show" role="alert">
+    <div id="alerta" class="bglogin rounded-4 alert alert-warning alert-dismissible fade show m-3" role="alert">
         <p>{{ session('mensaje') }}</p>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

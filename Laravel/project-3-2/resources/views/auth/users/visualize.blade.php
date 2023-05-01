@@ -92,6 +92,7 @@
                     </form>
                 </div>
                 <div class="modal-body">
+                @if(count($compras)>0)
                 <table class="table border-success text-black text-center w-75 mx-auto mt-5">
                     <th>Fecha</th>
                     <th>Subtotal</th>
@@ -139,6 +140,9 @@
                     </tr>
                     @endforeach
                 </table>
+                @else
+                    <p>No se encontraron compras.</p>
+                @endif
                     <form action="{{ route('compras.listaruser') }}" method="post">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ $user->id }}">

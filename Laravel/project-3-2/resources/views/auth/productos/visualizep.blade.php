@@ -12,10 +12,6 @@
                     <p><strong>Descripción:</strong> {{ $producto->descripcion }}</p>
                     <p><strong>Precio:</strong> {{ $producto->precio }}</p>
                     <p><strong>Stock:</strong> {{ $producto->stock }}</p>
-                    <form action="{{ route('usuarios.volver') }}" method="post">
-                        @csrf
-                        <button class="btn btn-success" type="submit">Volver</button>
-                    </form>
 
                     @if(Auth::user()->rol=='admin')
                     <div class="d-flex justify-content-center mt-4 mb-4">
@@ -31,6 +27,10 @@
                     </form>
                     @endif
                 </div>
+                <form action="{{ route('usuarios.volver') }}" method="post">
+                    @csrf
+                    <button class="btn btn-success" type="submit">Volver</button>
+                </form>
             </div>
         </div>
     </div>
