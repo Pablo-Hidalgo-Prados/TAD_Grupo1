@@ -278,7 +278,13 @@ class UsersController extends Controller
         $producto = User::findOrFail($request->producto_id);
         $user->productos()->attach($producto->id);
         $producto = Producto::findOrFail($request->producto_id);
-        return back() -> with('mensaje', 'Producto agregado a favoritos');
+        if($request->ruta==='buscar'){
+            $productos = Producto::paginate(9);
+            $categorias = Categoria::all();
+            return view('auth.productos.productos', ['productos'=>$productos,'categorias'=>$categorias,'mensaje'=>'Producto agregado a favoritos']);
+        }else{
+            return back() -> with('mensaje', 'Producto agregado a favoritos');
+        }
     }
 
     public function quitarfavoritos(Request $request){
@@ -288,7 +294,11 @@ class UsersController extends Controller
         $producto = Producto::findOrFail($request->producto_id);
         if($request->ruta==='favoritos'){
             $productos = $user->productos()->paginate(9);
-            return view('auth.users.favoritos', ['user' => $user, 'productos' => $productos]);
+            return view('auth.users.favoritos', ['user' => $user, 'productos' => $productos,'mensaje'=>'Producto eliminado de favoritos']);
+        }else if($request->ruta==='buscar'){
+            $productos = Producto::paginate(9);
+            $categorias = Categoria::all();
+            return view('auth.productos.productos', ['productos'=>$productos,'categorias'=>$categorias,'mensaje'=>'Producto eliminado de favoritos']);
         }else{
             return back() -> with('mensaje', 'Producto eliminado de favoritos');
         }

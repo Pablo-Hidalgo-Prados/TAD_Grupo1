@@ -136,6 +136,6 @@ class ProductosController extends Controller
     public function buscar(Request $request){
         $request->validate(['nombre_producto'=>'required', 'string', 'max:255']);
         $productos = Producto::where('nombre', 'LIKE', '%'.$request->nombre_producto.'%')->paginate(9);
-        return view('auth.productos.productos',['productos'=>$productos]);
+        return view('auth.productos.productos',['productos'=>$productos,'buscar'=>'buscar']);
     }
 }

@@ -56,6 +56,9 @@
                         @if(!$enc)
                             <form action="{{ route('usuarios.agregarfavoritos') }}" method="POST">
                                 @csrf
+                                @if(!isset($categorias) || isset($buscar))
+                                <input type="hidden" value="buscar" name="ruta">
+                                @endif
                                 <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
                                 <input type="hidden" value="{{ $producto->id }}" name="producto_id">
                                 <button class="btn btn-success" type="submit">
@@ -67,6 +70,9 @@
                         @else
                             <form action="{{ route('usuarios.quitarfavoritos') }}" method="POST">
                                 @csrf
+                                @if(!isset($categorias) || isset($buscar))
+                                <input type="hidden" value="buscar" name="ruta">
+                                @endif
                                 <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
                                 <input type="hidden" value="{{ $producto->id }}" name="producto_id">
                                 <button class="btn btn-success" type="submit">
