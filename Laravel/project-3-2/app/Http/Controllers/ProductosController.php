@@ -35,7 +35,7 @@ class ProductosController extends Controller
     }
 
     public function listar(){
-        $productos = Producto::paginate(9);
+        $productos = Producto::paginate(10);
         return view('auth.dashboard', ['productos'=>$productos]);
     }
 
@@ -67,7 +67,7 @@ class ProductosController extends Controller
         $producto->stock = $request->stock;
         $producto->save();
         
-        $productos = Producto::all();
+        $productos = Producto::paginate(10);
         return view('auth.dashboard', ['productos'=>$productos,'mensaje'=>'Producto actualizado']);
     }
 
@@ -83,7 +83,7 @@ class ProductosController extends Controller
         $producto->imagen = $rutaImagen;
         $producto->save();
 
-        $productos = Producto::all();
+        $productos = Producto::paginate(10);
         return view('auth.dashboard', ['productos'=>$productos,'mensaje'=>'Producto actualizado']);
     }
 
