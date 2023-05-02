@@ -52,7 +52,7 @@
     </div>
     @else
     <div class="d-flex justify-content-center">
-        <form action="{{ route('productos.borrarfiltro') }}" method="POST">
+        <form action="{{ route('productos.vista') }}" method="get">
             @csrf
             <button class="btn btn-success m-3" type="submit">Ver listado completo</button>
         </form>

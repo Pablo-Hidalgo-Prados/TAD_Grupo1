@@ -60,7 +60,6 @@ Route::post('agregarc/','App\Http\Controllers\ProductosController@agregarcategor
 Route::post('quitarc/','App\Http\Controllers\ProductosController@quitarcategoria')->name('productos.quitarcategoria');
 Route::post('volverp/','App\Http\Controllers\ProductosController@volver')->name('productos.volver');
 Route::post('filtrarcategoria/','App\Http\Controllers\ProductosController@filtrarcategoria')->name('productos.filtrarcategoria');
-Route::post('borrarfiltro/','App\Http\Controllers\ProductosController@vistaproductos')->name('productos.borrarfiltro');
 Route::post('buscar/','App\Http\Controllers\ProductosController@buscar')->name('productos.buscar');
 
 Route::post('/agregaracarrito/{producto_id}/{user_id}','App\Http\Controllers\UsersController@agregaritem')->name('carritos.agregar');
