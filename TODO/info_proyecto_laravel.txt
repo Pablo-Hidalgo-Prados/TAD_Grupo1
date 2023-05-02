@@ -28,9 +28,9 @@ HACER:
 -Traducciones - Hecho
 -Contraseña - Hecho
 -Favoritos - Hecho
+-Paginación - Hecho
+-Filtro categorías - Hecho
 
--PAGINACIÓN APLICAR. - Pablo
 -Casos de Uso CRUD - Miguel
 -Decisiones de diseño - Pablo
 -Rutas GPX - Miguel
--Filtro categorías - Antonio
