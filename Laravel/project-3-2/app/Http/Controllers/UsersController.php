@@ -105,7 +105,7 @@ class UsersController extends Controller
         return view('auth.users.visualize',['user'=>$user,'mensaje'=>'Usuario actualizado']);
     }
 
-    public function agregaritem($producto_id, $user_id){
+    public function agregaritem(Request $request, $producto_id, $user_id){
         $carrito = Carrito::where('user_id',$user_id)->get();
         $producto = Producto::findOrFail($producto_id);
         // Comprobar si el producto ya está en el carrito
@@ -130,7 +130,11 @@ class UsersController extends Controller
                 $producto->save();
             }
         }
-        return back() -> with('mensaje', 'Producto agregado');
+        if($request->ruta==='buscar'){
+            return redirect()->route('productos.vista')->with('mensaje', 'Producto agregado');
+        }else{
+            return back() -> with('mensaje', 'Producto agregado');
+        }
     }
 
     public function vercarrito(){

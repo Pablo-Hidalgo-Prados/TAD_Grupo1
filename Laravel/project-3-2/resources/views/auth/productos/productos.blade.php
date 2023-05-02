@@ -116,6 +116,9 @@
 
                     <form action="{{ route('carritos.agregar', [$producto->id, Auth::user()->id]) }}" method="POST">
                         @csrf
+                        @if(!isset($categorias) || isset($buscar))
+                        <input type="hidden" value="buscar" name="ruta">
+                        @endif
                         <button class="btn btn-success mt-3" type="submit">Añadir al carrito</button>
                     </form>
                     <form action="{{ route('productos.visualizar',$producto->id) }}" method="get">
