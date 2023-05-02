@@ -19,5 +19,15 @@ class DescuentosSeeder extends Seeder
             'codigo' => 'PRIMAVERA_2023',
             'porcentaje' => '15'
         ]);
+
+        Descuento::create([
+            'codigo' => 'AHORRA_MAS',
+            'porcentaje' => '10'
+        ]);
+
+        Descuento::create([
+            'codigo' => 'EL_DESCUENTAZO',
+            'porcentaje' => '20'
+        ]);
     }
 }

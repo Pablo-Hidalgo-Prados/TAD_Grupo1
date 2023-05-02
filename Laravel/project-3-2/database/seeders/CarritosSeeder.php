@@ -22,5 +22,10 @@ class CarritosSeeder extends Seeder
             'user_id' => '2',
             'total' => '0'
         ]);
+
+        Carrito::create([
+            'user_id' => '3',
+            'total' => '0'
+        ]);
     }
 }

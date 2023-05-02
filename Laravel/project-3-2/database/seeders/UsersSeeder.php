@@ -35,5 +35,15 @@ class UsersSeeder extends Seeder
             'telefono' => '639854752',
             'email_verified_at' => Carbon::now()
         ]);
+
+        User::create([
+            'name' => 'Pepa',
+            'apellidos' => 'Pepa Pepa',
+            'email' => 'pepa@pepa.com',
+            'password' => bcrypt('12345678'),
+            'rol' => 'cliente',
+            'telefono' => '636985214',
+            'email_verified_at' => Carbon::now()
+        ]);
     }
 }
