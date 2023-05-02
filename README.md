@@ -39,3 +39,5 @@ Apoyados en la plataforma Coolors, se ha buscado utilizar una paleta de colores 
 Los clientes de nuestro sistema pueden realizar compras a través de un carrito de compra personal. A través de un listado de productos, pueden añadirlos a su carro para, posteriormente, escoger la cantidad de los mismos, una dirección de entrega y un código de descuento en caso de tenerlo. Una vez finalizada la compra, el cliente puede visualizar el estado de la misma en la sección correspondiente en su perfil, así como revisar compras anteriores.
 
 Los usuarios administradores tienen un amplio control sobre las compras de los usuarios clientes, pudiendo visualizarlas y modificando el estado de las mismas.
+
+![INICIO](./Design/CasosDeUsoNatureHub.xlsx)
