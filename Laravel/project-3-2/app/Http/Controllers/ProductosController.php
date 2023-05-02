@@ -115,10 +115,7 @@ class ProductosController extends Controller
     }
 
     public function quitarcategoria(Request $request){
-        $producto = Producto::findOrFail($request->producto_id);
-        $categoria = Categoria::findOrFail($request->input('categorias_list'));
-        $producto->categorias()->detach($categoria->id);
-        return view('auth.productos.visualizep',['producto'=>$producto]);
+        return redirect()->route('productos.vista');
     }
 
     public function volver(Request $request){

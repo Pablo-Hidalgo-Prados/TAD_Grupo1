@@ -279,9 +279,7 @@ class UsersController extends Controller
         $user->productos()->attach($producto->id);
         $producto = Producto::findOrFail($request->producto_id);
         if($request->ruta==='buscar'){
-            $productos = Producto::paginate(9);
-            $categorias = Categoria::all();
-            return view('auth.productos.productos', ['productos'=>$productos,'categorias'=>$categorias,'mensaje'=>'Producto agregado a favoritos']);
+            return redirect()->route('productos.vista');
         }else{
             return back() -> with('mensaje', 'Producto agregado a favoritos');
         }
