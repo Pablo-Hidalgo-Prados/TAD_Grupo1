@@ -143,6 +143,11 @@
 <!--USUARIOS LISTA-->
 @if (isset($usuarios))
 <h1 class="text-center">Usuarios</h1>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+    {{ $usuarios->links() }}
+</div>
+
 <div class="m-2">
     <table class="table border-success text-black text-center w-75 mx-auto mt-5">
         <th>ID</th>
@@ -188,10 +193,19 @@
         @endforeach
     </table>
 </div>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+    {{ $usuarios->links() }}
+</div>
 @endif
 <!--PRODUCTOS LISTA-->
 @if (isset($productos))
 <h1 class="text-center">Productos</h1>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+    {{ $productos->links() }}
+</div>
+
 <div class="m-2">
     <table class="table border-success text-black text-center w-75 mx-auto mt-5">
         <th>ID</th>
@@ -238,11 +252,21 @@
         @endforeach
     </table>
 </div>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+    {{ $productos->links() }}
+</div>
+
 @endif
 
 <!--CATEGORÍAS LISTA-->
 @if (isset($categorias))
 <h1 class="text-center">Categorías</h1>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+    {{ $categorias->links() }}
+</div>
+
 <table class="table border-success text-black text-center w-75 mx-auto mt-5">
     <th>ID</th>
     <th>Nombre</th>
@@ -283,11 +307,21 @@
     </tr>
     @endforeach
 </table>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+    {{ $categorias->links() }}
+</div>
+
 @endif
 
 <!--Descuentos LISTA-->
 @if (isset($descuentos))
 <h1 class="text-center">Descuentos</h1>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+    {{ $descuentos->links() }}
+</div>
+
 @if(count($descuentos)>0)
 <table class="table border-success text-black text-center w-75 mx-auto mt-5">
     <th>ID</th>
@@ -329,6 +363,11 @@
     </tr>
     @endforeach
 </table>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+    {{ $descuentos->links() }}
+</div>
+
 @else
 <div class="d-flex justify-content-center mt-5 mb-5">
     <p class="text-center h5">No se encontraron descuentos.</p>

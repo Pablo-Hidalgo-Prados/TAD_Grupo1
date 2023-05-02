@@ -23,7 +23,7 @@ class CategoriasController extends Controller
     }
 
     public function listar(){
-        $categorias = Categoria::all();
+        $categorias = Categoria::paginate(10);
         return view('auth.dashboard', ['categorias'=>$categorias]);
     }
 

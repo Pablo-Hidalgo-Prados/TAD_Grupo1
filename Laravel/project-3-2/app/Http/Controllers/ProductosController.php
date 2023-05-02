@@ -35,7 +35,7 @@ class ProductosController extends Controller
     }
 
     public function listar(){
-        $productos = Producto::all();
+        $productos = Producto::paginate(9);
         return view('auth.dashboard', ['productos'=>$productos]);
     }
 

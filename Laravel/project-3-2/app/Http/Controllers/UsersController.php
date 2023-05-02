@@ -48,7 +48,7 @@ class UsersController extends Controller
     }
 
     public function listar(){
-        $usuarios = User::all();
+        $usuarios = User::paginate(10);
         return view('auth.dashboard', ['usuarios'=>$usuarios]);
     }
 

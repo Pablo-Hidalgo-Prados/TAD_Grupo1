@@ -23,7 +23,7 @@ class DescuentosController extends Controller
     }
 
     public function listar(){
-        $descuentos = Descuento::all();
+        $descuentos = Descuento::paginate(10);
         return view('auth.dashboard', ['descuentos'=>$descuentos]);
     }
 
