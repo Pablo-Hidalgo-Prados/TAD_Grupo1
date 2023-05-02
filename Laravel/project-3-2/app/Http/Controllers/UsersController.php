@@ -298,9 +298,7 @@ class UsersController extends Controller
             $productos = $user->productos()->paginate(9);
             return view('auth.users.favoritos', ['user' => $user, 'productos' => $productos,'mensaje'=>'Producto eliminado de favoritos']);
         }else if($request->ruta==='buscar'){
-            $productos = Producto::paginate(9);
-            $categorias = Categoria::all();
-            return view('auth.productos.productos', ['productos'=>$productos,'categorias'=>$categorias,'mensaje'=>'Producto eliminado de favoritos']);
+            return redirect()->route('productos.vista');
         }else{
             return back() -> with('mensaje', 'Producto eliminado de favoritos');
         }
