@@ -30,7 +30,7 @@ HACER:
 -Favoritos - Hecho
 -Paginación - Hecho
 -Filtro categorías - Hecho
+-Casos de Uso CRUD - Hecho
 
--Casos de Uso CRUD - Miguel
 -Decisiones de diseño - Pablo
 -Rutas GPX - Miguel
