@@ -1,28 +1,28 @@
 @extends('layout')
 
 @section('content')
-
+<html lang="{{ app()->setLocale('en') }}">
 @error('nombre')
-<p>Error en el nombre</p>
+<p>@lang('messages.dashboard_error_1')</p>
 @enderror
 @error('descripcion')
-<p>Error en la descripción</p>
+<p>@lang('messages.dashboard_error_2')</p>
 @enderror
 @error('precio')
-<p>Error en el precio</p>
+<p>@lang('messages.dashboard_error_3')</p>
 @enderror
 @error('stock')
-<p>Error en el stock</p>
+<p>@lang('messages.dashboard_error_4')</p>
 @enderror
 @error('imagen')
-<p>Error en la imagen</p>
+<p>@lang('messages.dashboard_error_5')</p>
 @enderror
 
 @error('nombrec')
-<p>Error en el nombre</p>
+<p>@lang('messages.dashboard_error_6')</p>
 @enderror
 @error('descripcionc')
-<p>Error en la descripción</p>
+<p>@lang('messages.dashboard_error_7')</p>
 @enderror
 
 @if (Auth::user()->rol == 'admin')
@@ -32,7 +32,7 @@
 <div class="d-flex justify-content-center mt-5 mb-4">
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Crear producto
+    @lang('messages.dashboard_btn_info_1')
     </button>
 
 
@@ -41,7 +41,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crear producto</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">@lang('messages.dashboard_btn_info_1')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -54,7 +54,7 @@
                         <input id="precio" type="text" class="form-control @error('precio') is-invalid @enderror mt-1" name="precio" value="" placeholder="Precio" required autofocus>
                         <input id="stock" type="text" class="form-control @error('stock') is-invalid @enderror mt-1" name="stock" value="" placeholder="Stock" required autofocus>
                         <input class="form-control @error('imagen') is-invalid @enderror mt-1" type="file" id="imagen" name="imagen"><br>
-                        <button class="btn btn-success mt-1" type="submit">Crear Producto</button>
+                        <button class="btn btn-success mt-1" type="submit">@lang('messages.dashboard_btn_info_1')</button>
                         <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal" aria-label="Close">Cerrar</button>
                     </form>
                 </div>
@@ -65,7 +65,7 @@
     <!-- Button trigger modal -->
 
     <button type="button" class="btn btn-primary mx-1" data-toggle="modal" data-target="#exampleModal2">
-        Crear categoría
+    @lang('messages.dashboard_btn_info_2')
     </button>
 
     <!-- Modal -->
@@ -73,7 +73,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crear Categoría</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">@lang('messages.dashboard_btn_info_2')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -83,7 +83,7 @@
                         @csrf
                         <input id="nombrec" type="text" class="form-control @error('nombrec') is-invalid @enderror mt-1" name="nombrec" value="" placeholder="Nombre" required autofocus>
                         <input id="descripcionc" type="text" class="form-control @error('descripcionc') is-invalid @enderror mt-1" name="descripcionc" value="" placeholder="Descripcion" required autofocus>
-                        <button class="btn btn-success mt-1" type="submit">Crear Categoría</button>
+                        <button class="btn btn-success mt-1" type="submit">@lang('messages.dashboard_btn_info_2')</button>
                     </form>
                 </div>
             </div>
@@ -92,7 +92,7 @@
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">
-        Crear descuento
+    @lang('messages.dashboard_btn_info_3')
     </button>
 
 
@@ -101,7 +101,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crear Descuento</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">@lang('messages.dashboard_btn_info_3')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -111,7 +111,7 @@
                         @csrf
                         <input id="codigo" type="text" class="form-control @error('codigo') is-invalid @enderror mt-1" name="codigo" value="" placeholder="Código" required autofocus>
                         <input id="porcentaje" type="number" class="form-control @error('porcentaje') is-invalid @enderror mt-1" name="porcentaje" placeholder="Porcentaje" required autofocus></textarea>
-                        <button class="btn btn-success mt-1" type="submit">Crear Descuento</button>
+                        <button class="btn btn-success mt-1" type="submit">@lang('messages.dashboard_btn_info_3')</button>
                         <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal" aria-label="Close">Cerrar</button>
                     </form>
                 </div>
@@ -125,19 +125,19 @@
 <div class="d-flex justify-content-center mt-4 mb-5">
     <form action="{{ route('usuarios.listar') }}" method="post">
         @csrf
-        <button class="btn btn-success me-1" type="submit">Listar Usuarios</button>
+        <button class="btn btn-success me-1" type="submit">@lang('messages.dashboard_btn_4')</button>
     </form>
     <form action="{{ route('productos.listar') }}" method="post">
         @csrf
-        <button class="btn btn-success me-1" type="submit">Listar Productos</button>
+        <button class="btn btn-success me-1" type="submit">@lang('messages.dashboard_btn_5')</button>
     </form>
     <form action="{{ route('categorias.listar') }}" method="post">
         @csrf
-        <button class="btn btn-success me-1" type="submit">Listar Categorías</button>
+        <button class="btn btn-success me-1" type="submit">@lang('messages.dashboard_btn_6')</button>
     </form>
     <form action="{{ route('descuentos.listar') }}" method="post">
         @csrf
-        <button class="btn btn-success" type="submit">Listar Descuentos</button>
+        <button class="btn btn-success" type="submit">@lang('messages.dashboard_btn_7')</button>
     </form>
 </div>
 <!--USUARIOS LISTA-->

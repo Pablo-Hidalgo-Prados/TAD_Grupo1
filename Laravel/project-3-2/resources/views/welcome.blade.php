@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+<html lang="{{ app()->setLocale('en') }}">
 <section>
     <div class="m-lg-5">
         <div class="m-lg-5">
@@ -15,32 +16,32 @@
                         <div class="carousel-item active">
                             <img src="/images/welcome.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption bg-success bg-opacity-75 rounded-4">
-                                <h5 class="text-black">Bienvenid@</h5>
-                                <p>¡Disfrute saludablemente!</p>
+                                <h5 class="text-black">@lang('messages.welcome_slide_1_1')</h5>
+                                <p>@lang('messages.welcome_slide_1_2')</p>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <img src="/images/welcome2.png" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-md-block bg-success bg-opacity-75 rounded-4">
-                                <h5 class="text-black">Productos</h5>
-                                <p>Todos nuestros productos son BIO</p>
+                                <h5 class="text-black">@lang('messages.welcome_slide_2_1')</h5>
+                                <p>@lang('messages.welcome_slide_2_2')</p>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <img src="/images/welcome3.png" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-md-block bg-success bg-opacity-75 rounded-4">
-                                <h5 class="text-black">Rutas</h5>
-                                <p>Nuestras rutas son para todos</p>
+                                <h5 class="text-black">@lang('messages.welcome_slide_3_1')</h5>
+                                <p>@lang('messages.welcome_slide_3_2')</p>
                             </div>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Anterior</span>
+                        <span class="visually-hidden">@lang('messages.welcome_slide_ctrl_1')</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Siguiente</span>
+                        <span class="visually-hidden">@lang('messages.welcome_slide_ctrl_2')</span>
                     </button>
                 </div>
             </div>
