@@ -2,6 +2,31 @@
 @section('content')
 <div class="my-4">
     @if (isset($productos))
+    @if (isset($categorias))
+    <div class="w-25 mx-auto">
+    <form action="{{ route('productos.filtrarcategoria') }}" method="POST">
+        @csrf
+        <label for="categorias_list text-center">Escoge una categoría:</label>
+        <select class="form-select mb-3" id="categorias_list" name="categorias_list">
+            @foreach ($categorias as $categoria)
+                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+            @endforeach
+        </select>
+        <button class="btn btn-success mb-3" type="submit">Filtrar</button>
+    </form>
+    <form action="{{ route('productos.buscar') }}" method="POST">
+        @csrf
+        <label>Nombre producto:</label>
+        <input class="form-control mb-3 @error('nombre_producto') is-invalid @enderror" type="text" value="" name="nombre_producto">
+        <button class="btn btn-success mb-3" type="submit">Buscar</button>
+    </form>
+    </div>
+    @else
+    <form action="{{ route('productos.borrarfiltro') }}" method="POST">
+        @csrf
+        <button class="btn btn-success m-3" type="submit">Ver listado completo</button>
+    </form>
+    @endif
     <h1 class="text-center mb-5">Productos</h1>
 
     <div class="d-flex justify-content-center mt-4 mb-4">

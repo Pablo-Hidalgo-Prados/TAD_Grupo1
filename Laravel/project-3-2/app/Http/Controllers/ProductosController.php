@@ -41,7 +41,8 @@ class ProductosController extends Controller
 
     public function vistaproductos(){
         $productos = Producto::paginate(9);
-        return view('auth.productos.productos', ['productos'=>$productos]);
+        $categorias = Categoria::all();
+        return view('auth.productos.productos', ['productos'=>$productos,'categorias'=>$categorias]);
     }
 
     public function visualizar($id){
@@ -123,5 +124,19 @@ class ProductosController extends Controller
     public function volver(Request $request){
         $producto = Producto::findOrFail($request->producto_id);
         return view('auth.productos.visualizep',['producto'=>$producto]);
+    }
+
+    public function filtrarcategoria(Request $request){
+        $categoria = Categoria::findOrFail($request->input('categorias_list'));
+        $productos = $categoria->productos;
+        $productos = $categoria->productos()->paginate(9);
+        return view('auth.productos.productos',['productos'=>$productos]);
+    }
+
+    public function buscar(Request $request){
+        $request->validate(['nombre_producto'=>'required', 'string', 'max:255']);
+        $productos = Producto::where('nombre',$request->nombre_producto)->get()->paginate(9);
+        $productos = $productos->paginate(9);
+        return view('auth.productos.productos',['productos'=>$productos]);
     }
 }
