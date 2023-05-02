@@ -24,7 +24,9 @@
         <form action="{{ route('compras.editar', $compra->id) }}" method="get">
             @csrf
             <input type="hidden" name="compra_id" value="{{ $compra->id }}">
+            @if(Auth::user()->rol=='admin')
             <button class="btn btn-primary ml-1 mt-3" type="submit">Editar compra</button>
+            @endif
         </form>
         <form action="{{ route('compras.volver') }}" method="POST">
             @csrf
