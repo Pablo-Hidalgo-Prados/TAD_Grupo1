@@ -20,12 +20,12 @@ class CategoriasSeeder extends Seeder
     public function run()
     {
         Categoria::create([
-            'nombre' => 'mochila',
+            'nombre' => 'Mochila',
             'descripcion' => 'mochilas de senderismo'
         ]);
 
         Categoria::create([
-            'nombre' => 'herramientas',
+            'nombre' => 'Herramientas',
             'descripcion' => 'herramientas de senderismo'
         ]);
     }
