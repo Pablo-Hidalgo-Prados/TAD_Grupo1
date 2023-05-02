@@ -40,4 +40,4 @@ Los clientes de nuestro sistema pueden realizar compras a través de un carrito 
 
 Los usuarios administradores tienen un amplio control sobre las compras de los usuarios clientes, pudiendo visualizarlas y modificando el estado de las mismas.
 
-![CASOS DE USO](./Design/CasosDeUsoNatureHub.xlsx)
+[CASOS DE USO](./Design/CasosDeUsoNatureHub.xlsx)
