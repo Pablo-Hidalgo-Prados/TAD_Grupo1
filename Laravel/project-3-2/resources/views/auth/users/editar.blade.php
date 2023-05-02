@@ -4,7 +4,7 @@
 @if(isset(Auth::user()->id))
 @if(Auth::user()->id==$user->id || Auth::user()->rol==='admin')
 <div class="container">
-    <div class="product-card border-success border-opacity-50 mt-3">
+    <div class="product-card border-success border-opacity-50 mt-5">
         <h3 class="text-center">Editar a {{ $user->name }}</h3>
         <form action="{{ route('usuarios.actualizar', $user->id) }}" method="POST">
             @method('PUT')

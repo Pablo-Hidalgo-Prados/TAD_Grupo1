@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<div class="m-4">
+<div class="m-4 mt-5">
     <h3 class="text-center">Carrito de {{ $user->name }}</h3>
     @if(count($productos_carrito)>0)
     <div class="d-flex justify-content-center mt-4 mb-4">
@@ -127,7 +127,18 @@
     </div>
     @endif
     @else
-        <p>El carrito está vacío.</p>
+
+    <div class="d-flex justify-content-center mt-5 mb-5">
+        <p class="text-center h5">El carrito está vacío.</p>
+    </div>
+    <div class="d-flex justify-content-center mt-5 mb-5">
+    </div>
+    <div class="d-flex justify-content-center mt-5 mb-5">
+    </div>
+    <div class="d-flex justify-content-center mt-5 mb-5">
+    </div>
+    <div class="d-flex justify-content-center mt-5 mb-5">
+    </div>
     @endif
 </div>
 @endsection

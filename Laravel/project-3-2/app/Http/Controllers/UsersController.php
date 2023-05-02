@@ -290,7 +290,7 @@ class UsersController extends Controller
             $productos = $user->productos()->paginate(9);
             return view('auth.users.favoritos', ['user' => $user, 'productos' => $productos]);
         }else{
-            return back() -> with('mensaje', 'Producto quitado de favoritos');
+            return back() -> with('mensaje', 'Producto eliminado de favoritos');
         }
     }
 
