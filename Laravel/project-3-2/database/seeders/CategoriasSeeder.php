@@ -21,12 +21,27 @@ class CategoriasSeeder extends Seeder
     {
         Categoria::create([
             'nombre' => 'Mochila',
-            'descripcion' => 'mochilas de senderismo'
+            'descripcion' => 'Mochilas de senderismo'
         ]);
 
         Categoria::create([
             'nombre' => 'Herramientas',
-            'descripcion' => 'herramientas de senderismo'
+            'descripcion' => 'Herramientas de senderismo'
+        ]);
+
+        Categoria::create([
+            'nombre' => 'Supervivencia',
+            'descripcion' => 'Equipamiento para supervivencia'
+        ]);
+
+        Categoria::create([
+            'nombre' => 'Ropa',
+            'descripcion' => 'Ropa senderismo'
+        ]);
+
+        Categoria::create([
+            'nombre' => 'Nieve',
+            'descripcion' => 'Equipamiento para nieve'
         ]);
     }
 }
