@@ -31,6 +31,7 @@ class ProductosController extends Controller
     public function eliminar($id){
         $productoEliminar = Producto::findOrFail($id);
         $productoEliminar->delete();
+        File::delete(public_path('images/' . $productoEliminar->imagen));
         return back() -> with('mensaje', 'Producto Eliminado');
     }
 
