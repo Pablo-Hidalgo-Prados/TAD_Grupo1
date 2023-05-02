@@ -29,6 +29,8 @@ HACER:
 -Contraseña - Hecho
 -Favoritos - Hecho
 
--PAGINACIÓN APLICAR.
--DOCUMENTACIÓN A TOPE.
--Rutas GPX
+-PAGINACIÓN APLICAR. - Pablo
+-Casos de Uso CRUD - Miguel
+-Decisiones de diseño - Pablo
+-Rutas GPX - Miguel
+-Filtro categorías - Antonio
