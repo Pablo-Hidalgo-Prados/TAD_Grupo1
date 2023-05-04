@@ -1,18 +1,19 @@
 @extends('layout')
 
 @section('content')
+<html lang="{{ app()->getLocale() }}">
 <div class="container">
     <div class="product-card border-success border-opacity-50 mt-2 mx-2 mb-2">
 
-        <h3 class="text-center mb-4">Visualizando {{ $producto->nombre }}</h3>
+        <h3 class="text-center mb-4">@lang('messages.product_info_1') {{ $producto->nombre }}</h3>
         <div class="d-flex justify-content-center">
             <img class="rounded-3" src="{{ '/images/'.$producto->imagen }}" alt="{{ $producto->nombre }}">
         </div>
-        <p><strong>Nombre:</strong> {{ $producto->nombre }}</p>
-        <p><strong>Descripción:</strong> {{ $producto->descripcion }}</p>
-        <p><strong>Precio:</strong> {{ $producto->precio }}</p>
-        <p><strong>Stock:</strong> {{ $producto->stock }}</p>
-        <p><strong>Categorías:</strong></p>
+        <p><strong>@lang('messages.product_info_2')</strong> {{ $producto->nombre }}</p>
+        <p><strong>@lang('messages.product_info_3')</strong> {{ $producto->descripcion }}</p>
+        <p><strong>@lang('messages.product_info_4')</strong> {{ $producto->precio }}</p>
+        <p><strong>@lang('messages.product_info_5')</strong> {{ $producto->stock }}</p>
+        <p><strong>@lang('messages.product_info_9')</strong></p>
         @foreach ($producto->categorias as $categoria)
         <div class="col-md-6 col-lg-4">
             <p>- {{ $categoria->nombre }}</p>
@@ -22,7 +23,7 @@
         <div class="d-flex justify-content-center mt-4 mb-4">
             <form action="{{ route('productos.editar',$producto->id) }}" method="get">
                 @csrf
-                <button class="btn btn-primary ml-1" type="submit">Editar Producto</button>
+                <button class="btn btn-primary ml-1" type="submit">@lang('messages.product_info_6')</button>
             </form>
         </div>
         @elseif(Auth::user()->rol=='cliente')
@@ -63,7 +64,7 @@
 
         <form action="{{ route('carritos.agregar', [$producto->id, Auth::user()->id]) }}" method="POST">
             @csrf
-            <button class="btn btn-success mt-3" type="submit">Añadir al carrito</button>
+            <button class="btn btn-success mt-3" type="submit">@lang('messages.product_info_7')</button>
         </form>
         @endif
 
@@ -71,7 +72,7 @@
     <div class="d-flex justify-content-center">
         <form action="{{ route('usuarios.volver') }}" method="post">
             @csrf
-            <button class="btn btn-success" type="submit">Volver</button>
+            <button class="btn btn-success" type="submit">@lang('messages.product_info_8')</button>
         </form>
     </div>
 </div>

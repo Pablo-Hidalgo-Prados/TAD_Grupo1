@@ -1,8 +1,9 @@
-@extends('layout')
+@extends('layoutcart')
 @section('content')
+<html lang="{{ app()->getLocale() }}">
 <div class="my-4">
     @if (isset($productos))
-    <h1 class="text-center mb-5">Productos favoritos</h1>
+    <h1 class="text-center mb-5">@lang('messages.favourites_info_1')</h1>
     <div class="d-flex justify-content-center mt-4 mb-4">
         {{ $productos->links() }}
     </div>
@@ -10,7 +11,7 @@
     <div class="container">
         <div class="row">
             @if($productos->count()<=0)
-                <p class="text-center">No se encontraron productos favoritos.</p>
+                <p class="text-center">@lang('messages.favourites_info_2')</p>
             @endif
             @foreach ($productos as $producto)
             <div class="col-md-6 col-lg-4">
@@ -34,12 +35,12 @@
                     @if(Auth::user()->rol!='admin')
                         <form action="{{ route('carritos.agregar', [$producto->id, Auth::user()->id]) }}" method="POST">
                             @csrf
-                            <button class="btn btn-success mt-3" type="submit">Añadir al carrito</button>
+                            <button class="btn btn-success mt-3" type="submit">@lang('messages.favourites_info_3')</button>
                         </form>
                     @endif
                     <form action="{{ route('productos.visualizar',$producto->id) }}" method="get">
                         @csrf
-                        <button class="btn btn-success ml-1 mt-3" type="submit">Ver Producto</button>
+                        <button class="btn btn-success ml-1 mt-3" type="submit">@lang('messages.favourites_info_4')</button>
                     </form>
                 </div>
             </div>

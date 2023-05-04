@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<html lang="{{ app()->setLocale('en') }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <section>
     <div class="m-lg-5">
         <div class="m-lg-5">

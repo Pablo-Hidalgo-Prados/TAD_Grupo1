@@ -1,23 +1,24 @@
 @extends('layout')
 
 @section('content')
+<html lang="{{ app()->getLocale() }}">
 <div class="container">
     <div class="product-card border-success border-opacity-50 mt-3">
-        <h2 class="text-center mb-4">Perfil de {{ $user->name }}</h2>
+        <h2 class="text-center mb-4">@lang('messages.profile_info_1') {{ $user->name }}</h2>
         <div class="d-flex justify-content-center mt-4 mb-4">
             <img class="rounded-3 img-thumbnail" src="{{ '/images/'.$user->imagen }}" alt="{{ $user->nombre }}" width="288" height="288">
         </div>
-        <p class="mb-4"><strong>Nombre:</strong> {{ $user->name }}</p>
-        <p class="mb-4"><strong>Apellidos:</strong> {{ $user->apellidos }}</p>
+        <p class="mb-4"><strong>@lang('messages.profile_info_2')</strong> {{ $user->name }}</p>
+        <p class="mb-4"><strong>@lang('messages.profile_info_3')</strong> {{ $user->apellidos }}</p>
         @if(isset(Auth::user()->rol))
         @if(Auth::user()->rol=='admin' || Auth::user()->id==$user->id)
-        <p class="mb-4"><strong>Email:</strong> {{ $user->email }}</p>
+        <p class="mb-4"><strong>@lang('messages.profile_info_4')</strong> {{ $user->email }}</p>
         @if ($user->rol == 'admin')
-        <p class="mb-4"><strong>Rol:</strong> {{ $user->rol }}</p>
+        <p class="mb-4"><strong>@lang('messages.profile_info_5')</strong> {{ $user->rol }}</p>
         @endif
-        <p class="mb-4"><strong>Teléfono:</strong> {{ $user->telefono }}</p>
-        <p class="mb-4"><strong>Direcciones:</strong></p>
-        @if(count($user->direcciones)<=0) No se encontró ninguna dirección @else @foreach ($user->direcciones as $direccion)
+        <p class="mb-4"><strong>@lang('messages.profile_info_6')</strong> {{ $user->telefono }}</p>
+        <p class="mb-4"><strong>@lang('messages.profile_info_7')</strong></p>
+        @if(count($user->direcciones)<=0) @lang('messages.profile_info_8') @else @foreach ($user->direcciones as $direccion)
             <p>
                 {{ '-'.$direccion->calle.', '.$direccion->numero }}
             </p>
@@ -35,13 +36,13 @@
                 <form action="{{ route('usuarios.editar') }}" method="post">
                     @csrf
                     <input type="hidden" name="user_id" value="{{ $user->id }}">
-                    <button class="btn btn-primary ml-1 me-1" type="submit">Editar Perfil</button>
+                    <button class="btn btn-primary ml-1 me-1" type="submit">@lang('messages.profile_info_9')</button>
                 </form>
                 @else
                 <form action="{{ route('usuarios.editarAdm') }}" method="post">
                     @csrf
                     <input type="hidden" name="user_id" value="{{ $user->id }}">
-                    <button class="btn btn-primary ml-1 me-1" type="submit">Editar Perfil</button>
+                    <button class="btn btn-primary ml-1 me-1" type="submit">@lang('messages.profile_info_9')</button>
                 </form>
                 @endif
 
@@ -50,12 +51,12 @@
                         @csrf
                         <input type="hidden" name="modal" value="abrir">
                         <input type="hidden" name="user_id" value="{{ $user->id }}">
-                        <button class="btn btn-primary ml-1 me-1" type="submit">Compras</button>
+                        <button class="btn btn-primary ml-1 me-1" type="submit">@lang('messages.profile_info_10')</button>
                     </form>
                     <form action="{{ route('usuarios.favoritos') }}" method="post">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ $user->id }}">
-                        <button class="btn btn-primary" type="submit">Lista Favoritos</button>
+                        <button class="btn btn-primary" type="submit">@lang('messages.profile_info_18')</button>
                     </form>
                 @endif
             @endif
@@ -86,7 +87,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Compras</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">@lang('messages.profile_info_10')</h5>
                     <form action="{{ route('compras.listaruser') }}" method="post">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ $user->id }}">
@@ -99,11 +100,11 @@
                 <div class="modal-body">
                 @if(count($compras)>0)
                 <table class="table border-success text-black text-center w-75 mx-auto mt-5">
-                    <th>Fecha</th>
-                    <th>Subtotal</th>
-                    <th>Dirección</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
+                    <th>@lang('messages.profile_info_11')</th>
+                    <th>@lang('messages.profile_info_12')</th>
+                    <th>@lang('messages.profile_info_13')</th>
+                    <th>@lang('messages.profile_info_14')</th>
+                    <th>@lang('messages.profile_info_15')</th>
                     @foreach ($compras as $compra)
                     <tr>
                         <td>{{ $compra->fecha }}</td>
@@ -155,13 +156,13 @@
                     @endforeach
                 </table>
                 @else
-                    <p>No se encontraron compras.</p>
+                    <p>@lang('messages.profile_info_16')</p>
                 @endif
                     <form action="{{ route('compras.listaruser') }}" method="post">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ $user->id }}">
                         <input type="hidden" name="modal" value="cerrar">
-                        <button type="submit" class="btn btn-success cancel-btn" data-dismiss="modal" aria-label="Close">Volver</button>
+                        <button type="submit" class="btn btn-success cancel-btn" data-dismiss="modal" aria-label="Close">@lang('messages.profile_info_17')</button>
                     </form>
                 </div>
             </div>

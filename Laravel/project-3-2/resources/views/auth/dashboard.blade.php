@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<html lang="{{ app()->setLocale('en') }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @error('nombre')
 <p>@lang('messages.dashboard_error_1')</p>
 @enderror
@@ -32,7 +32,7 @@
 <div class="d-flex justify-content-center mt-5 mb-4">
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    @lang('messages.dashboard_btn_info_1')
+        @lang('messages.dashboard_btn_info_1')
     </button>
 
 
@@ -49,13 +49,13 @@
                 <div class="modal-body">
                     <form action="{{ route('productos.crear') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror mt-1" name="nombre" value="" placeholder="Nombre" required autofocus>
-                        <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror mt-1" name="descripcion" placeholder="Descripcion" required autofocus></textarea>
-                        <input id="precio" type="text" class="form-control @error('precio') is-invalid @enderror mt-1" name="precio" value="" placeholder="Precio" required autofocus>
-                        <input id="stock" type="text" class="form-control @error('stock') is-invalid @enderror mt-1" name="stock" value="" placeholder="Stock" required autofocus>
+                        <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror mt-1" name="nombre" value="" placeholder="@lang('messages.dashboard_info_12')" required autofocus>
+                        <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror mt-1" name="descripcion" placeholder="@lang('messages.dashboard_info_13')" required autofocus></textarea>
+                        <input id="precio" type="text" class="form-control @error('precio') is-invalid @enderror mt-1" name="precio" value="" placeholder="@lang('messages.dashboard_info_14')" required autofocus>
+                        <input id="stock" type="text" class="form-control @error('stock') is-invalid @enderror mt-1" name="stock" value="" placeholder="@lang('messages.dashboard_info_15')" required autofocus>
                         <input class="form-control @error('imagen') is-invalid @enderror mt-1" type="file" id="imagen" name="imagen"><br>
                         <button class="btn btn-success mt-1" type="submit">@lang('messages.dashboard_btn_info_1')</button>
-                        <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                        <button type="button" class="btn btn-secondary cancel-btn mt-1" data-dismiss="modal" aria-label="Close">@lang('messages.dashboard_btn_8')</button>
                     </form>
                 </div>
             </div>
@@ -65,7 +65,7 @@
     <!-- Button trigger modal -->
 
     <button type="button" class="btn btn-primary mx-1" data-toggle="modal" data-target="#exampleModal2">
-    @lang('messages.dashboard_btn_info_2')
+        @lang('messages.dashboard_btn_info_2')
     </button>
 
     <!-- Modal -->
@@ -81,9 +81,10 @@
                 <div class="modal-body">
                     <form action="{{ route('categorias.crear') }}" method="post">
                         @csrf
-                        <input id="nombrec" type="text" class="form-control @error('nombrec') is-invalid @enderror mt-1" name="nombrec" value="" placeholder="Nombre" required autofocus>
-                        <input id="descripcionc" type="text" class="form-control @error('descripcionc') is-invalid @enderror mt-1" name="descripcionc" value="" placeholder="Descripcion" required autofocus>
+                        <input id="nombrec" type="text" class="form-control @error('nombrec') is-invalid @enderror mt-1" name="nombrec" value="" placeholder="@lang('messages.dashboard_info_12')" required autofocus>
+                        <input id="descripcionc" type="text" class="form-control @error('descripcionc') is-invalid @enderror mt-1" name="descripcionc" value="" placeholder="@lang('messages.dashboard_info_13')" required autofocus>
                         <button class="btn btn-success mt-1" type="submit">@lang('messages.dashboard_btn_info_2')</button>
+                        <button type="button" class="btn btn-secondary cancel-btn mt-1" data-dismiss="modal" aria-label="Close">@lang('messages.dashboard_btn_8')</button>
                     </form>
                 </div>
             </div>
@@ -92,7 +93,7 @@
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">
-    @lang('messages.dashboard_btn_info_3')
+        @lang('messages.dashboard_btn_info_3')
     </button>
 
 
@@ -109,10 +110,10 @@
                 <div class="modal-body">
                     <form action="{{ route('descuentos.crear') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input id="codigo" type="text" class="form-control @error('codigo') is-invalid @enderror mt-1" name="codigo" value="" placeholder="Código" required autofocus>
-                        <input id="porcentaje" type="number" class="form-control @error('porcentaje') is-invalid @enderror mt-1" name="porcentaje" placeholder="Porcentaje" required autofocus></textarea>
+                        <input id="codigo" type="text" class="form-control @error('codigo') is-invalid @enderror mt-1" name="codigo" value="" placeholder="@lang('messages.dashboard_info_24')" required autofocus>
+                        <input id="porcentaje" type="number" class="form-control @error('porcentaje') is-invalid @enderror mt-1" name="porcentaje" placeholder="@lang('messages.dashboard_info_25')" required autofocus></textarea>
                         <button class="btn btn-success mt-1" type="submit">@lang('messages.dashboard_btn_info_3')</button>
-                        <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                        <button type="button" class="btn btn-secondary cancel-btn mt-1" data-dismiss="modal" aria-label="Close">@lang('messages.dashboard_btn_8')</button>
                     </form>
                 </div>
             </div>
@@ -142,7 +143,7 @@
 </div>
 <!--USUARIOS LISTA-->
 @if (isset($usuarios))
-<h1 class="text-center">Usuarios</h1>
+<h1 class="text-center">@lang('messages.dashboard_info_4')</h1>
 
 <div class="d-flex justify-content-center mt-4 mb-4">
     {{ $usuarios->links() }}
@@ -150,11 +151,11 @@
 
 <div class="m-2">
     <table class="table border-success text-black text-center w-75 mx-auto mt-5">
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Teléfono</th>
-        <th>Acciones</th>
+        <th>@lang('messages.dashboard_info_5')</th>
+        <th>@lang('messages.dashboard_info_6')</th>
+        <th>@lang('messages.dashboard_info_7')</th>
+        <th>@lang('messages.dashboard_info_8')</th>
+        <th>@lang('messages.dashboard_info_9')</th>
         @foreach ($usuarios as $user)
         <tr>
             <td class="align-middle">{{ $user->id }}</td>
@@ -200,7 +201,7 @@
 @endif
 <!--PRODUCTOS LISTA-->
 @if (isset($productos))
-<h1 class="text-center">Productos</h1>
+<h1 class="text-center">@lang('messages.dashboard_info_10')</h1>
 
 <div class="d-flex justify-content-center mt-4 mb-4">
     {{ $productos->links() }}
@@ -208,12 +209,12 @@
 
 <div class="m-2">
     <table class="table border-success text-black text-center w-75 mx-auto mt-5">
-        <th>ID</th>
-        <th>Nombre</th>
-        <th class="d-none d-lg-table-cell">Descripción</th>
-        <th>Precio</th>
-        <th>Stock</th>
-        <th>Acciones</th>
+        <th>@lang('messages.dashboard_info_11')</th>
+        <th>@lang('messages.dashboard_info_12')</th>
+        <th class="d-none d-lg-table-cell">@lang('messages.dashboard_info_13')</th>
+        <th>@lang('messages.dashboard_info_14')</th>
+        <th>@lang('messages.dashboard_info_15')</th>
+        <th>@lang('messages.dashboard_info_16')</th>
         @foreach ($productos as $producto)
         <tr>
             <td class="align-middle">{{ $producto->id }}</td>
@@ -261,17 +262,17 @@
 
 <!--CATEGORÍAS LISTA-->
 @if (isset($categorias))
-<h1 class="text-center">Categorías</h1>
+<h1 class="text-center">@lang('messages.dashboard_info_17')</h1>
 
 <div class="d-flex justify-content-center mt-4 mb-4">
     {{ $categorias->links() }}
 </div>
 
 <table class="table border-success text-black text-center w-75 mx-auto mt-5">
-    <th>ID</th>
-    <th>Nombre</th>
-    <th>Descripción</th>
-    <th>Acciones</th>
+    <th>@lang('messages.dashboard_info_18')</th>
+    <th>@lang('messages.dashboard_info_19')</th>
+    <th>@lang('messages.dashboard_info_20')</th>
+    <th>@lang('messages.dashboard_info_21')</th>
     @foreach ($categorias as $categoria)
     <tr>
         <td class="align-middle">{{ $categoria->id }}</td>
@@ -316,7 +317,7 @@
 
 <!--Descuentos LISTA-->
 @if (isset($descuentos))
-<h1 class="text-center">Descuentos</h1>
+<h1 class="text-center">@lang('messages.dashboard_info_22')</h1>
 
 <div class="d-flex justify-content-center mt-4 mb-4">
     {{ $descuentos->links() }}
@@ -324,10 +325,10 @@
 
 @if(count($descuentos)>0)
 <table class="table border-success text-black text-center w-75 mx-auto mt-5">
-    <th>ID</th>
-    <th>Código</th>
-    <th>Porcentaje</th>
-    <th>Acciones</th>
+    <th>@lang('messages.dashboard_info_23')</th>
+    <th>@lang('messages.dashboard_info_24')</th>
+    <th>@lang('messages.dashboard_info_25')</th>
+    <th>@lang('messages.dashboard_info_26')</th>
     @foreach ($descuentos as $descuento)
     <tr>
         <td class="align-middle">{{ $descuento->id }}</td>
@@ -370,7 +371,7 @@
 
 @else
 <div class="d-flex justify-content-center mt-5 mb-5">
-    <p class="text-center h5">No se encontraron descuentos.</p>
+    <p class="text-center h5">@lang('messages.dashboard_info_27')</p>
 </div>
 <div class="d-flex justify-content-center mt-5 mb-5">
 </div>

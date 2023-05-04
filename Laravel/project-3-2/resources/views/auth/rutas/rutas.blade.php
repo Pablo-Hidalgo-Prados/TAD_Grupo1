@@ -1,11 +1,12 @@
 @extends('layout')
 
 @section('content')
+<html lang="{{ app()->getLocale() }}">
 
 <section>
     <div class="text-center my-3">
-        <h1 class="strong">Nuestras rutas - Disfruta de la naturaleza</h1>
-        <p1>¡Haz click en las fotos para adentrarte en una aventura!</p1>
+        <h1 class="strong">@lang('messages.trails_info_1')</h1>
+        <p1>@lang('messages.trails_info_2')</p1>
     </div>
     <div class="container text-center my-3">
         <div class="row row-cols-2">

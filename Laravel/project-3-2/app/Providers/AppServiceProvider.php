@@ -14,7 +14,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('translator', function ($app) {
+            $transPath = resource_path('lang');
+    
+            $loader = new \Illuminate\Translation\FileLoader($app['files'], $transPath);
+    
+            $translator = new \Illuminate\Translation\Translator($loader, $app['config']['app.locale']);
+    
+            $translator->addNamespace('messages', $transPath . '/messages');
+    
+            return $translator;
+        });
     }
 
     /**
@@ -25,5 +35,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+        
+        $this->loadTranslationsFrom(resource_path('lang'), 'messages');
     }
 }

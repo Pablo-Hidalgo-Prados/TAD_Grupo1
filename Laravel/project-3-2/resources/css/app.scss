@@ -86,12 +86,36 @@
 
 .input-small {
     width: 500px;
-  }
+}
 
 .input-small2 {
     width: 120px;
-  }
+}
 
-  .input-small3 {
+.input-small3 {
     width: 120px;
-  }
+}
+
+.flag {
+    margin: auto;
+    height: 30px;
+    width: 40px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.stripe {
+    display: block;
+    width: 100%;
+}
+
+.red {
+    background-color: #AA151B;
+    height: 25%;
+}
+
+.yellow {
+    background-color: #F1BF00;
+    height: 50%;
+}
+

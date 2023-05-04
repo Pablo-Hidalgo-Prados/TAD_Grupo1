@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,3 +91,5 @@ Route::get('editarco/{id}','App\Http\Controllers\ComprasController@editar')->nam
 Route::put('editarco/{id}','App\Http\Controllers\ComprasController@actualizar')->name('compras.actualizar');
 Route::get('visualizarco/{id}','App\Http\Controllers\ComprasController@visualizar')->name('compras.visualizar');
 Route::post('comprasvolver/','App\Http\Controllers\ComprasController@comprasvolver')->name('compras.volver');
+
+Route::get('language/{language}', [LanguageController::class, 'swap'])->name('language.swap');

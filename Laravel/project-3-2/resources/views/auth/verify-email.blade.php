@@ -2,6 +2,7 @@
 @extends('auth.template')
 
 @section('content')
+<html lang="{{ app()->getLocale() }}">
 <div class="container">
     <div class="row justify-content-center">
         @if(session('status'))
@@ -11,17 +12,17 @@
         @endif
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Email Verification') }}</div>
+                <div class="card-header">@lang('messages.verify_email_info_1')</div>
 
                 <div class="card-body">
-                    <p>You must verify your email address. Please, check your email for a verification link</p>
+                    <p>@lang('messages.verify_email_info_2')</p>
                     <form method="POST" action="{{ route('verification.send') }}">
                         @csrf
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary" value="Resend">
-                                    {{ __('Resend Email') }}
+                                @lang('messages.verify_email_info_3')
                                 </button>
 
                             </div>
