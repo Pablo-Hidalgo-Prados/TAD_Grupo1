@@ -119,6 +119,7 @@
     height: 50%;
 }
 
+
 /* * {
     outline: solid grey;
 } */
@@ -149,11 +150,17 @@
     }
 }
 
-
 @media (max-width: 576px) {
     .cards {
         margin-left: auto;
         margin-right: auto;
         display: table;
     }
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 0 !important;
 }
