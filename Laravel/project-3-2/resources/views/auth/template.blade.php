@@ -21,7 +21,7 @@
 
 <body class="bggeneral">
     <div id="app">
-        <nav class="navbar navbar-expand-md bgnavbar navbar-light rounded-5 mt-3 mx-3 shadow-sm">
+        <nav class="navbar navbar-expand-md bgnavbar navbar-light sticky shadow-sm">
             <div class="container">
                 <div>
                     <a class="navbar-brand text-light" href="/">
