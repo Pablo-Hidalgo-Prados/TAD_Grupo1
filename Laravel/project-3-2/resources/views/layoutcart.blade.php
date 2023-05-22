@@ -19,7 +19,7 @@
 </head>
 
 <body class="bggeneral">
-    <nav class="navbar navbar-expand-md bgnavbar sticky-top rounded-5 mt-3 mx-3 opacity" id="navbar">
+    <nav class="navbar navbar-expand-md bgnavbar sticky p-0 opacity" id="navbar">
         <div class="container-fluid">
             <div>
                 <a class="navbar-brand text-light" href="/">
@@ -143,7 +143,7 @@
 
     @yield('content')
 
-    <footer class="text-center text-lg-start bgfooter rounded-5 text-muted mt-3 mx-3 mb-3">
+    <footer class="text-center text-lg-start bgfooter text-muted">
         <section class="">
             <div class="container text-center text-md-start mt-5 text-light pt-1">
                 <div class="row mt-3">
