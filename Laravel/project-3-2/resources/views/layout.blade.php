@@ -160,7 +160,7 @@
 
     <footer class="text-center text-lg-start bgfooter text-muted">
         <section class="">
-            <div class="container text-center text-md-start mt-5 text-light pt-1">
+            <div class="container text-center text-md-start text-light pt-1">
                 <div class="row mt-3">
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 py-2">
                         <h6 class="text-uppercase fw-bold mb-4">

@@ -28,8 +28,35 @@
 @if (Auth::user()->rol == 'admin')
 <!--ROL ADMIN-->
 
-<!-- Button trigger modal -->
-<div class="d-flex justify-content-center mt-5 mb-4">
+<div class="row m-0">
+
+    <div class="col-lg-2 col-md-4 col-sm-12 bg-dark">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-4">Listados</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item list_element rounded">
+            <a class="nav-link text-light" href="{{ route('usuarios.listar') }}">@lang('messages.dashboard_btn_4')</a>
+        </li>
+        <li class="nav-item list_element rounded">
+            <a class="nav-link text-light" href="{{ route('productos.listar') }}">@lang('messages.dashboard_btn_5')</a>
+        </li>
+        <li class="nav-item list_element rounded">
+            <a class="nav-link text-light" href="{{ route('categorias.listar') }}">@lang('messages.dashboard_btn_6')</a>
+        </li>
+        <li class="nav-item list_element rounded">
+            <a class="nav-link text-light" href="{{ route('descuentos.listar') }}">@lang('messages.dashboard_btn_7')</a>
+        </li>
+    </ul>
+  </div>
+    </div>
+
+    <div class="col-lg-10 col-md-8 col-sm-12 justify-content-center">
+        <!-- Button trigger modal -->
+    <div class="d-flex justify-content-center mt-5 mb-4">
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         @lang('messages.dashboard_btn_info_1')
@@ -119,28 +146,10 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 
+        
 
-
-<div class="d-flex justify-content-center mt-4 mb-5">
-    <form action="{{ route('usuarios.listar') }}" method="post">
-        @csrf
-        <button class="btn btn-success me-1" type="submit">@lang('messages.dashboard_btn_4')</button>
-    </form>
-    <form action="{{ route('productos.listar') }}" method="post">
-        @csrf
-        <button class="btn btn-success me-1" type="submit">@lang('messages.dashboard_btn_5')</button>
-    </form>
-    <form action="{{ route('categorias.listar') }}" method="post">
-        @csrf
-        <button class="btn btn-success me-1" type="submit">@lang('messages.dashboard_btn_6')</button>
-    </form>
-    <form action="{{ route('descuentos.listar') }}" method="post">
-        @csrf
-        <button class="btn btn-success" type="submit">@lang('messages.dashboard_btn_7')</button>
-    </form>
-</div>
 <!--USUARIOS LISTA-->
 @if (isset($usuarios))
 <h1 class="text-center">@lang('messages.dashboard_info_4')</h1>
@@ -400,4 +409,13 @@
 </div>
 
 </div>
+
+    </div>
+
+</div>
+
+
+
+
+
 @endsection

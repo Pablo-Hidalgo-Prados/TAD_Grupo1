@@ -26,9 +26,9 @@ Route::get('/rutas', function () {
     return view('auth.rutas.rutas');
 })->name('rutas');
 
-Route::get('/panel', function () {
-    return view('auth.dashboard');
-})->middleware('auth','verified');
+
+
+Route::get('/panel','App\Http\Controllers\ProductosController@listar')->middleware('auth','verified');
 
 Route::get('/perfil','App\Http\Controllers\ProductosController@listar')->middleware('auth', 'verified');
 
