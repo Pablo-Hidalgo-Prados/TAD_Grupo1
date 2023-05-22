@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('estado');
             $table->foreignId('descuento_id')->nullable()->constrained('descuentos')->onDelete('set null');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('direccion_id')->constrained('direccion_envios');
+            $table->foreignId('direccion_id')->nullable()->constrained('direccion_envios')->onDelete('set null');
             $table->timestamps();
         });
     }
