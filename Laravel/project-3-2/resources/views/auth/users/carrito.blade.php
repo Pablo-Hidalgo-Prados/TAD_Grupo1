@@ -111,18 +111,18 @@
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <input type="hidden" name="agregar" value="carrito">
                 <label>@lang('messages.cart_info_13')</label>
-                <input class="form-control mb-3" type="text" name="calle">
+                <input class="form-control mb-3 @error('calle') is-invalid @enderror" type="text" name="calle">
                 <label>@lang('messages.cart_info_14')</label>
-                <input class="form-control mb-3" type="text" name="ciudad">
+                <input class="form-control mb-3 @error('ciudad') is-invalid @enderror" type="text" name="ciudad">
                 <label>@lang('messages.cart_info_15')</label>
-                <input class="form-control mb-3" type="text" name="codigo_postal">
+                <input class="form-control mb-3 @error('codigo_postal') is-invalid @enderror" type="text" name="codigo_postal">
                 <label>@lang('messages.cart_info_16')</label>
-                <input class="form-control mb-3" type="number" name="numero">
+                <input class="form-control mb-3 @error('numero') is-invalid @enderror" type="number" name="numero">
                 <label>@lang('messages.cart_info_17')</label>
                 <input class="form-control mb-3" type="number" name="planta">
                 <label>@lang('messages.cart_info_18')</label>
                 <input class="form-control mb-3" type="text" name="puerta">
-                <button class="btn btn-success" type="submit"><label>@lang('messages.cart_info_19')</label></button>
+                <button class="btn btn-success" type="submit">@lang('messages.cart_info_19')</button>
             </form>
         </div>
     </div>

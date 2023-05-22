@@ -217,7 +217,11 @@ class UsersController extends Controller
             // to -> Para pasar el parámetro como POST y recibirlo en editarAdm
             return redirect()->to(route('usuarios.editarAdm', ['user_id' => $request->user_id]))->withErrors($validator)->withInput();
         }else if($validator->fails() && Auth::user()->rol==='cliente'){
-            return redirect()->back()->withErrors($validator)->withInput();
+            if($request->agregar==='carrito'){
+                return redirect()->to(route('carritos.visualizar', ['user_id' => $request->user_id]))->withErrors($validator)->withInput();
+            }else{
+                return redirect()->to(route('usuarios.editar', ['user_id' => $request->user_id]))->withErrors($validator)->withInput();
+            }
         }
 
         $direccionNueva = new DireccionEnvio; 

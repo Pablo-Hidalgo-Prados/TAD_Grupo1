@@ -64,7 +64,7 @@ Route::post('filtrarcategoria/','App\Http\Controllers\ProductosController@filtra
 Route::post('buscar/','App\Http\Controllers\ProductosController@buscar')->name('productos.buscar');
 
 Route::post('/agregaracarrito/{producto_id}/{user_id}','App\Http\Controllers\UsersController@agregaritem')->name('carritos.agregar');
-Route::post('vercarrito/','App\Http\Controllers\UsersController@vercarrito')->name('carritos.visualizar');
+Route::match(['get', 'post'], 'vercarrito/','App\Http\Controllers\UsersController@vercarrito')->name('carritos.visualizar');
 Route::post('reducir/','App\Http\Controllers\UsersController@reducir')->name('carritos.reducir');
 Route::post('incrementar/','App\Http\Controllers\UsersController@incrementar')->name('carritos.incrementar');
 Route::post('/vaciarc/','App\Http\Controllers\UsersController@vaciarcarrito')->name('carritos.vaciar');
