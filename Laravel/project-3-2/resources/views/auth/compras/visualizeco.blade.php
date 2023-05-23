@@ -38,7 +38,12 @@
                         </a>
                         <div>
                             <h5 class="card-title">{{ $producto->nombre }}</h5>
+                            @if($c_producto[$producto->id]>1)
+                            <p class="card-text">Precio (x{{ $c_producto[$producto->id] }}): ${{$c_producto[$producto->id]*$producto->precio}}</p>
+                            <p class="card-text">Precio individual: ${{ $producto->precio }}</p>
+                            @else
                             <p class="card-text">${{ $producto->precio }}</p>
+                            @endif
                             <p class="card-text">Cantidad: {{ $c_producto[$producto->id] }}</p>
                         </div>
                         @if (isset(Auth::user()->id))
