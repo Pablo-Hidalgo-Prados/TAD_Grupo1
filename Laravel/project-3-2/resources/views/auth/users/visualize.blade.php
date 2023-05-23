@@ -101,14 +101,14 @@
                 @if(count($compras)>0)
                 <table class="table border-success text-black text-center w-75 mx-auto mt-5">
                     <th>@lang('messages.profile_info_11')</th>
-                    <th>@lang('messages.profile_info_12')</th>
+                    <th class="d-none d-lg-table-cell">@lang('messages.profile_info_12')</th>
                     <th>@lang('messages.profile_info_13')</th>
                     <th>@lang('messages.profile_info_14')</th>
                     <th>@lang('messages.profile_info_15')</th>
                     @foreach ($compras as $compra)
                     <tr>
                         <td>{{ $compra->fecha }}</td>
-                        <td>{{ $compra->subtotal }}</td>
+                        <td class="d-none d-lg-table-cell">{{ $compra->subtotal }}</td>
                         <td>{{ $compra->direccion }}</td>
                         <td>{{ $compra->estado }}</td>
                         @if(Auth::user()->rol=='admin')
