@@ -73,7 +73,7 @@
         @foreach ($productos as $producto)
         @php $count++; @endphp
         <div class="col-auto mb-4 mx-auto cards">
-            <div class="card h-100" style="border-radius: 30px;">
+            <div class="card h-100 bg-light border-success" style="border-radius: 30px;">
                 <img class="img-fluid m-2 mt-3" src="{{ '/images/'.$producto->imagen }}" alt="{{ $producto->nombre }}" style="border-radius: 30px;">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
@@ -91,8 +91,16 @@
                     @endif
                     @endforeach
                     <div class="d-flex justify-content-between">
+                        <form action="{{ route('carritos.agregar', [$producto->id, Auth::user()->id]) }}" method="POST">
+                            @csrf
+                            @if (!isset($categorias) || isset($buscar))
+                            <input type="hidden" value="buscar" name="ruta">
+                            @endif
+                            <button class="btn btn-success mt-2 rounded-4" type="submit">@lang('messages.products_info_2')</button>
+                        </form>
+                        <div class="float-right d-flex justify-content-end">
                         @if (!$enc)
-                        <form action="{{ route('usuarios.agregarfavoritos') }}" method="POST">
+                        <form action="{{ route('usuarios.agregarfavoritos') }}" class="mx-1" method="POST">
                             @csrf
                             @if (!isset($categorias) || isset($buscar))
                             <input type="hidden" value="buscar" name="ruta">
@@ -106,7 +114,7 @@
                             </button>
                         </form>
                         @else
-                        <form action="{{ route('usuarios.quitarfavoritos') }}" method="POST">
+                        <form action="{{ route('usuarios.quitarfavoritos') }}" class="mx-1" method="POST">
                             @csrf
                             @if (!isset($categorias) || isset($buscar))
                             <input type="hidden" value="buscar" name="ruta">
@@ -120,17 +128,15 @@
                             </button>
                         </form>
                         @endif
-                        <form action="{{ route('carritos.agregar', [$producto->id, Auth::user()->id]) }}" method="POST">
-                            @csrf
-                            @if (!isset($categorias) || isset($buscar))
-                            <input type="hidden" value="buscar" name="ruta">
-                            @endif
-                            <button class="btn btn-success mt-2 rounded-4" type="submit">@lang('messages.products_info_2')</button>
-                        </form>
                         <form action="{{ route('productos.visualizar',$producto->id) }}" method="get">
                             @csrf
-                            <button class="btn btn-success mt-2 rounded-4" type="submit">@lang('messages.products_info_3')</button>
+                            <button class="btn btn-success mt-2 rounded-4" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                </svg>
+                            </button>
                         </form>
+                        </div>
                     </div>
                     @endif
                 </div>
