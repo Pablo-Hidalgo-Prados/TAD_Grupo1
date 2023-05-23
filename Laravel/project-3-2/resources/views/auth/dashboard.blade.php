@@ -160,17 +160,17 @@
 
 <div class="m-2">
     <table class="table border-success text-black text-center w-75 mx-auto mt-5">
-        <th>@lang('messages.dashboard_info_5')</th>
+        <th class="d-none d-lg-table-cell">@lang('messages.dashboard_info_5')</th>
         <th>@lang('messages.dashboard_info_6')</th>
         <th>@lang('messages.dashboard_info_7')</th>
-        <th>@lang('messages.dashboard_info_8')</th>
+        <th class="d-none d-lg-table-cell">@lang('messages.dashboard_info_8')</th>
         <th>@lang('messages.dashboard_info_9')</th>
         @foreach ($usuarios as $user)
         <tr>
-            <td class="align-middle">{{ $user->id }}</td>
+            <td class="d-none d-lg-table-cell align-middle">{{ $user->id }}</td>
             <td class="align-middle">{{ $user->name }} {{ $user->apellidos }}</td>
             <td class="align-middle">{{ $user->email }}</td>
-            <td class="align-middle">{{ $user->telefono }}</td>
+            <td class="d-none d-lg-table-cell align-middle">{{ $user->telefono }}</td>
             <td class="">
 
                 <form action="{{ route('usuarios.eliminar', $user->id) }}" class="d-inline" method="POST">
@@ -280,19 +280,19 @@
 <table class="table border-success text-black text-center w-75 mx-auto mt-5">
     <th>@lang('messages.dashboard_info_18')</th>
     <th>@lang('messages.dashboard_info_19')</th>
-    <th class="d-none d-lg-table-cell">@lang('messages.dashboard_info_20')</th>
+    <th>@lang('messages.dashboard_info_20')</th>
     <th>@lang('messages.dashboard_info_21')</th>
     @foreach ($categorias as $categoria)
     <tr>
         <td class="align-middle">{{ $categoria->id }}</td>
         <td class="align-middle">{{ $categoria->nombre }}</td>
-        <td class="d-none d-lg-table-cell align-middle">{{ $categoria->descripcion }}</td>
+        <td class="align-middle">{{ $categoria->descripcion }}</td>
         <td class="">
 
             <form action="{{ route('categorias.eliminar', $categoria->id) }}" class="d-inline" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')" class="btn btn-danger mb-1">
+                <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar este descuento?')" class="btn btn-danger mb-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                         <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
                     </svg></button>
@@ -334,13 +334,13 @@
 
 @if(count($descuentos)>0)
 <table class="table border-success text-black text-center w-75 mx-auto mt-5">
-    <th>@lang('messages.dashboard_info_23')</th>
+    <th class="d-none d-lg-table-cell">@lang('messages.dashboard_info_23')</th>
     <th>@lang('messages.dashboard_info_24')</th>
     <th>@lang('messages.dashboard_info_25')</th>
     <th>@lang('messages.dashboard_info_26')</th>
     @foreach ($descuentos as $descuento)
     <tr>
-        <td class="align-middle">{{ $descuento->id }}</td>
+        <td class="d-none d-lg-table-cell align-middle">{{ $descuento->id }}</td>
         <td class="align-middle">{{ $descuento->codigo }}</td>
         <td class="align-middle">{{ $descuento->porcentaje }}</td>
         <td class="">
