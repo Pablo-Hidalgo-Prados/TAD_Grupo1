@@ -168,3 +168,14 @@
 .list_element:hover {
     background-color: rgb(56, 102, 65);
 }
+
+.ir-arriba {
+    display: none;
+    background: rgb(167, 201, 87);
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 25%;
+}
