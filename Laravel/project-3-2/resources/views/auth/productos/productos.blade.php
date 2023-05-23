@@ -74,7 +74,9 @@
         @php $count++; @endphp
         <div class="col-auto mb-4 mx-auto cards">
             <div class="card h-100 bg-light border-success" style="border-radius: 30px;">
-                <img class="img-fluid m-2 mt-3" src="{{ '/images/'.$producto->imagen }}" alt="{{ $producto->nombre }}" style="border-radius: 30px;">
+                <a href="{{ route('productos.visualizar', $producto->id) }}" class="m-2 mt-3">
+                    <img class="img-fluid" src="{{ '/images/'.$producto->imagen }}" alt="{{ $producto->nombre }}" style="border-radius: 30px;">
+                </a>
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
                         <h5 class="card-title">{{ $producto->nombre }}</h5>
