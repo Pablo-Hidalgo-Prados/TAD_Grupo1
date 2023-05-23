@@ -12,7 +12,6 @@
         </form>
     </div>
     <table class="table border-success text-black text-center w-75 mx-auto mt-5">
-        <th></th>
         <th>@lang('messages.cart_info_3')</th>
         <th class="d-none d-lg-grid">@lang('messages.cart_info_4')</th>
         <th>@lang('messages.cart_info_5')</th>
@@ -20,8 +19,9 @@
         <th>@lang('messages.cart_info_7')</th>
         @foreach ($productos_carrito as $producto)
         <tr>
-            <td class="align-middle"><img class="rounded-3" src="{{ '/images/'.$producto->imagen }}" alt="{{ $user->nombre }}" width="80" height="80"></td>
-            <td class="align-middle">{{ $producto->nombre }}</td>
+            <td class="align-middle"><img class="rounded-3" src="{{ '/images/'.$producto->imagen }}" alt="{{ $user->nombre }}" width="40" height="40">
+                <p>{{ $producto->nombre }}</p>
+            </td>
             <td class="d-none d-lg-table-cell align-middle">{{ $producto->descripcion }}</td>
             <td class="align-middle">{{ $producto->precio }}</td>
             <td class="align-middle">{{ $producto->pivot->cantidad }}</td>
@@ -29,12 +29,22 @@
                 <form action="{{ route('carritos.reducir') }}" method="post">
                     @csrf
                     <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                    <button class="btn btn-danger rounded-3 me-0 me-sm-0 mb-1 mb-sm-1" type="submit">-</button>
+                    <button type="submit" class="btn btn-danger rounded-3 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle mb-1" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                        </svg>
+                    </button>
                 </form>
                 <form action="{{ route('carritos.incrementar') }}" method="post">
                     @csrf
                     <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                    <button class="btn btn-success rounded-3 ml-2 ml-sm-2 mt-1 mt-sm-1" type="submit">+</button>
+                    <button type="submit" class="btn btn-success rounded-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle mb-1" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </button>
                 </form>
             </td>
         </tr>

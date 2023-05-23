@@ -75,7 +75,7 @@ return [
 	'products_btn_2' => 'Search',
 	'cart_info_1' => 'Cart of',
 	'cart_info_2' => 'Empty cart',
-	'cart_info_3' => 'Name',
+	'cart_info_3' => 'Product',
 	'cart_info_4' => 'Description',
 	'cart_info_5' => 'Price',
 	'cart_info_6' => 'Quantity',

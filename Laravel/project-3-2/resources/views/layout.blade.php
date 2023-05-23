@@ -14,23 +14,20 @@
         $(document).ready(function() {
             $("#alerta").delay(2000).fadeOut();
 
-            $('.ir-arriba').click(function(){
+            $('.ir-arriba').click(function() {
                 $('body, html').animate({
                     scrollTop: '0px'
                 }, 300);
             });
 
-            $(window).scroll(function(){
-                if( $(this).scrollTop() > 0 ){
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 0) {
                     $('.ir-arriba').slideDown(300);
                 } else {
                     $('.ir-arriba').slideUp(300);
                 }
             });
         });
-
-
-        
     </script>
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
 </head>
@@ -175,9 +172,9 @@
 
     <div class="d-none d-sm-block">
         <button class="ir-arriba btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-        </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+            </svg>
         </button>
     </div>
 
@@ -188,9 +185,7 @@
             <div class="container text-center text-md-start text-light pt-1">
                 <div class="row mt-3">
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 py-2">
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3"></i>@lang('messages.footer_info_1')
-                        </h6>
+                        <h6 class="text-uppercase fw-bold mb-4">@lang('messages.footer_info_1')</h6>
                         <p>@lang('messages.footer_info_2')</p>
                     </div>
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 py-2">

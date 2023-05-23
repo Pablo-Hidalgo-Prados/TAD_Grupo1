@@ -75,7 +75,7 @@ return [
 	'products_btn_2' => 'Buscar',
 	'cart_info_1' => 'Carrito de',
 	'cart_info_2' => 'Vaciar carrito',
-	'cart_info_3' => 'Nombre',
+	'cart_info_3' => 'Producto',
 	'cart_info_4' => 'Descripción',
 	'cart_info_5' => 'Precio',
 	'cart_info_6' => 'Cantidad',
