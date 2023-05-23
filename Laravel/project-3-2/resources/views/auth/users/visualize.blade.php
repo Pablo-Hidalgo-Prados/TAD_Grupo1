@@ -158,7 +158,7 @@
                 @else
                     <p>@lang('messages.profile_info_16')</p>
                 @endif
-                    <form action="{{ route('compras.listaruser') }}" method="post">
+                    <form action="{{ route('usuarios.visualizar', Auth::user()->id) }}" method="get"" method="post">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ $user->id }}">
                         <input type="hidden" name="modal" value="cerrar">
