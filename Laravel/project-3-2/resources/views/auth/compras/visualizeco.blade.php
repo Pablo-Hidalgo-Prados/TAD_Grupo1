@@ -11,8 +11,24 @@
         <p><strong>@lang('messages.shopping_info_5')</strong> {{ $compra->estado }}</p>
 
         <div class="row justify-content-center mt-5">
+            @php $cantidades = [];
+            for ($i = 0; $i < count($productos); $i++) {
+                $producto = $productos[$i];
+                $productoId = $producto->id;
+                
+                if (isset($cantidades[$productoId])) {
+                    $cantidades[$productoId]++;
+                } else {
+                    $cantidades[$productoId] = 1;
+                }
+            }
+            $c_producto=$cantidades;
+            @endphp
             @php $count = 0; @endphp
             @foreach ($productos as $producto)
+            @if($cantidades[$producto->id]>1)
+                @php $cantidades[$producto->id]--; @endphp
+            @else
             @php $count++; @endphp
             <div class="col-auto mb-4 mx-auto">
                 <div class="card h-100 bg-light border-success" style="border-radius: 30px;">
@@ -23,6 +39,7 @@
                         <div>
                             <h5 class="card-title">{{ $producto->nombre }}</h5>
                             <p class="card-text">${{ $producto->precio }}</p>
+                            <p class="card-text">Cantidad: {{ $c_producto[$producto->id] }}</p>
                         </div>
                         @if (isset(Auth::user()->id))
                         @php
@@ -48,6 +65,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
         <form action="{{ route('compras.editar', $compra->id) }}" method="get">
