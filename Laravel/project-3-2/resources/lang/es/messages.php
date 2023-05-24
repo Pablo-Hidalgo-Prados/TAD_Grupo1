@@ -65,6 +65,7 @@ return [
 	'dashboard_info_25' => 'Porcentaje',
 	'dashboard_info_26' => 'Acciones',
 	'dashboard_info_27' => 'No se encontraron descuentos.',
+	'dashboard_info_28' => 'Listados',
 	'products_info_1' => 'Productos',
 	'products_info_2' => 'Añadir al carrito',
 	'products_info_3' => 'Ver Producto',
