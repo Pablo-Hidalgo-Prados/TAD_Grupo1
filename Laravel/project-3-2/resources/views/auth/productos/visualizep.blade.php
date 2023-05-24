@@ -72,12 +72,14 @@
 
     </div>
     @if(isset(Auth::user()->rol))
-        <div class="d-flex justify-content-center">
+        @if(Auth::user()->rol=='cliente')
+        <div class="d-flex justify-content-center mb-2">
             <form action="{{ route('usuarios.volver') }}" method="post">
                 @csrf
                 <button class="btn btn-success" type="submit">@lang('messages.product_info_8')</button>
             </form>
         </div>
+        @endif
     @endif
 </div>
 @endsection
