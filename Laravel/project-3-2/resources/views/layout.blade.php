@@ -97,21 +97,6 @@
                     </ul>
                     @if (Route::has('login'))
                     <div class="hidden top-0 me-xl-4 d-sm-block d-md-flex d-lg-flex d-xxl-flex align-items-right xs:block float-end justify-content-end">
-
-                        @if (app()->getLocale() === 'es')
-
-                        <div class="me-3">
-                            <a href="{{ route('language.swap', 'en') }}"><img src="https://em-content.zobj.net/thumbs/120/twitter/322/flag-united-kingdom_1f1ec-1f1e7.png" srcset="https://em-content.zobj.net/thumbs/240/twitter/322/flag-united-kingdom_1f1ec-1f1e7.png 2x" width="40" height="40"></a>
-                        </div>
-                        @else
-
-                        <div class="flag me-3 mb-1 mb-sm-1">
-                            <a href="{{ route('language.swap', 'es') }}"><span class="red stripe"></span></a>
-                            <a href="{{ route('language.swap', 'es') }}"><span class="yellow stripe"></span></a>
-                            <a href="{{ route('language.swap', 'es') }}"><span class="red stripe"></span></a>
-                        </div>
-
-                        @endif
                         @auth
                         @if(Auth::user()->rol=='cliente')
                         <form action="{{ route('carritos.visualizar') }}" method="post">

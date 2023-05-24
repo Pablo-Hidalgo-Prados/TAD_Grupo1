@@ -1,4 +1,4 @@
-@extends('layoutcart')
+@extends('layout')
 @section('content')
 <html lang="{{ app()->getLocale() }}">
 <div class="my-4">

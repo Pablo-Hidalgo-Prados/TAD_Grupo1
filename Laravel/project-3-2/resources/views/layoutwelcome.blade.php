@@ -13,6 +13,20 @@
     <script>
         $(document).ready(function() {
             $("#alerta").delay(2000).fadeOut();
+
+            $('.ir-arriba').click(function() {
+                $('body, html').animate({
+                    scrollTop: '0px'
+                }, 300);
+            });
+
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 0) {
+                    $('.ir-arriba').slideDown(300);
+                } else {
+                    $('.ir-arriba').slideUp(300);
+                }
+            });
         });
     </script>
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
@@ -83,6 +97,21 @@
                     </ul>
                     @if (Route::has('login'))
                     <div class="hidden top-0 me-xl-4 d-sm-block d-md-flex d-lg-flex d-xxl-flex align-items-right xs:block float-end justify-content-end">
+
+                        @if (app()->getLocale() === 'es')
+
+                        <div class="me-3">
+                            <a href="{{ route('language.swap', 'en') }}"><img src="https://em-content.zobj.net/thumbs/120/twitter/322/flag-united-kingdom_1f1ec-1f1e7.png" srcset="https://em-content.zobj.net/thumbs/240/twitter/322/flag-united-kingdom_1f1ec-1f1e7.png 2x" width="40" height="40"></a>
+                        </div>
+                        @else
+
+                        <div class="flag me-3 mb-1 mb-sm-1">
+                            <a href="{{ route('language.swap', 'es') }}"><span class="red stripe"></span></a>
+                            <a href="{{ route('language.swap', 'es') }}"><span class="yellow stripe"></span></a>
+                            <a href="{{ route('language.swap', 'es') }}"><span class="red stripe"></span></a>
+                        </div>
+
+                        @endif
                         @auth
                         @if(Auth::user()->rol=='cliente')
                         <form action="{{ route('carritos.visualizar') }}" method="post">
@@ -141,11 +170,19 @@
     </div>
     @endif
 
+    <div class="d-none d-sm-block">
+        <button class="ir-arriba btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+            </svg>
+        </button>
+    </div>
+
     @yield('content')
 
     <footer class="text-center text-lg-start bgfooter text-muted">
         <section class="">
-            <div class="container text-center text-md-start mt-5 text-light pt-1">
+            <div class="container text-center text-md-start text-light pt-1">
                 <div class="row mt-3">
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 py-2">
                         <h6 class="text-uppercase fw-bold mb-4">@lang('messages.footer_info_1')</h6>
